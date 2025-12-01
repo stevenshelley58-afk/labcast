@@ -1,4 +1,9 @@
 {
-  "rootDirectory": "labcast-site"
+  "builds": [
+    {
+      "src": "labcast-site/package.json",
+      "use": "@vercel/next"
+    }
+  ]
 }
 
