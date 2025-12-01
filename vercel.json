@@ -6,5 +6,11 @@
       "src": "labcast-site/package.json",
       "use": "@vercel/next"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "labcast-site/$1"
+    }
   ]
 }
