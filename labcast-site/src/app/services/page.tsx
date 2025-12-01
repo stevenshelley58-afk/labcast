@@ -186,7 +186,7 @@ export default function ServicesPage() {
                 <div className="text-2xl font-semibold text-foreground">
                   $5,000 – $8,000
                 </div>
-                <div className="text-sm text-muted mt-1">Once off</div>
+                <div className="text-sm text-muted mt-1">One-time</div>
               </div>
             </div>
             <div className="p-10 grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -503,7 +503,7 @@ export default function ServicesPage() {
                 <div className="text-2xl font-semibold text-foreground">
                   $1,000 – $1,800
                 </div>
-                <div className="text-sm text-muted mt-1">Once off</div>
+                <div className="text-sm text-muted mt-1">One-time</div>
               </div>
             </div>
             <div className="p-10 grid grid-cols-1 md:grid-cols-2 gap-12">

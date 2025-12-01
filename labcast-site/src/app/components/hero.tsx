@@ -3,32 +3,26 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-/**
- * Hero section component with animated Three.js wave canvas.
- * 
- * @example
- * ```tsx
- * <Hero />
- * ```
- */
+type SceneState = {
+  camera: THREE.PerspectiveCamera;
+  scene: THREE.Scene;
+  renderer: THREE.WebGLRenderer;
+  particles: THREE.Points;
+  count: number;
+  mouseX: number;
+  mouseY: number;
+  targetMouseX: number;
+  targetMouseY: number;
+  halfX: number;
+  halfY: number;
+  amountX: number;
+  amountY: number;
+};
+
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationFrameRef = useRef<number | undefined>(undefined);
-  const sceneRef = useRef<{
-    camera: THREE.PerspectiveCamera;
-    scene: THREE.Scene;
-    renderer: THREE.WebGLRenderer;
-    particles: THREE.Points;
-    count: number;
-    mouseX: number;
-    mouseY: number;
-    targetMouseX: number;
-    targetMouseY: number;
-    halfX: number;
-    halfY: number;
-    amountX: number;
-    amountY: number;
-  } | undefined>(undefined);
+  const animationFrameRef = useRef<number>();
+  const sceneRef = useRef<SceneState>();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -38,10 +32,11 @@ export function Hero() {
     const AMOUNTX = 110;
     const AMOUNTY = 75;
 
-    // Reduce particles on mobile for performance
     const getIsMobile = () => window.innerWidth < 768;
-    const getAmountX = () => (getIsMobile() ? Math.floor(AMOUNTX * 0.6) : AMOUNTX);
-    const getAmountY = () => (getIsMobile() ? Math.floor(AMOUNTY * 0.6) : AMOUNTY);
+    const getAmountX = () =>
+      getIsMobile() ? Math.floor(AMOUNTX * 0.6) : AMOUNTX;
+    const getAmountY = () =>
+      getIsMobile() ? Math.floor(AMOUNTY * 0.6) : AMOUNTY;
 
     let halfX = window.innerWidth / 2;
     let halfY = window.innerHeight / 2;
@@ -53,7 +48,7 @@ export function Hero() {
       75,
       window.innerWidth / window.innerHeight,
       1,
-      10000
+      10000,
     );
     camera.position.set(420, 520, 1200);
     camera.lookAt(0, 0, 0);
@@ -96,7 +91,7 @@ export function Hero() {
     scene.add(particles);
 
     const renderer = new THREE.WebGLRenderer({
-      canvas: canvas,
+      canvas,
       antialias: true,
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.7));
@@ -117,11 +112,11 @@ export function Hero() {
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (event: MouseEvent) => {
       if (!sceneRef.current) return;
 
-      sceneRef.current.targetMouseX = e.clientX - halfX;
-      sceneRef.current.targetMouseY = e.clientY - halfY;
+      sceneRef.current.targetMouseX = event.clientX - halfX;
+      sceneRef.current.targetMouseY = event.clientY - halfY;
     };
 
     window.addEventListener("resize", handleResize);
@@ -143,14 +138,14 @@ export function Hero() {
       amountY,
     };
 
-    function render() {
+    const render = () => {
       if (!sceneRef.current) return;
 
       const {
-        camera,
-        scene,
-        renderer,
-        particles,
+        camera: currentCamera,
+        scene: currentScene,
+        renderer: currentRenderer,
+        particles: currentParticles,
         mouseX: currentMouseX,
         mouseY: currentMouseY,
         targetMouseX: currentTargetMouseX,
@@ -162,13 +157,14 @@ export function Hero() {
       sceneRef.current.mouseY +=
         (currentTargetMouseY - currentMouseY) * 0.03;
 
-      camera.position.x = 420 + sceneRef.current.mouseX * 0.25;
-      camera.position.y = 520 - sceneRef.current.mouseY * 0.12;
-      camera.lookAt(scene.position);
+      currentCamera.position.x = 420 + sceneRef.current.mouseX * 0.25;
+      currentCamera.position.y = 520 - sceneRef.current.mouseY * 0.12;
+      currentCamera.lookAt(currentScene.position);
 
-      const positions = particles.geometry.attributes.position.array as Float32Array;
+      const positionArray =
+        currentParticles.geometry.attributes.position.array as Float32Array;
 
-      let i = 0;
+      let positionIndex = 0;
       for (let ix = 0; ix < sceneRef.current.amountX; ix++) {
         for (let iy = 0; iy < sceneRef.current.amountY; iy++) {
           const wave1 =
@@ -179,21 +175,21 @@ export function Hero() {
           const wave3 =
             Math.cos((ix + iy) * 0.12 + sceneRef.current.count * 0.35) * 18.0;
 
-          positions[i + 1] = wave1 + wave2 + wave3;
-          i += 3;
+          positionArray[positionIndex + 1] = wave1 + wave2 + wave3;
+          positionIndex += 3;
         }
       }
 
-      particles.geometry.attributes.position.needsUpdate = true;
-      renderer.render(scene, camera);
+      currentParticles.geometry.attributes.position.needsUpdate = true;
+      currentRenderer.render(currentScene, currentCamera);
 
       sceneRef.current.count += 0.005;
-    }
+    };
 
-    function animate() {
+    const animate = () => {
       animationFrameRef.current = requestAnimationFrame(animate);
       render();
-    }
+    };
 
     animate();
 
@@ -210,281 +206,60 @@ export function Hero() {
   }, []);
 
   return (
-    <>
-      <style>{`
-        * {
-          box-sizing: border-box;
-        }
+    <section className="hero">
+      <div className="hero-inner">
+        <div className="hero-nav">
+          <header className="nav">
+            <div className="nav-left">Labcast</div>
 
-        .hero {
-          position: relative;
-          overflow: hidden;
-          background: #f8f8f8;
-        }
+            <nav className="nav-center">
+              <a href="#services">Services</a>
+              <a href="#about">About</a>
+              <a href="#contact">Contact</a>
+            </nav>
 
-        .hero-inner {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          min-height: 100vh;
-        }
+            <div className="nav-right">
+              <a href="#contact">Get in touch</a>
+            </div>
+          </header>
+        </div>
 
-        .hero-body {
-          position: relative;
-          flex: 1;
-          display: flex;
-          align-items: center;
-        }
-
-        #waveCanvas {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          display: block;
-          z-index: 0;
-        }
-
-        .hero-fade {
-          position: absolute;
-          z-index: 1;
-          pointer-events: none;
-          left: 5vw;
-          top: 20vh;
-          width: 520px;
-          height: 260px;
-          background: radial-gradient(
-            ellipse 120% 140% at 20% 50%,
-            rgba(248, 248, 248, 1) 0%,
-            rgba(248, 248, 248, 1) 45%,
-            rgba(248, 248, 248, 0) 100%
-          );
-        }
-
-        /* NAV */
-        .hero-nav {
-          position: relative;
-          z-index: 2;
-        }
-
-        .nav {
-          position: absolute;
-          top: 18px;
-          left: 7vw;
-          right: 7vw;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          font-size: 14px;
-        }
-
-        .nav-left {
-          font-weight: 600;
-        }
-
-        .nav-center {
-          display: flex;
-          gap: 24px;
-          color: #333;
-        }
-
-        .nav-center a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .nav-right a {
-          border-radius: 999px;
-          padding: 7px 18px;
-          border: 1px solid #111;
-          background: #111;
-          color: #fff;
-          font-size: 13px;
-          text-decoration: none;
-        }
-
-        /* HERO CONTENT */
-        .hero-content {
-          position: relative;
-          z-index: 2;
-          max-width: 760px;
-          padding: 96px 5vw;
-          width: 100%;
-        }
-
-        .eyebrow {
-          font-size: 13px;
-          color: #666;
-          margin-bottom: 18px;
-        }
-
-        .hero-title {
-          font-size: 64px;
-          line-height: 1.05;
-          letter-spacing: -0.03em;
-          margin: 0 0 22px;
-        }
-
-        .hero-title span {
-          display: block;
-          white-space: nowrap;
-        }
-
-        .subcopy {
-          font-size: 18px;
-          color: #444;
-          max-width: 480px;
-          margin-bottom: 30px;
-        }
-
-        .btn-row {
-          display: flex;
-          gap: 12px;
-          flex-wrap: wrap;
-        }
-
-        .btn-primary,
-        .btn-secondary {
-          border-radius: 999px;
-          padding: 11px 24px;
-          font-size: 15px;
-          cursor: pointer;
-          text-decoration: none;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid #111;
-        }
-
-        .btn-primary {
-          background: #111;
-          color: #fff;
-        }
-
-        .btn-secondary {
-          background: #ffffff;
-          color: #111;
-        }
-
-        .btn-secondary span {
-          margin-left: 6px;
-        }
-
-        @media (max-width: 900px) {
-          .nav {
-            left: 16px;
-            right: 16px;
-          }
-
-          .nav-center {
-            display: none;
-          }
-
-          .hero-content {
-            padding: 80px 6vw 72px;
-          }
-
-          .hero-title {
-            font-size: 44px;
-          }
-
-          .hero-title span {
-            white-space: normal;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .hero-inner {
-            min-height: 100dvh;
-          }
-
-          .hero-fade {
-            left: 50%;
-            top: 22vh;
-            transform: translateX(-50%);
-            width: 88vw;
-            height: 280px;
-            background: radial-gradient(
-              ellipse 110% 130% at 50% 45%,
-              rgba(248, 248, 248, 1) 0%,
-              rgba(248, 248, 248, 1) 50%,
-              rgba(248, 248, 248, 0) 100%
-            );
-          }
-        }
-
-        @media (max-width: 600px) {
-          .nav-right a {
-            font-size: 12px;
-            padding: 6px 14px;
-          }
-
-          .hero-title {
-            font-size: 34px;
-          }
-
-          .subcopy {
-            font-size: 16px;
-          }
-
-          .btn-primary,
-          .btn-secondary {
-            font-size: 14px;
-            padding: 10px 20px;
-          }
-        }
-      `}</style>
-
-      <section className="hero">
-        <div className="hero-inner">
-          {/* NAV */}
-          <div className="hero-nav">
-            <header className="nav">
-              <div className="nav-left">Labcast</div>
-
-              <nav className="nav-center">
-                <a href="#services">Services</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-              </nav>
-
-              <div className="nav-right">
-                <a href="#contact">Get in touch</a>
-              </div>
-            </header>
+        <div className="hero-body">
+          <div className="hero-canvas" aria-hidden="true">
+            <canvas id="waveCanvas" ref={canvasRef}></canvas>
           </div>
 
-          {/* HERO BODY */}
-          <div className="hero-body">
-            <canvas id="waveCanvas" ref={canvasRef}></canvas>
-            <div className="hero-fade" aria-hidden="true" />
+          <div className="hero-content">
+            <p className="hero-kicker">From the founders of bhm.com.au</p>
 
-            {/* HERO COPY */}
-            <div className="hero-content">
-              <div className="eyebrow">From the founders of bhm.com.au</div>
-
+            <div className="hero-text-block">
               <h1 className="hero-title">
-                <span>Real execution.</span>
-                <span>Not agency theatre.</span>
+                Real execution.
+                <br />
+                Not agency theatre.
               </h1>
-
               <p className="subcopy">
-                Marketing, creative and builds from operators in the trenches, not agencies on the sidelines.
+                Marketing, creative and builds from operators in the trenches,
+                not agencies on the sidelines.
               </p>
+            </div>
 
-              <div className="btn-row">
-                <a href="#services" className="btn-primary">
-                  See how we can help
-                </a>
-                <a href="https://bhm.com.au" className="btn-secondary" target="_blank" rel="noopener noreferrer">
-                  See our brand <span>→</span>
-                </a>
-              </div>
+            <div className="hero-actions">
+              <a href="#services" className="btn btn-primary">
+                See how we can help
+              </a>
+              <a
+                href="https://bhm.com.au"
+                className="btn btn-secondary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See our brand &rarr;
+              </a>
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
-
