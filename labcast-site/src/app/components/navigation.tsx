@@ -9,7 +9,7 @@ export function Navigation() {
         </Link>
         <div className="hidden md:flex items-center gap-8 text-sm text-muted">
           <Link
-            href="/#services"
+            href="/services"
             className="hover:text-foreground transition-colors"
           >
             Services

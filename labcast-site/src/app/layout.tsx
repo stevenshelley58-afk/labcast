@@ -1,5 +1,18 @@
 import type { Metadata } from "next";
+import { Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  style: ["normal", "italic"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://labcast.com.au"),
@@ -53,7 +66,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className={`${instrumentSerif.variable} ${inter.variable} antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
