@@ -43,12 +43,6 @@ export function Hero() {
     const getAmountX = () => (getIsMobile() ? Math.floor(AMOUNTX * 0.6) : AMOUNTX);
     const getAmountY = () => (getIsMobile() ? Math.floor(AMOUNTY * 0.6) : AMOUNTY);
 
-    let count = 0;
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetMouseX = 0;
-    let targetMouseY = 0;
-
     let halfX = window.innerWidth / 2;
     let halfY = window.innerHeight / 2;
 
@@ -112,6 +106,11 @@ export function Hero() {
       halfX = window.innerWidth / 2;
       halfY = window.innerHeight / 2;
 
+      if (sceneRef.current) {
+        sceneRef.current.halfX = halfX;
+        sceneRef.current.halfY = halfY;
+      }
+
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
 
@@ -119,8 +118,10 @@ export function Hero() {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      targetMouseX = e.clientX - halfX;
-      targetMouseY = e.clientY - halfY;
+      if (!sceneRef.current) return;
+
+      sceneRef.current.targetMouseX = e.clientX - halfX;
+      sceneRef.current.targetMouseY = e.clientY - halfY;
     };
 
     window.addEventListener("resize", handleResize);
@@ -131,11 +132,11 @@ export function Hero() {
       scene,
       renderer,
       particles,
-      count,
-      mouseX,
-      mouseY,
-      targetMouseX,
-      targetMouseY,
+      count: 0,
+      mouseX: 0,
+      mouseY: 0,
+      targetMouseX: 0,
+      targetMouseY: 0,
       halfX,
       halfY,
       amountX,

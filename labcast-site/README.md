@@ -28,3 +28,7 @@ pnpm start   # serve production build
 - Metadata and OG info set in `src/app/layout.tsx` with `metadataBase` `https://labcast.com.au`.
 - Contact form posts to `/api/contact`. Set `FORMSPREE_ENDPOINT` in `.env.local` (see `.env.example`) to forward submissions. Without it, the endpoint returns a configuration error.
 - External links open in new tabs where relevant.
+
+## Deployment
+- Root-level `vercel.json` points the build at `labcast-site` using the Next.js adapter.
+- Ensure `FORMSPREE_ENDPOINT` is configured in the Vercel project for production submissions.

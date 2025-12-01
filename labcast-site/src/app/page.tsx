@@ -108,10 +108,10 @@ export default function Home() {
                   Meta ads, email flows, growth strategy. The exact playbook we
                   use to profitably scale BHM — now applied to your brand.
                 </p>
-                <ul className="space-y-2 text-sm text-muted">
-                  <li>• Meta ads management &amp; creative strategy</li>
-                  <li>• Email &amp; SMS flows that convert</li>
-                  <li>• Analytics &amp; attribution setup</li>
+                <ul className="space-y-2 text-sm text-muted list-disc list-inside">
+                  <li>Meta ads management &amp; creative strategy</li>
+                  <li>Email &amp; SMS flows that convert</li>
+                  <li>Analytics &amp; attribution setup</li>
                 </ul>
               </div>
 
@@ -124,10 +124,10 @@ export default function Home() {
                   Product imagery without the photoshoot price tag. AI-powered
                   visuals that look natural, not plastic. Powered by RenderVault.
                 </p>
-                <ul className="space-y-2 text-sm text-muted">
-                  <li>• AI product photography</li>
-                  <li>• Lifestyle &amp; hero imagery</li>
-                  <li>• Ad creative at scale</li>
+                <ul className="space-y-2 text-sm text-muted list-disc list-inside">
+                  <li>AI product photography</li>
+                  <li>Lifestyle &amp; hero imagery</li>
+                  <li>Ad creative at scale</li>
                 </ul>
                 <Link
                   href="/rendervault"
@@ -146,10 +146,10 @@ export default function Home() {
                   Websites and apps that convert, not just look good. Clean code,
                   fast load times, built for real business outcomes.
                 </p>
-                <ul className="space-y-2 text-sm text-muted">
-                  <li>• Shopify &amp; custom ecom builds</li>
-                  <li>• Landing pages that convert</li>
-                  <li>• Web &amp; mobile apps</li>
+                <ul className="space-y-2 text-sm text-muted list-disc list-inside">
+                  <li>Shopify &amp; custom ecom builds</li>
+                  <li>Landing pages that convert</li>
+                  <li>Web &amp; mobile apps</li>
                 </ul>
               </div>
             </div>
@@ -375,6 +375,7 @@ export default function Home() {
                       id="name"
                       name="name"
                       required
+                      autoComplete="name"
                       className="w-full px-4 py-3 bg-transparent border border-border rounded-lg focus:outline-none focus:border-foreground transition-colors"
                       placeholder="Your name"
                     />
@@ -391,6 +392,7 @@ export default function Home() {
                       id="email"
                       name="email"
                       required
+                      autoComplete="email"
                       className="w-full px-4 py-3 bg-transparent border border-border rounded-lg focus:outline-none focus:border-foreground transition-colors"
                       placeholder="you@company.com"
                     />
@@ -407,6 +409,7 @@ export default function Home() {
                     type="url"
                     id="website"
                     name="website"
+                    autoComplete="url"
                     className="w-full px-4 py-3 bg-transparent border border-border rounded-lg focus:outline-none focus:border-foreground transition-colors"
                     placeholder="https://yourbrand.com"
                   />
@@ -423,6 +426,7 @@ export default function Home() {
                     name="message"
                     rows={4}
                     required
+                    autoComplete="off"
                     className="w-full px-4 py-3 bg-transparent border border-border rounded-lg focus:outline-none focus:border-foreground transition-colors resize-none"
                     placeholder="Tell us about your brand and what you&apos;re struggling with..."
                   ></textarea>
@@ -430,17 +434,18 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={formState === "submitting"}
+                  aria-busy={formState === "submitting"}
                   className="px-8 py-3 bg-foreground text-background rounded-full text-sm font-medium hover:opacity-80 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {formState === "submitting" ? "Sending..." : "Send message"}
                 </button>
                 {formState === "success" && (
-                  <p className="text-sm text-muted">
+                  <p className="text-sm text-muted" role="status" aria-live="polite">
                     Thanks for reaching out. We&apos;ll get back to you soon.
                   </p>
                 )}
                 {formState === "error" && (
-                  <p className="text-sm text-red-600">
+                  <p className="text-sm text-red-600" role="alert" aria-live="assertive">
                     {errorMessage || "Something went wrong. Please try again."}
                   </p>
                 )}
