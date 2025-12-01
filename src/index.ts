@@ -1,5 +1,6 @@
 import { Command } from "commander";
 import { initCommand } from "./commands/init";
+
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
@@ -33,5 +34,7 @@ program
     const debug = options.parent?.debug || false;
     return initCommand(path, debug);
   });
+
+
 
 program.parse();
