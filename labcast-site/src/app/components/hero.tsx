@@ -232,6 +232,24 @@ export function Hero() {
           z-index: 0;
         }
 
+        .hero-fade-overlay {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          pointer-events: none;
+          background: radial-gradient(
+            ellipse 900px 700px at 7vw 320px,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.2) 25%,
+            rgba(255, 255, 255, 0.5) 40%,
+            rgba(255, 255, 255, 0.8) 55%,
+            rgba(255, 255, 255, 0.95) 70%,
+            rgba(255, 255, 255, 1) 85%
+          );
+        }
+
         /* NAV */
         .nav {
           position: absolute;
@@ -273,11 +291,14 @@ export function Hero() {
         /* HERO CONTENT */
         .hero-inner {
           position: relative;
-          z-index: 1;
+          z-index: 2;
           max-width: 760px;
           padding-top: 150px;
           padding-left: 7vw;
           padding-right: 7vw;
+          padding-bottom: 40px;
+          background: #ffffff;
+          border-radius: 0;
         }
 
         .eyebrow {
@@ -352,6 +373,19 @@ export function Hero() {
             padding-top: 120px;
             padding-left: 16px;
             padding-right: 16px;
+            padding-bottom: 40px;
+          }
+
+          .hero-fade-overlay {
+            background: radial-gradient(
+              ellipse 700px 600px at 16px 280px,
+              rgba(255, 255, 255, 0) 0%,
+              rgba(255, 255, 255, 0.2) 25%,
+              rgba(255, 255, 255, 0.5) 40%,
+              rgba(255, 255, 255, 0.8) 55%,
+              rgba(255, 255, 255, 0.95) 70%,
+              rgba(255, 255, 255, 1) 85%
+            );
           }
 
           .hero-title {
@@ -387,6 +421,7 @@ export function Hero() {
 
       <section className="hero">
         <canvas id="waveCanvas" ref={canvasRef}></canvas>
+        <div className="hero-fade-overlay"></div>
 
         {/* NAV */}
         <header className="nav">
