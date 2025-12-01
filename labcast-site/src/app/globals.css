@@ -260,11 +260,11 @@ html {
   z-index: -1;
   pointer-events: none;
 
-  /* use #ffffff if your page background is pure white */
+  /* match your hero/canvas background (#f8f8f8 in your scene) */
   background: radial-gradient(
-    ellipse 130% 140% at 50% 50%,
+    circle at 50% 50%,
     #f8f8f8 0%,
-    #f8f8f8 55%,
+    #f8f8f8 60%,
     rgba(248, 248, 248, 0) 100%
   );
 }
