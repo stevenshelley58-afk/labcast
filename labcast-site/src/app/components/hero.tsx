@@ -21,8 +21,8 @@ type SceneState = {
 
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationFrameRef = useRef<number>();
-  const sceneRef = useRef<SceneState>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
+  const sceneRef = useRef<SceneState | undefined>(undefined);
 
   useEffect(() => {
     const canvas = canvasRef.current;
