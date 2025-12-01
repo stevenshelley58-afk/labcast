@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { Footer } from "./components/footer";
-import { Navigation } from "./components/navigation";
+import { Hero } from "./components/hero";
 
 export default function Home() {
   const [formState, setFormState] = useState<
@@ -43,43 +43,9 @@ export default function Home() {
 
   return (
     <div className="bg-background text-foreground">
-      <Navigation />
       <main className="min-h-screen">
         {/* Hero */}
-        <section className="min-h-screen flex flex-col justify-center px-6 pt-20">
-          <div className="max-w-6xl mx-auto w-full">
-            <div className="max-w-4xl">
-              <p className="text-muted text-sm mb-6 opacity-0 animate-fade-up">
-                From the founders of bhm.com.au
-              </p>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.1] mb-8 opacity-0 animate-fade-up animate-delay-100">
-                Ecom growth.
-                <br />
-                <span className="text-muted">No fluff.</span>
-              </h1>
-              <p className="text-lg md:text-xl text-muted max-w-xl leading-relaxed mb-12 opacity-0 animate-fade-up animate-delay-200">
-                Marketing, creative, and build — from people who spend their own
-                money on ads, not yours.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-up animate-delay-300">
-                <a
-                  href="#services"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-foreground text-background rounded-full text-sm font-medium hover:opacity-80 transition-opacity"
-                >
-                  See how we can help
-                </a>
-                <a
-                  href="https://bhm.com.au"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-full text-sm font-medium hover:border-foreground transition-colors"
-                >
-                  See our brand →
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Hero />
 
         {/* The Problem */}
         <section className="py-32 px-6 border-t border-border">
