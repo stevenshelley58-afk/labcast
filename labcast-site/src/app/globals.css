@@ -256,7 +256,7 @@ html {
 .hero-text-block::before {
   content: "";
   position: absolute;
-  inset: -16px -32px; /* padding around text block, tweak to taste */
+  inset: -16px -32px -28px -32px; /* extra bottom padding to soften lower edge */
   z-index: -1;
   pointer-events: none;
 
@@ -264,7 +264,8 @@ html {
   background: radial-gradient(
     circle at 50% 50%,
     #f8f8f8 0%,
-    #f8f8f8 60%,
+    #f8f8f8 52%,
+    rgba(248, 248, 248, 0.45) 78%,
     rgba(248, 248, 248, 0) 100%
   );
 }
