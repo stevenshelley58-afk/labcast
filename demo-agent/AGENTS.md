@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Goal:** Demo agent scaffold generated non-interactively.
+**Goal:** A demo agent that helps with coding tasks
 
 **Framework:** Mastra
 **Language:** TypeScript
@@ -170,18 +170,18 @@ This project follows a standardized structure for production-ready agents:
 
 ### Always:
 
-- ✅ Version control your prompts
-- ✅ Write tests for new features
-- ✅ Use LangWatch MCP to learn best practices
-- ✅ Follow the Agent Testing Pyramid
-- ✅ Document your agent's capabilities
+- Version control your prompts
+- Write tests for new features
+- Use LangWatch MCP to learn best practices
+- Follow the Agent Testing Pyramid
+- Document your agent's capabilities
 
 ### Never:
 
-- ❌ Hardcode prompts in application code
-- ❌ Skip testing new features
-- ❌ Commit API keys or sensitive data
-- ❌ Optimize without measuring (use evaluations first)
+- Hardcode prompts in application code
+- Skip testing new features
+- Commit API keys or sensitive data
+- Optimize without measuring (use evaluations first)
 
 ---
 
