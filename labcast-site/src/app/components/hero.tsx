@@ -218,9 +218,22 @@ export function Hero() {
 
         .hero {
           position: relative;
-          height: 100vh;
           overflow: hidden;
           background: #f8f8f8;
+        }
+
+        .hero-inner {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        }
+
+        .hero-body {
+          position: relative;
+          flex: 1;
+          display: flex;
+          align-items: center;
         }
 
         #waveCanvas {
@@ -232,31 +245,33 @@ export function Hero() {
           z-index: 0;
         }
 
-        .hero-fade-overlay {
+        .hero-fade {
           position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
           z-index: 1;
           pointer-events: none;
+          left: 5vw;
+          top: 20vh;
+          width: 520px;
+          height: 260px;
           background: radial-gradient(
-            ellipse 900px 700px at 7vw 320px,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.2) 25%,
-            rgba(255, 255, 255, 0.5) 40%,
-            rgba(255, 255, 255, 0.8) 55%,
-            rgba(255, 255, 255, 0.95) 70%,
-            rgba(255, 255, 255, 1) 85%
+            ellipse 120% 140% at 20% 50%,
+            rgba(248, 248, 248, 1) 0%,
+            rgba(248, 248, 248, 1) 45%,
+            rgba(248, 248, 248, 0) 100%
           );
         }
 
         /* NAV */
+        .hero-nav {
+          position: relative;
+          z-index: 2;
+        }
+
         .nav {
           position: absolute;
           top: 18px;
           left: 7vw;
           right: 7vw;
-          z-index: 2;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -289,16 +304,12 @@ export function Hero() {
         }
 
         /* HERO CONTENT */
-        .hero-inner {
+        .hero-content {
           position: relative;
           z-index: 2;
           max-width: 760px;
-          padding-top: 150px;
-          padding-left: 7vw;
-          padding-right: 7vw;
-          padding-bottom: 40px;
-          background: #ffffff;
-          border-radius: 0;
+          padding: 96px 5vw;
+          width: 100%;
         }
 
         .eyebrow {
@@ -369,23 +380,8 @@ export function Hero() {
             display: none;
           }
 
-          .hero-inner {
-            padding-top: 120px;
-            padding-left: 16px;
-            padding-right: 16px;
-            padding-bottom: 40px;
-          }
-
-          .hero-fade-overlay {
-            background: radial-gradient(
-              ellipse 700px 600px at 16px 280px,
-              rgba(255, 255, 255, 0) 0%,
-              rgba(255, 255, 255, 0.2) 25%,
-              rgba(255, 255, 255, 0.5) 40%,
-              rgba(255, 255, 255, 0.8) 55%,
-              rgba(255, 255, 255, 0.95) 70%,
-              rgba(255, 255, 255, 1) 85%
-            );
+          .hero-content {
+            padding: 80px 6vw 72px;
           }
 
           .hero-title {
@@ -394,6 +390,26 @@ export function Hero() {
 
           .hero-title span {
             white-space: normal;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hero-inner {
+            min-height: 100dvh;
+          }
+
+          .hero-fade {
+            left: 50%;
+            top: 22vh;
+            transform: translateX(-50%);
+            width: 88vw;
+            height: 280px;
+            background: radial-gradient(
+              ellipse 110% 130% at 50% 45%,
+              rgba(248, 248, 248, 1) 0%,
+              rgba(248, 248, 248, 1) 50%,
+              rgba(248, 248, 248, 0) 100%
+            );
           }
         }
 
@@ -420,44 +436,51 @@ export function Hero() {
       `}</style>
 
       <section className="hero">
-        <canvas id="waveCanvas" ref={canvasRef}></canvas>
-        <div className="hero-fade-overlay"></div>
-
-        {/* NAV */}
-        <header className="nav">
-          <div className="nav-left">Labcast</div>
-
-          <nav className="nav-center">
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </nav>
-
-          <div className="nav-right">
-            <a href="#contact">Get in touch</a>
-          </div>
-        </header>
-
-        {/* HERO COPY */}
         <div className="hero-inner">
-          <div className="eyebrow">From the founders of bhm.com.au</div>
+          {/* NAV */}
+          <div className="hero-nav">
+            <header className="nav">
+              <div className="nav-left">Labcast</div>
 
-          <h1 className="hero-title">
-            <span>Real execution.</span>
-            <span>Not agency theatre.</span>
-          </h1>
+              <nav className="nav-center">
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+              </nav>
 
-          <p className="subcopy">
-            Marketing, creative and builds from operators in the trenches, not agencies on the sidelines.
-          </p>
+              <div className="nav-right">
+                <a href="#contact">Get in touch</a>
+              </div>
+            </header>
+          </div>
 
-          <div className="btn-row">
-            <a href="#services" className="btn-primary">
-              See how we can help
-            </a>
-            <a href="https://bhm.com.au" className="btn-secondary" target="_blank" rel="noopener noreferrer">
-              See our brand <span>→</span>
-            </a>
+          {/* HERO BODY */}
+          <div className="hero-body">
+            <canvas id="waveCanvas" ref={canvasRef}></canvas>
+            <div className="hero-fade" aria-hidden="true" />
+
+            {/* HERO COPY */}
+            <div className="hero-content">
+              <div className="eyebrow">From the founders of bhm.com.au</div>
+
+              <h1 className="hero-title">
+                <span>Real execution.</span>
+                <span>Not agency theatre.</span>
+              </h1>
+
+              <p className="subcopy">
+                Marketing, creative and builds from operators in the trenches, not agencies on the sidelines.
+              </p>
+
+              <div className="btn-row">
+                <a href="#services" className="btn-primary">
+                  See how we can help
+                </a>
+                <a href="https://bhm.com.au" className="btn-secondary" target="_blank" rel="noopener noreferrer">
+                  See our brand <span>→</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
