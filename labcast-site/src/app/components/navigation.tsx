@@ -9,10 +9,22 @@ export function Navigation() {
         </Link>
         <div className="hidden md:flex items-center gap-8 text-sm text-muted">
           <Link
+            href="/framework"
+            className="hover:text-foreground transition-colors"
+          >
+            Framework
+          </Link>
+          <Link
             href="/services"
             className="hover:text-foreground transition-colors"
           >
             Services
+          </Link>
+          <Link
+            href="/pricing"
+            className="hover:text-foreground transition-colors"
+          >
+            Pricing
           </Link>
           <Link
             href="/#about"

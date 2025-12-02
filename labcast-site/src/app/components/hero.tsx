@@ -21,8 +21,8 @@ type SceneState = {
 
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationFrameRef = useRef<number>();
-  const sceneRef = useRef<SceneState>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
+  const sceneRef = useRef<SceneState | undefined>(undefined);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -213,7 +213,9 @@ export function Hero() {
             <div className="nav-left">Labcast</div>
 
             <nav className="nav-center">
+              <a href="/framework">Framework</a>
               <a href="#services">Services</a>
+              <a href="/pricing">Pricing</a>
               <a href="#about">About</a>
               <a href="#contact">Contact</a>
             </nav>

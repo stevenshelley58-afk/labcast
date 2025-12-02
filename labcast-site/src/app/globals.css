@@ -249,23 +249,15 @@ html {
 .hero-text-block {
   position: relative;
   display: inline-block;
-  max-width: 34rem; /* tighten horizontally, tweak as needed */
-}
+  max-width: 32rem;
+  padding: 12px 24px;
 
-/* Soft blank area behind heading + subcopy */
-.hero-text-block::before {
-  content: "";
-  position: absolute;
-  inset: -16px -32px; /* padding around text block, tweak to taste */
-  z-index: -1;
-  pointer-events: none;
-
-  /* use #ffffff if your page background is pure white */
+  /* solid white under text, fading to fully transparent at the edge */
   background: radial-gradient(
-    ellipse 130% 140% at 50% 50%,
-    #f8f8f8 0%,
-    #f8f8f8 55%,
-    rgba(248, 248, 248, 0) 100%
+    circle at 50% 50%,
+    #ffffff 0%,
+    #ffffff 65%,
+    rgba(255, 255, 255, 0) 100%
   );
 }
 
