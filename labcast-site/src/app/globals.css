@@ -164,6 +164,22 @@ html {
   align-items: center;
 }
 
+.hero-dot-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 1; /* above canvas, below text */
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    #f8f8f8 0%,
+    #f8f8f8 32%,
+    rgba(248, 248, 248, 0.96) 52%,
+    rgba(248, 248, 248, 0.8) 62%,
+    rgba(248, 248, 248, 0.4) 74%,
+    rgba(248, 248, 248, 0) 86%
+  );
+}
+
 /* The canvas with dots */
 .hero-canvas {
   position: absolute;
@@ -198,6 +214,10 @@ html {
   line-height: 1.06;
   margin: 0 0 16px;
   letter-spacing: -0.02em;
+}
+
+.hero-no-wrap {
+  white-space: nowrap;
 }
 
 .subcopy {
@@ -251,14 +271,6 @@ html {
   display: inline-block;
   max-width: 32rem;
   padding: 12px 24px;
-
-  /* solid white under text, fading to fully transparent at the edge */
-  background: radial-gradient(
-    circle at 50% 50%,
-    #ffffff 0%,
-    #ffffff 65%,
-    rgba(255, 255, 255, 0) 100%
-  );
 }
 
 /* RESPONSIVE TWEAKS */

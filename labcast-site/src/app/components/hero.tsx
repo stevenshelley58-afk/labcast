@@ -231,6 +231,8 @@ export function Hero() {
             <canvas id="waveCanvas" ref={canvasRef}></canvas>
           </div>
 
+          <div className="hero-dot-fade" aria-hidden="true" />
+
           <div className="hero-content">
             <p className="hero-kicker">From the founders of bhm.com.au</p>
 
@@ -238,7 +240,7 @@ export function Hero() {
               <h1 className="hero-title">
                 Real execution.
                 <br />
-                Not agency theatre.
+                <span className="hero-no-wrap">Not agency theatre.</span>
               </h1>
               <p className="subcopy">
                 Marketing, creative and builds from operators in the trenches,
