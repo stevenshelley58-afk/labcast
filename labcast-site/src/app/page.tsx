@@ -16,6 +16,14 @@ export default function Home() {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const payload = {
+      name: (formData.get("name") || "").toString().trim(),
+      email: (formData.get("email") || "").toString().trim(),
+      message: (formData.get("message") || "").toString().trim(),
+      website: (formData.get("website") || "").toString().trim(),
+      source:
+        (formData.get("source") || "Homepage contact form").toString().trim(),
+    };
 
     setFormState("submitting");
     setErrorMessage("");
@@ -23,7 +31,10 @@ export default function Home() {
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
       });
 
       const result = await response.json();
@@ -364,6 +375,7 @@ export default function Home() {
               </p>
 
               <form className="space-y-6" onSubmit={handleSubmit}>
+                <input type="hidden" name="source" value="Homepage contact form" />
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label
