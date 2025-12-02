@@ -56,21 +56,6 @@ const bundleItems = [
   },
 ];
 
-const sampleCollections = [
-  {
-    title: "Matching Tees",
-    text: "Coordinated looks for the whole crew",
-  },
-  {
-    title: "Vacation Essentials",
-    text: "Holiday-ready matching sets",
-  },
-  {
-    title: "Accessories",
-    text: "Caps, bags & finishing touches",
-  },
-];
-
 const sampleProducts = [
   {
     title: "Cray Cray on Vacay | Kids Terry Toweling Set",
@@ -294,191 +279,445 @@ export default function CompassAndCradlePage() {
               </div>
 
               {/* Hero */}
-              {/* Sample Compass & Cradle homepage hero (placeholder — replace with final design) */}
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className="p-8 md:p-12 space-y-5">
-                  <h3 className="text-xs uppercase tracking-[0.2em] text-[#C4A77D]">New arrival</h3>
-                  <h2 className="font-serif text-4xl text-[#172554]">
+              <div className="grid md:grid-cols-[1fr_1.1fr] gap-0 min-h-[600px]">
+                {/* Content Side */}
+                <div className="flex flex-col justify-center p-8 md:p-12 lg:p-16 order-2 md:order-1">
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#C4A77D] mb-3">New arrival</p>
+                  <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[#172554] leading-[1.1] mb-3">
                     <span className="text-[#C4A77D]">Cray Cray</span> on Vacay
                   </h2>
-                  <p className="text-lg italic text-[#64748b]">Oversized Beach Bag for families on the go</p>
-                  <p className="text-[#64748b] leading-relaxed">
+                  <p className="text-xl md:text-2xl italic text-[#64748b] font-serif mb-5">
+                    Oversized Beach Bag for families on the go
+                  </p>
+                  <p className="text-[#64748b] leading-relaxed mb-6 max-w-lg">
                     Built to handle everyday chaos with style. Handy external pocket for quick-grab items, secure
                     internal pocket for keys or phone. Matches our Kids Terry Toweling Set — so you and your little ones
                     can show off that family bond.
                   </p>
-                  <div className="flex flex-wrap gap-3 text-xs">
-                    {["10% to Destiny Rescue", "Premium quality", "Free shipping $89+"].map((feature) => (
-                      <span key={feature} className="px-3 py-1 rounded-full border border-[#E8DFD3] text-[#172554]">
-                        {feature}
+                  <div className="flex flex-wrap gap-4 mb-8">
+                    {[
+                      { icon: "♡", text: "10% to Destiny Rescue" },
+                      { icon: "★", text: "Premium quality" },
+                      { icon: "✈", text: "Free shipping $89+" },
+                    ].map((feature) => (
+                      <span
+                        key={feature.text}
+                        className="inline-flex items-center gap-2 text-sm text-[#172554] font-medium"
+                      >
+                        <span className="text-[#C4A77D]">{feature.icon}</span>
+                        {feature.text}
                       </span>
                     ))}
                   </div>
                   <div className="flex flex-wrap gap-3">
                     <Link
                       href="/#contact"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#172554] text-white text-sm font-medium"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#172554] text-white text-sm font-semibold hover:bg-[#1e3a8a] transition-all hover:-translate-y-0.5 hover:shadow-lg"
                     >
                       Shop the Bag — $25
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
                     </Link>
                     <Link
                       href="/#contact"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#172554] text-sm font-medium text-[#172554]"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-[#172554] text-sm font-semibold text-[#172554] hover:bg-[#172554] hover:text-white transition-colors"
                     >
                       See the full collection
                     </Link>
                   </div>
                 </div>
-                <div className="p-8 md:p-12">
-                  <div className="relative h-full min-h-[320px] rounded-2xl border border-[#E8DFD3] bg-gradient-to-br from-[#F5F0E8] to-[#E8DFD3] flex items-center justify-center text-center">
-                    <div className="space-y-2 text-sm text-[#64748b] px-6">
-                      <p className="text-[#172554] font-semibold">Image placeholder</p>
-                      <p>Replace with Shopify image banner content.</p>
-                      <p className="text-xs">
-                        Suggested: lifestyle beach bag hero plus kids set thumbnail layered in corner.
-                      </p>
+
+                {/* Image Composition Side */}
+                <div className="relative min-h-[400px] md:min-h-[600px] p-6 md:p-10 order-1 md:order-2">
+                  {/* Main Image - Beach Bag Lifestyle */}
+                  <div className="absolute left-[6%] top-1/2 -translate-y-1/2 w-[65%] aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl z-10">
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#e8dfd3] via-[#d4c4a8] to-[#c4a77d]">
+                      {/* Decorative beach scene illustration */}
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
+                        {/* Sun */}
+                        <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-[#f5e6c8] opacity-80" />
+                        {/* Beach bag illustration */}
+                        <div className="relative">
+                          <div className="w-32 h-28 bg-[#FAF8F5] rounded-t-3xl rounded-b-lg border-4 border-[#172554] relative">
+                            {/* Bag handles */}
+                            <div className="absolute -top-6 left-4 w-6 h-8 border-4 border-[#172554] rounded-t-full border-b-0" />
+                            <div className="absolute -top-6 right-4 w-6 h-8 border-4 border-[#172554] rounded-t-full border-b-0" />
+                            {/* Bag pattern */}
+                            <div className="absolute inset-4 flex flex-col justify-center items-center">
+                              <span className="text-[#172554] text-xs font-bold tracking-wider">CRAY CRAY</span>
+                              <span className="text-[#C4A77D] text-[10px] font-medium">on vacay</span>
+                            </div>
+                          </div>
+                        </div>
+                        {/* Sand/wave decoration */}
+                        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#f5e6c8] to-transparent" />
+                        <div className="absolute bottom-4 left-0 right-0 h-3 bg-[#64a5c4]/30 rounded-full mx-8" />
+                      </div>
                     </div>
                   </div>
+
+                  {/* Secondary Image - Product Shot */}
+                  <div className="absolute right-[6%] bottom-[10%] w-[40%] aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white z-20">
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#F5F0E8] to-[#e8dfd3]">
+                      {/* Kids terry set illustration */}
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
+                        {/* T-shirt shape */}
+                        <div className="relative">
+                          <div className="w-20 h-16 bg-[#FAF8F5] rounded-b-lg border-2 border-[#172554] relative">
+                            {/* Sleeves */}
+                            <div className="absolute -left-4 top-0 w-5 h-8 bg-[#FAF8F5] border-2 border-[#172554] rounded-bl-lg border-r-0" />
+                            <div className="absolute -right-4 top-0 w-5 h-8 bg-[#FAF8F5] border-2 border-[#172554] rounded-br-lg border-l-0" />
+                            {/* Collar */}
+                            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-[#FAF8F5] rounded-b-full border-2 border-[#172554] border-t-0" />
+                          </div>
+                        </div>
+                        <p className="text-[10px] text-[#172554] font-semibold mt-3 text-center">Kids Terry Set</p>
+                        <p className="text-[9px] text-[#64748b]">Matching available</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Decorative elements */}
+                  <div className="absolute top-[15%] right-[20%] w-3 h-3 rounded-full bg-[#C4A77D] opacity-60 z-0" />
+                  <div className="absolute top-[25%] right-[10%] w-2 h-2 rounded-full bg-[#172554] opacity-40 z-0" />
+                  <div className="absolute bottom-[30%] left-[3%] w-4 h-4 rounded-full bg-[#C4A77D] opacity-40 z-0" />
                 </div>
               </div>
 
               {/* Trust bar */}
-              <div className="grid md:grid-cols-4 gap-4 border-t border-[#E8DFD3] px-6 md:px-10 py-6 text-sm text-[#64748b] bg-white">
-                {["Free shipping over $89", "Easy 30-day returns", "Premium materials", "10% to Destiny Rescue"].map(
-                  (item) => (
-                    <div key={item} className="text-center md:text-left">
-                      {item}
-                    </div>
-                  )
-                )}
+              <div className="flex flex-wrap justify-center gap-6 md:gap-12 border-t border-b border-[#E8DFD3] px-6 md:px-10 py-5 text-sm text-[#64748b] bg-white">
+                {[
+                  {
+                    icon: (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"
+                        />
+                      </svg>
+                    ),
+                    text: "Free shipping over $89",
+                  },
+                  {
+                    icon: (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+                        />
+                      </svg>
+                    ),
+                    text: "Easy 30-day returns",
+                  },
+                  {
+                    icon: (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+                        />
+                      </svg>
+                    ),
+                    text: "Premium materials",
+                  },
+                  {
+                    icon: (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                        />
+                      </svg>
+                    ),
+                    text: "10% to Destiny Rescue",
+                  },
+                ].map((item) => (
+                  <div key={item.text} className="flex items-center gap-2 text-[#172554]">
+                    <span className="text-[#172554]">{item.icon}</span>
+                    <span>{item.text}</span>
+                  </div>
+                ))}
               </div>
 
               {/* Collections */}
-              <div className="px-6 md:px-10 py-12 space-y-6 border-t border-[#E8DFD3]">
-                <div className="text-center space-y-2">
+              <div className="px-6 md:px-10 py-16 space-y-8 bg-[#FAF8F5]">
+                <div className="text-center space-y-3">
                   <p className="text-xs uppercase tracking-[0.2em] text-[#C4A77D]">Shop by collection</p>
-                  <h3 className="font-serif text-3xl text-[#172554]">Find Your Family&apos;s Vibe</h3>
-                  <p className="text-[#64748b]">
+                  <h3 className="font-serif text-3xl md:text-4xl text-[#172554]">Find Your Family&apos;s Vibe</h3>
+                  <p className="text-[#64748b] max-w-xl mx-auto">
                     From beach days to backyard hangs, we&apos;ve got matching looks for every adventure.
                   </p>
                 </div>
-                <div className="grid md:grid-cols-3 gap-4">
-                  {sampleCollections.map((collection) => (
-                    <div key={collection.title} className="relative p-6 rounded-2xl bg-[#F5F0E8] text-[#172554]">
-                      <h4 className="font-serif text-2xl mb-2">{collection.title}</h4>
-                      <p className="text-sm text-[#64748b] mb-4">{collection.text}</p>
-                      <span className="text-sm font-semibold inline-flex items-center gap-2">
-                        Shop now
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                      </span>
+                <div className="grid md:grid-cols-3 gap-5">
+                  {[
+                    {
+                      title: "Matching Tees",
+                      text: "Coordinated looks for the whole crew",
+                      gradient: "from-[#172554] to-[#1e3a8a]",
+                      icon: "👕",
+                    },
+                    {
+                      title: "Vacation Essentials",
+                      text: "Holiday-ready matching sets",
+                      gradient: "from-[#C4A77D] to-[#d4bc9a]",
+                      icon: "🏖️",
+                    },
+                    {
+                      title: "Accessories",
+                      text: "Caps, bags & finishing touches",
+                      gradient: "from-[#64748b] to-[#94a3b8]",
+                      icon: "🧢",
+                    },
+                  ].map((collection) => (
+                    <div
+                      key={collection.title}
+                      className="group relative aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer"
+                    >
+                      {/* Background */}
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${collection.gradient} transition-transform duration-500 group-hover:scale-105`}
+                      />
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      {/* Icon decoration */}
+                      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl opacity-20 group-hover:opacity-30 transition-opacity">
+                        {collection.icon}
+                      </div>
+                      {/* Content */}
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h4 className="font-serif text-2xl mb-2">{collection.title}</h4>
+                        <p className="text-sm text-white/80 mb-4">{collection.text}</p>
+                        <span className="text-sm font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+                          Shop now
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+                          </svg>
+                        </span>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Products */}
-              <div className="px-6 md:px-10 py-12 space-y-6 border-t border-[#E8DFD3]">
-                <div className="text-center space-y-2">
+              <div className="px-6 md:px-10 py-16 space-y-8 bg-white">
+                <div className="text-center space-y-3">
                   <p className="text-xs uppercase tracking-[0.2em] text-[#C4A77D]">Customer favourites</p>
-                  <h3 className="font-serif text-3xl text-[#172554]">Best Sellers</h3>
+                  <h3 className="font-serif text-3xl md:text-4xl text-[#172554]">Best Sellers</h3>
                   <p className="text-[#64748b]">The pieces our families can&apos;t stop wearing.</p>
                 </div>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                  {sampleProducts.map((product) => (
-                    <div key={product.title} className="p-4 rounded-xl border border-[#E8DFD3] bg-white">
-                      <div className="aspect-square rounded-lg bg-[#F5F0E8] mb-3 relative overflow-hidden">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+                  {sampleProducts.map((product, index) => (
+                    <div
+                      key={product.title}
+                      className="group cursor-pointer transition-transform duration-200 hover:-translate-y-1"
+                    >
+                      <div className="aspect-square rounded-xl bg-gradient-to-br from-[#F5F0E8] to-[#e8dfd3] mb-4 relative overflow-hidden">
                         {product.badge && (
-                          <span className="absolute top-3 left-3 text-[10px] uppercase tracking-[0.2em] bg-[#172554] text-white px-2 py-1 rounded-full">
+                          <span
+                            className={`absolute top-3 left-3 text-[10px] uppercase tracking-[0.15em] font-bold px-2.5 py-1 rounded-md ${
+                              product.badge === "Sale"
+                                ? "bg-[#C4A77D] text-white"
+                                : "bg-[#172554] text-white"
+                            }`}
+                          >
                             {product.badge}
                           </span>
                         )}
+                        {/* Product illustration placeholder */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:opacity-40 transition-opacity">
+                          {index % 4 === 0 && (
+                            <div className="w-16 h-16 border-4 border-[#172554] rounded-full" />
+                          )}
+                          {index % 4 === 1 && (
+                            <div className="w-14 h-20 border-4 border-[#172554] rounded-t-full rounded-b-lg" />
+                          )}
+                          {index % 4 === 2 && (
+                            <div className="w-16 h-12 border-4 border-[#172554] rounded-lg" />
+                          )}
+                          {index % 4 === 3 && (
+                            <div className="w-12 h-12 border-4 border-[#172554] rotate-45" />
+                          )}
+                        </div>
+                        {/* Quick add button */}
+                        <button className="absolute bottom-3 left-3 right-3 bg-[#172554] text-white py-2.5 rounded-lg text-xs font-semibold opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200">
+                          Quick add
+                        </button>
                       </div>
-                      <h4 className="text-sm font-medium text-[#172554] leading-snug">{product.title}</h4>
-                      <p className="text-sm font-serif text-[#172554]">
+                      <h4 className="text-sm font-medium text-[#172554] leading-snug mb-1 line-clamp-2">
+                        {product.title}
+                      </h4>
+                      <p className="text-base font-serif text-[#172554] mb-1">
                         {product.price}{" "}
-                        {product.compare && <span className="text-xs text-[#94a3b8] line-through">{product.compare}</span>}
+                        {product.compare && (
+                          <span className="text-sm text-[#94a3b8] line-through ml-1">{product.compare}</span>
+                        )}
                       </p>
-                      {product.reviews && <p className="text-xs text-[#94a3b8]">★★★★★ {product.reviews}</p>}
+                      {product.reviews && (
+                        <p className="text-xs text-[#94a3b8]">
+                          <span className="text-[#C4A77D]">★★★★★</span> {product.reviews}
+                        </p>
+                      )}
                     </div>
                   ))}
                 </div>
-                <div className="text-center">
+                <div className="text-center pt-4">
                   <Link
                     href="/#contact"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#172554] text-sm font-medium text-[#172554]"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-[#172554] text-sm font-semibold text-[#172554] hover:bg-[#172554] hover:text-white transition-colors"
                   >
                     View all products
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
                   </Link>
                 </div>
               </div>
 
               {/* Story */}
-              <div className="px-6 md:px-10 py-12 space-y-8 border-t border-[#E8DFD3]">
-                <div className="grid md:grid-cols-2 gap-8 items-center">
-                  <div className="rounded-xl bg-[#E8DFD3] aspect-[4/5]" />
+              <div className="px-6 md:px-10 py-16 space-y-8 bg-[#F5F0E8]">
+                <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                  {/* Image placeholder with illustration */}
+                  <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-[#e8dfd3] to-[#d4c4a8]">
+                    {/* Decorative family silhouette */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="flex items-end gap-4 opacity-20">
+                        {/* Parent */}
+                        <div className="flex flex-col items-center">
+                          <div className="w-12 h-12 rounded-full border-4 border-[#172554]" />
+                          <div className="w-16 h-24 border-4 border-[#172554] rounded-t-3xl mt-2" />
+                        </div>
+                        {/* Child */}
+                        <div className="flex flex-col items-center -ml-2">
+                          <div className="w-8 h-8 rounded-full border-2 border-[#172554]" />
+                          <div className="w-10 h-14 border-2 border-[#172554] rounded-t-2xl mt-1" />
+                        </div>
+                        {/* Parent 2 */}
+                        <div className="flex flex-col items-center">
+                          <div className="w-11 h-11 rounded-full border-4 border-[#172554]" />
+                          <div className="w-14 h-24 border-4 border-[#172554] rounded-t-3xl mt-2" />
+                        </div>
+                      </div>
+                    </div>
+                    {/* Decorative elements */}
+                    <div className="absolute top-8 left-8 w-6 h-6 rounded-full bg-[#C4A77D] opacity-40" />
+                    <div className="absolute bottom-12 right-10 w-4 h-4 rounded-full bg-[#172554] opacity-30" />
+                    <div className="absolute top-1/3 right-8 w-8 h-8 border-2 border-[#172554] opacity-20 rotate-45" />
+                  </div>
                   <div>
                     <p className="text-xs uppercase tracking-[0.2em] text-[#C4A77D] mb-3">Our story</p>
-                    <h3 className="font-serif text-3xl text-[#172554] mb-4">
+                    <h3 className="font-serif text-3xl md:text-4xl text-[#172554] mb-5 leading-tight">
                       Designed by a Perth Mum, Made with Love
                     </h3>
-                    <p className="text-[#64748b] mb-4">
+                    <p className="text-[#64748b] mb-4 leading-relaxed">
                       Compass &amp; Cradle started with a simple idea: family moments are better when you&apos;re matching.
                       Every piece is designed to be comfortable enough for real life and cute enough for the &quot;gram.
                     </p>
-                    <div className="space-y-3 text-sm text-[#172554]">
-                      <div className="flex items-center gap-3">
-                        <span className="w-12 h-12 rounded-xl bg-white border border-[#E8DFD3]" />
-                        Premium quality materials
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="w-12 h-12 rounded-xl bg-white border border-[#E8DFD3]" />
-                        10% of profits to Destiny Rescue
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="w-12 h-12 rounded-xl bg-white border border-[#E8DFD3]" />
-                        Limited batches, unique designs
-                      </div>
+                    <p className="text-[#64748b] mb-6 leading-relaxed">
+                      We believe in quality over quantity, and that&apos;s why we release limited batches of each design.
+                      When it&apos;s gone, it&apos;s gone.
+                    </p>
+                    <div className="space-y-4">
+                      {[
+                        {
+                          icon: (
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                            </svg>
+                          ),
+                          text: "Premium quality materials",
+                        },
+                        {
+                          icon: (
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                            </svg>
+                          ),
+                          text: "10% of profits to Destiny Rescue",
+                        },
+                        {
+                          icon: (
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                            </svg>
+                          ),
+                          text: "Limited batches, unique designs",
+                        },
+                      ].map((item) => (
+                        <div key={item.text} className="flex items-center gap-4">
+                          <span className="w-12 h-12 rounded-xl bg-white border border-[#E8DFD3] flex items-center justify-center text-[#172554]">
+                            {item.icon}
+                          </span>
+                          <span className="text-sm font-medium text-[#172554]">{item.text}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Mission */}
-              <div className="px-6 md:px-10 py-12 border-t border-[#E8DFD3] bg-gradient-to-br from-[#172554] to-[#1e3a8a] text-white space-y-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-white/70 text-center">Clothing with a purpose</p>
-                <h3 className="font-serif text-3xl text-center">10% of profits go to Destiny Rescue</h3>
-                <p className="text-center text-white/80 max-w-3xl mx-auto">
-                  When you shop with Compass &amp; Cradle, you&apos;re helping protect children. This CTA block can be swapped
-                  for a Shopify rich text section with brand gradient styling.
-                </p>
-                <div className="text-center">
-                  <Link
-                    href="/#contact"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#172554] text-sm font-medium"
-                  >
-                    Learn more about the mission
-                  </Link>
+              <div className="relative px-6 md:px-10 py-20 bg-gradient-to-br from-[#172554] to-[#1e3a8a] text-white overflow-hidden">
+                {/* Decorative circles */}
+                <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
+                <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-white/5" />
+
+                <div className="relative max-w-3xl mx-auto text-center space-y-6">
+                  <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mx-auto">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                    </svg>
+                  </div>
+                  <p className="text-xs uppercase tracking-[0.2em] text-white/60">Clothing with a purpose</p>
+                  <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-tight">
+                    10% of profits go to Destiny Rescue
+                  </h3>
+                  <p className="text-white/80 max-w-2xl mx-auto leading-relaxed text-lg">
+                    When you shop with Compass &amp; Cradle, you&apos;re helping protect children from trafficking and
+                    exploitation. Every purchase makes a difference.
+                  </p>
+                  <div className="pt-4">
+                    <Link
+                      href="/#contact"
+                      className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-white text-[#172554] text-sm font-semibold hover:bg-[#F5F0E8] transition-colors"
+                    >
+                      Learn more about the mission
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
               </div>
 
               {/* Testimonials */}
-              <div className="px-6 md:px-10 py-12 space-y-6 border-t border-[#E8DFD3]">
-                <div className="text-center space-y-2">
+              <div className="px-6 md:px-10 py-16 space-y-8 bg-[#FAF8F5]">
+                <div className="text-center space-y-3">
                   <p className="text-xs uppercase tracking-[0.2em] text-[#C4A77D]">Happy families</p>
-                  <h3 className="font-serif text-3xl text-[#172554]">What our customers say</h3>
+                  <h3 className="font-serif text-3xl md:text-4xl text-[#172554]">What our customers say</h3>
+                  <p className="text-[#64748b]">Real reviews from real families across Australia.</p>
                 </div>
-                <div className="grid md:grid-cols-3 gap-4">
+                <div className="grid md:grid-cols-3 gap-6">
                   {testimonials.map((testimonial) => (
-                    <div key={testimonial.name} className="p-6 rounded-2xl border border-[#E8DFD3] bg-white shadow-sm">
-                      <p className="text-[#C4A77D] text-lg mb-3">★★★★★</p>
-                      <p className="text-[#64748b] italic mb-4">{testimonial.quote}</p>
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-[#F5F0E8] flex items-center justify-center text-[#172554] font-semibold">
+                    <div
+                      key={testimonial.name}
+                      className="p-6 rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow duration-200 border border-[#E8DFD3]/50"
+                    >
+                      <div className="flex items-center gap-1 text-[#C4A77D] text-lg mb-4">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <p className="text-[#64748b] italic mb-6 leading-relaxed">{testimonial.quote}</p>
+                      <div className="flex items-center gap-3 pt-4 border-t border-[#E8DFD3]/50">
+                        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#172554] to-[#1e3a8a] flex items-center justify-center text-white font-semibold text-sm">
                           {testimonial.initials}
                         </div>
                         <div>
@@ -492,36 +731,81 @@ export default function CompassAndCradlePage() {
               </div>
 
               {/* Instagram */}
-              <div className="px-6 md:px-10 py-12 space-y-6 border-t border-[#E8DFD3]">
-                <div className="text-center space-y-2">
+              <div className="py-16 space-y-8 bg-white overflow-hidden">
+                <div className="text-center space-y-3 px-6">
                   <p className="text-xs uppercase tracking-[0.2em] text-[#C4A77D]">@compassandcradle</p>
-                  <h3 className="font-serif text-3xl text-[#172554]">Join the squad</h3>
+                  <h3 className="font-serif text-3xl md:text-4xl text-[#172554]">Join the squad</h3>
                   <p className="text-[#64748b]">Tag us in your matching moments for a chance to be featured.</p>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-6 gap-2">
-                  {Array.from({ length: 6 }).map((_, index) => (
-                    <div key={index} className="aspect-square rounded-xl bg-[#F5F0E8]" />
+                <div className="flex gap-2 -mx-2">
+                  {[
+                    { gradient: "from-[#e8dfd3] to-[#d4c4a8]", icon: "🏖️" },
+                    { gradient: "from-[#d4c4a8] to-[#c4a77d]", icon: "👨‍👩‍👧" },
+                    { gradient: "from-[#172554]/20 to-[#1e3a8a]/30", icon: "👕" },
+                    { gradient: "from-[#c4a77d] to-[#d4bc9a]", icon: "☀️" },
+                    { gradient: "from-[#F5F0E8] to-[#e8dfd3]", icon: "🧢" },
+                    { gradient: "from-[#d4bc9a] to-[#e8dfd3]", icon: "❤️" },
+                  ].map((item, index) => (
+                    <div
+                      key={index}
+                      className="group flex-1 aspect-square relative cursor-pointer overflow-hidden"
+                    >
+                      <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} transition-transform duration-300 group-hover:scale-105`} />
+                      <div className="absolute inset-0 bg-[#172554] opacity-0 group-hover:opacity-50 transition-opacity duration-200" />
+                      <div className="absolute inset-0 flex items-center justify-center text-4xl opacity-20 group-hover:opacity-40 transition-opacity">
+                        {item.icon}
+                      </div>
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                        </svg>
+                      </div>
+                    </div>
                   ))}
+                </div>
+                <div className="text-center">
+                  <a
+                    href="https://instagram.com/compassandcradle"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-[#172554] hover:text-[#C4A77D] transition-colors"
+                  >
+                    Follow us on Instagram
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    </svg>
+                  </a>
                 </div>
               </div>
 
               {/* Newsletter */}
-              <div className="px-6 md:px-10 py-12 space-y-6 border-t border-[#E8DFD3] bg-[#F5F0E8]">
-                <div className="text-center space-y-2">
-                  <h3 className="font-serif text-3xl text-[#172554]">Join the family</h3>
-                  <p className="text-[#64748b] max-w-2xl mx-auto">
+              <div className="px-6 md:px-10 py-16 space-y-6 bg-[#F5F0E8]">
+                <div className="max-w-2xl mx-auto text-center space-y-4">
+                  <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-[#172554]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                    </svg>
+                  </div>
+                  <h3 className="font-serif text-3xl md:text-4xl text-[#172554]">Join the family</h3>
+                  <p className="text-[#64748b] max-w-xl mx-auto">
                     Be the first to know about new collections, exclusive offers, and family-friendly content.
+                    No spam, just good vibes.
                   </p>
                 </div>
-                <div className="max-w-2xl mx-auto flex flex-col md:flex-row gap-3">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="flex-1 rounded-full border border-[#E8DFD3] px-4 py-3 text-sm bg-white"
-                  />
-                  <button className="rounded-full bg-[#172554] text-white px-6 py-3 text-sm font-medium">
-                    Subscribe
-                  </button>
+                <div className="max-w-lg mx-auto">
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                      className="flex-1 rounded-lg border border-[#E8DFD3] px-5 py-3.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#172554]/20 focus:border-[#172554] transition-all"
+                    />
+                    <button className="rounded-lg bg-[#172554] text-white px-8 py-3.5 text-sm font-semibold hover:bg-[#1e3a8a] transition-colors whitespace-nowrap">
+                      Subscribe
+                    </button>
+                  </div>
+                  <p className="text-xs text-[#94a3b8] text-center mt-4">
+                    By subscribing, you agree to our Privacy Policy and consent to receive updates.
+                  </p>
                 </div>
               </div>
 
