@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { Footer } from "./components/footer";
 import { Hero } from "./components/hero";
+import { Navigation } from "./components/navigation";
 
 export default function Home() {
   const [formState, setFormState] = useState<
@@ -43,7 +44,8 @@ export default function Home() {
 
   return (
     <div className="bg-background text-foreground">
-      <main className="min-h-screen">
+      <Navigation />
+      <main className="min-h-screen pt-32 md:pt-36 lg:pt-40">
         {/* Hero */}
         <Hero />
 

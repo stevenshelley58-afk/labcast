@@ -208,22 +208,6 @@ export function Hero() {
   return (
     <section className="hero">
       <div className="hero-inner">
-        <div className="hero-nav">
-          <header className="nav">
-            <div className="nav-left">Labcast</div>
-
-            <nav className="nav-center">
-              <a href="/pricing">Pricing</a>
-              <a href="#about">About</a>
-              <a href="#contact">Contact</a>
-            </nav>
-
-            <div className="nav-right">
-              <a href="#contact">Get in touch</a>
-            </div>
-          </header>
-        </div>
-
         <div className="hero-body">
           <div className="hero-canvas" aria-hidden="true">
             <canvas id="waveCanvas" ref={canvasRef}></canvas>
