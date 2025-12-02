@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "../components/footer";
 import { Navigation } from "../components/navigation";
@@ -332,56 +333,24 @@ export default function CompassAndCradlePage() {
                 <div className="relative min-h-[400px] md:min-h-[600px] p-6 md:p-10 order-1 md:order-2">
                   {/* Main Image - Beach Bag Lifestyle */}
                   <div className="absolute left-[6%] top-1/2 -translate-y-1/2 w-[65%] aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl z-10">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#e8dfd3] via-[#d4c4a8] to-[#c4a77d]">
-                      {/* Decorative beach scene illustration */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
-                        {/* Sun */}
-                        <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-[#f5e6c8] opacity-80" />
-                        {/* Beach bag illustration */}
-                        <div className="relative">
-                          <div className="w-32 h-28 bg-[#FAF8F5] rounded-t-3xl rounded-b-lg border-4 border-[#172554] relative">
-                            {/* Bag handles */}
-                            <div className="absolute -top-6 left-4 w-6 h-8 border-4 border-[#172554] rounded-t-full border-b-0" />
-                            <div className="absolute -top-6 right-4 w-6 h-8 border-4 border-[#172554] rounded-t-full border-b-0" />
-                            {/* Bag pattern */}
-                            <div className="absolute inset-4 flex flex-col justify-center items-center">
-                              <span className="text-[#172554] text-xs font-bold tracking-wider">CRAY CRAY</span>
-                              <span className="text-[#C4A77D] text-[10px] font-medium">on vacay</span>
-                            </div>
-                          </div>
-                        </div>
-                        {/* Sand/wave decoration */}
-                        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#f5e6c8] to-transparent" />
-                        <div className="absolute bottom-4 left-0 right-0 h-3 bg-[#64a5c4]/30 rounded-full mx-8" />
-                      </div>
-                    </div>
+                    <Image
+                      src="/cray-cray-lifestyle.jpg"
+                      alt="Cray Cray on Vacay beach bag by the pool with matching cap"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
 
                   {/* Secondary Image - Product Shot */}
                   <div className="absolute right-[6%] bottom-[10%] w-[40%] aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white z-20">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#F5F0E8] to-[#e8dfd3]">
-                      {/* Kids terry set illustration */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
-                        {/* T-shirt shape */}
-                        <div className="relative">
-                          <div className="w-20 h-16 bg-[#FAF8F5] rounded-b-lg border-2 border-[#172554] relative">
-                            {/* Sleeves */}
-                            <div className="absolute -left-4 top-0 w-5 h-8 bg-[#FAF8F5] border-2 border-[#172554] rounded-bl-lg border-r-0" />
-                            <div className="absolute -right-4 top-0 w-5 h-8 bg-[#FAF8F5] border-2 border-[#172554] rounded-br-lg border-l-0" />
-                            {/* Collar */}
-                            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-[#FAF8F5] rounded-b-full border-2 border-[#172554] border-t-0" />
-                          </div>
-                        </div>
-                        <p className="text-[10px] text-[#172554] font-semibold mt-3 text-center">Kids Terry Set</p>
-                        <p className="text-[9px] text-[#64748b]">Matching available</p>
-                      </div>
-                    </div>
+                    <Image
+                      src="/cray-cap.jpg"
+                      alt="Cray Cap - Blue washed cap with lobster embroidery"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
 
-                  {/* Decorative elements */}
-                  <div className="absolute top-[15%] right-[20%] w-3 h-3 rounded-full bg-[#C4A77D] opacity-60 z-0" />
-                  <div className="absolute top-[25%] right-[10%] w-2 h-2 rounded-full bg-[#172554] opacity-40 z-0" />
-                  <div className="absolute bottom-[30%] left-[3%] w-4 h-4 rounded-full bg-[#C4A77D] opacity-40 z-0" />
                 </div>
               </div>
 
