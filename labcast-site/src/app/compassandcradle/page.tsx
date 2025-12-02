@@ -251,9 +251,12 @@ export default function CompassAndCradlePage() {
         <section className="bg-[#FAF8F5] border-t border-border">
           <div className="max-w-6xl mx-auto px-6 py-14 space-y-8">
             <div className="max-w-3xl mx-auto text-center text-base md:text-lg text-muted leading-relaxed py-6">
-              The section below is a working mockup. Buttons and links are not active. Its purpose is to show the layout
-              and feel of the final homepage. Before development begins, you&apos;ll have the opportunity to request
-              changes, adjustments, and refinements.
+              The section below is a mockup. Buttons and links are not active. It&apos;s here to show a sample layout
+              and feel for the homepage.
+              <br />
+              <br />
+              Before development begins, we&apos;ll run a planning session, confirm all details, and build a draft.
+              After that, we&apos;ll go through revisions and complete the final build.
             </div>
             <div className="text-center text-xs uppercase tracking-[0.2em] text-muted">
               Compass &amp; Cradle mock site
