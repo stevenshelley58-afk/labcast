@@ -249,8 +249,8 @@ export default function CompassAndCradlePage() {
 
         {/* Compass & Cradle sample site mock */}
         <section className="bg-[#FAF8F5] border-t border-border">
-          <div className="max-w-6xl mx-auto px-6 py-10 space-y-8">
-            <div className="max-w-3xl mx-auto text-center text-sm text-muted leading-relaxed">
+          <div className="max-w-6xl mx-auto px-6 py-14 space-y-8">
+            <div className="max-w-3xl mx-auto text-center text-base md:text-lg text-muted leading-relaxed py-6">
               The section below is a working mockup. Buttons and links are not active. Its purpose is to show the layout
               and feel of the final homepage. Before development begins, you&apos;ll have the opportunity to request
               changes, adjustments, and refinements.
@@ -344,7 +344,7 @@ export default function CompassAndCradlePage() {
                   </div>
 
                   {/* Secondary Image - Product Shot */}
-                  <div className="absolute right-[6%] bottom-[10%] w-[40%] aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white z-20">
+                  <div className="absolute right-[6%] bottom-[6%] w-[32%] aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white z-20">
                     <Image
                       src="/cray-cap.jpg"
                       alt="Cray Cap - Blue washed cap with lobster embroidery"
