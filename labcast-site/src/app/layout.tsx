@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter } from "next/font/google";
+import { Cormorant_Garamond, Assistant } from "next/font/google";
 import "./globals.css";
 
-const instrumentSerif = Instrument_Serif({
+// Serif headings: Cormorant Garamond (matches mock)
+const instrumentSerif = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-serif",
-  weight: ["400"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
 });
 
-const inter = Inter({
+// Body copy: Assistant (matches mock)
+const inter = Assistant({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {

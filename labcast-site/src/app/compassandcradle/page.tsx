@@ -148,9 +148,8 @@ export default function CompassAndCradlePage() {
             </p>
             <p className="text-lg text-muted leading-relaxed">
               Hi! This page outlines our recommended bundle for your Shopify rebuild. Everything below is what
-              we&apos;d deliver as part of the project — pricing, inclusions, and a sample of the homepage hero we
-              would create. This isn&apos;t a contract, just a starting point. We can adjust anything based on your
-              feedback.
+              we&apos;d deliver as part of the project, ricing, inclusions, and a sample of the homepage hero we would
+              create. This isn&apos;t a contract, just a starting point. We can adjust anything based on your feedback.
             </p>
           </div>
         </section>
@@ -251,6 +250,11 @@ export default function CompassAndCradlePage() {
         {/* Compass & Cradle sample site mock */}
         <section className="bg-[#FAF8F5] border-t border-border">
           <div className="max-w-6xl mx-auto px-6 py-10 space-y-8">
+            <div className="max-w-3xl mx-auto text-center text-sm text-muted leading-relaxed">
+              The section below is a working mockup. Buttons and links are not active. Its purpose is to show the layout
+              and feel of the final homepage. Before development begins, you&apos;ll have the opportunity to request
+              changes, adjustments, and refinements.
+            </div>
             <div className="text-center text-xs uppercase tracking-[0.2em] text-muted">
               Compass &amp; Cradle mock site
             </div>
@@ -258,7 +262,7 @@ export default function CompassAndCradlePage() {
             <div className="rounded-2xl border border-[#E8DFD3] overflow-hidden bg-white shadow-sm">
               {/* Announcement */}
               <div className="bg-[#172554] text-white text-center text-sm py-3 px-4">
-                ✨ Free shipping on orders over $89 AUD |{" "}
+                Free shipping on orders over $89 AUD |{" "}
                 <a href="#" className="underline underline-offset-2 text-[#D4BC9A]">
                   10% of profits go to Destiny Rescue
                 </a>
@@ -268,7 +272,6 @@ export default function CompassAndCradlePage() {
               <div className="px-6 md:px-10 py-6 border-b border-[#E8DFD3] flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <p className="text-xs tracking-[0.3em] uppercase text-[#172554]">Compass &amp; Cradle</p>
-                  <p className="text-xs text-[#64748b]">Perth, Australia</p>
                 </div>
                 <div className="flex gap-3 text-xs text-[#172554]">
                   {["Shop All", "Matching Tees", "Accessories", "Bundles", "Our Story"].map((item) => (
@@ -291,9 +294,8 @@ export default function CompassAndCradlePage() {
                     Oversized Beach Bag for families on the go
                   </p>
                   <p className="text-[#64748b] leading-relaxed mb-6 max-w-lg">
-                    Built to handle everyday chaos with style. Handy external pocket for quick-grab items, secure
-                    internal pocket for keys or phone. Matches our Kids Terry Toweling Set — so you and your little ones
-                    can show off that family bond.
+                    Built for chaos, styled for you. External pocket for quick grabs, internal pocket for valuables.
+                    Matches our Kids Terry Toweling Set.
                   </p>
                   <div className="flex flex-wrap gap-4 mb-8">
                     {[
@@ -427,42 +429,30 @@ export default function CompassAndCradlePage() {
                     {
                       title: "Matching Tees",
                       text: "Coordinated looks for the whole crew",
-                      gradient: "from-[#172554] to-[#1e3a8a]",
-                      icon: "👕",
                     },
                     {
                       title: "Vacation Essentials",
                       text: "Holiday-ready matching sets",
-                      gradient: "from-[#C4A77D] to-[#d4bc9a]",
-                      icon: "🏖️",
                     },
                     {
                       title: "Accessories",
                       text: "Caps, bags & finishing touches",
-                      gradient: "from-[#64748b] to-[#94a3b8]",
-                      icon: "🧢",
                     },
                   ].map((collection) => (
                     <div
                       key={collection.title}
                       className="group relative aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer"
                     >
-                      {/* Background */}
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-br ${collection.gradient} transition-transform duration-500 group-hover:scale-105`}
-                      />
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      {/* Icon decoration */}
-                      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl opacity-20 group-hover:opacity-30 transition-opacity">
-                        {collection.icon}
-                      </div>
+                      {/* Simple shared gradient placeholder */}
+                      <div className="absolute inset-0 bg-gradient-to-b from-[#F8F1E6] via-[#e9e1d7] to-[#172554] transition-transform duration-500 group-hover:scale-105" />
+                      {/* Soft fade at the top, no icon */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/40" />
                       {/* Content */}
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                         <h4 className="font-serif text-2xl mb-2">{collection.title}</h4>
                         <p className="text-sm text-white/80 mb-4">{collection.text}</p>
                         <span className="text-sm font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
-                          Shop now
+                          Shop Now
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
                           </svg>
@@ -498,21 +488,6 @@ export default function CompassAndCradlePage() {
                             {product.badge}
                           </span>
                         )}
-                        {/* Product illustration placeholder */}
-                        <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:opacity-40 transition-opacity">
-                          {index % 4 === 0 && (
-                            <div className="w-16 h-16 border-4 border-[#172554] rounded-full" />
-                          )}
-                          {index % 4 === 1 && (
-                            <div className="w-14 h-20 border-4 border-[#172554] rounded-t-full rounded-b-lg" />
-                          )}
-                          {index % 4 === 2 && (
-                            <div className="w-16 h-12 border-4 border-[#172554] rounded-lg" />
-                          )}
-                          {index % 4 === 3 && (
-                            <div className="w-12 h-12 border-4 border-[#172554] rotate-45" />
-                          )}
-                        </div>
                         {/* Quick add button */}
                         <button className="absolute bottom-3 left-3 right-3 bg-[#172554] text-white py-2.5 rounded-lg text-xs font-semibold opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200">
                           Quick add
@@ -552,32 +527,7 @@ export default function CompassAndCradlePage() {
               <div className="px-6 md:px-10 py-16 space-y-8 bg-[#F5F0E8]">
                 <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
                   {/* Image placeholder with illustration */}
-                  <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-[#e8dfd3] to-[#d4c4a8]">
-                    {/* Decorative family silhouette */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="flex items-end gap-4 opacity-20">
-                        {/* Parent */}
-                        <div className="flex flex-col items-center">
-                          <div className="w-12 h-12 rounded-full border-4 border-[#172554]" />
-                          <div className="w-16 h-24 border-4 border-[#172554] rounded-t-3xl mt-2" />
-                        </div>
-                        {/* Child */}
-                        <div className="flex flex-col items-center -ml-2">
-                          <div className="w-8 h-8 rounded-full border-2 border-[#172554]" />
-                          <div className="w-10 h-14 border-2 border-[#172554] rounded-t-2xl mt-1" />
-                        </div>
-                        {/* Parent 2 */}
-                        <div className="flex flex-col items-center">
-                          <div className="w-11 h-11 rounded-full border-4 border-[#172554]" />
-                          <div className="w-14 h-24 border-4 border-[#172554] rounded-t-3xl mt-2" />
-                        </div>
-                      </div>
-                    </div>
-                    {/* Decorative elements */}
-                    <div className="absolute top-8 left-8 w-6 h-6 rounded-full bg-[#C4A77D] opacity-40" />
-                    <div className="absolute bottom-12 right-10 w-4 h-4 rounded-full bg-[#172554] opacity-30" />
-                    <div className="absolute top-1/3 right-8 w-8 h-8 border-2 border-[#172554] opacity-20 rotate-45" />
-                  </div>
+                  <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-[#e8dfd3] to-[#d4c4a8]" />
                   <div>
                     <p className="text-xs uppercase tracking-[0.2em] text-[#C4A77D] mb-3">Our story</p>
                     <h3 className="font-serif text-3xl md:text-4xl text-[#172554] mb-5 leading-tight">
@@ -708,25 +658,34 @@ export default function CompassAndCradlePage() {
                 </div>
                 <div className="flex gap-2 -mx-2">
                   {[
-                    { gradient: "from-[#e8dfd3] to-[#d4c4a8]", icon: "🏖️" },
-                    { gradient: "from-[#d4c4a8] to-[#c4a77d]", icon: "👨‍👩‍👧" },
-                    { gradient: "from-[#172554]/20 to-[#1e3a8a]/30", icon: "👕" },
-                    { gradient: "from-[#c4a77d] to-[#d4bc9a]", icon: "☀️" },
-                    { gradient: "from-[#F5F0E8] to-[#e8dfd3]", icon: "🧢" },
-                    { gradient: "from-[#d4bc9a] to-[#e8dfd3]", icon: "❤️" },
-                  ].map((item, index) => (
+                    "from-[#e8dfd3] to-[#d4c4a8]",
+                    "from-[#d4c4a8] to-[#c4a77d]",
+                    "from-[#172554]/20 to-[#1e3a8a]/30",
+                    "from-[#c4a77d] to-[#d4bc9a]",
+                    "from-[#F5F0E8] to-[#e8dfd3]",
+                    "from-[#d4bc9a] to-[#e8dfd3]",
+                  ].map((gradient, index) => (
                     <div
                       key={index}
                       className="group flex-1 aspect-square relative cursor-pointer overflow-hidden"
                     >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} transition-transform duration-300 group-hover:scale-105`} />
-                      <div className="absolute inset-0 bg-[#172554] opacity-0 group-hover:opacity-50 transition-opacity duration-200" />
-                      <div className="absolute inset-0 flex items-center justify-center text-4xl opacity-20 group-hover:opacity-40 transition-opacity">
-                        {item.icon}
-                      </div>
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${gradient} transition-transform duration-300 group-hover:scale-105`}
+                      />
+                      <div className="absolute inset-0 bg-[#172554] opacity-0 group-hover:opacity-40 transition-opacity duration-200" />
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                        <svg
+                          className="w-8 h-8 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={1.5}
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                          />
                         </svg>
                       </div>
                     </div>
