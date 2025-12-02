@@ -147,9 +147,15 @@ export default function CompassAndCradlePage() {
               Proposal for Compass &amp; Cradle
             </p>
             <p className="text-lg text-muted leading-relaxed">
-              Hi! This page outlines our recommended bundle for your Shopify rebuild. Everything below is what
-              we&apos;d deliver as part of the project, ricing, inclusions, and a sample of the homepage hero we would
-              create. This isn&apos;t a contract, just a starting point. We can adjust anything based on your feedback.
+              Hi Hannah, this page outlines our recommended bundle for your Shopify rebuild, including the project
+              inclusions, pricing, and an example concept for the homepage hero.
+              <br />
+              <br />
+              The sample is simply an idea and we will work closely with you to create a version that reflects your
+              brand and vision.
+              <br />
+              <br />
+              This is proposal, not a contract and everything can be refined based on your needs.
             </p>
           </div>
         </section>
