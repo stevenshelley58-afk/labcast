@@ -1,8 +1,0 @@
-{
-  "prompts": [
-    {
-      "name": "sample_prompt",
-      "path": "prompts/sample_prompt.yaml"
-    }
-  ]
-}
