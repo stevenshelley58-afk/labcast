@@ -1,0 +1,10 @@
+'use client';
+
+import type { ReactNode } from 'react';
+import { AppShell } from '@/rendervault/components/app/AppShell';
+
+export default function AppGroupLayout({ children }: { children: ReactNode }) {
+  return <AppShell>{children}</AppShell>;
+}
+
+
