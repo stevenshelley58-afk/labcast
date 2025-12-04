@@ -248,10 +248,10 @@ export function ProjectsScreen({ projects = [], onCreateProject }: ProjectsScree
       <div className="px-5 py-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
-          <h1 className="text-2xl font-semibold text-gray-900">Projects</h1>
+          <h1 className="text-2xl font-semibold text-text-ink">Projects</h1>
           <button
             onClick={onCreateProject}
-            className="flex items-center gap-2 text-white px-5 py-3 rounded-full text-base font-medium"
+            className="flex items-center gap-2 rounded-full bg-[color:var(--color-accent)] px-5 py-3 text-base font-medium text-white shadow-soft transition hover:opacity-90"
             style={{ backgroundColor: '#1a2b4a' }}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -264,7 +264,7 @@ export function ProjectsScreen({ projects = [], onCreateProject }: ProjectsScree
         {/* Empty State */}
         <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center">
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
-            <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-8 h-8 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -273,8 +273,8 @@ export function ProjectsScreen({ projects = [], onCreateProject }: ProjectsScree
               />
             </svg>
           </div>
-          <h2 className="text-lg font-semibold text-gray-900 mb-2">No projects yet</h2>
-          <p className="text-gray-500 text-sm mb-6">
+          <h2 className="text-lg font-semibold text-text-ink mb-2">No projects yet</h2>
+          <p className="text-text-subtle text-sm mb-6">
             Create your first project to share a brief, upload references, and review renders.
           </p>
           <button
@@ -293,10 +293,10 @@ export function ProjectsScreen({ projects = [], onCreateProject }: ProjectsScree
     <div className="px-5 py-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-5">
-        <h1 className="text-2xl font-semibold text-gray-900">Projects</h1>
+        <h1 className="text-2xl font-semibold text-text-ink">Projects</h1>
         <button
           onClick={onCreateProject}
-          className="flex items-center gap-2 text-white px-5 py-3 rounded-full text-base font-medium"
+          className="flex items-center gap-2 rounded-full bg-[color:var(--color-accent)] px-5 py-3 text-base font-medium text-white shadow-soft transition hover:opacity-90"
           style={{ backgroundColor: '#1a2b4a' }}
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -326,7 +326,7 @@ export function ProjectsScreen({ projects = [], onCreateProject }: ProjectsScree
 
                 {/* Info */}
                 <div className="flex-1 min-w-0 py-0.5">
-                  <h3 className="font-semibold text-gray-900 mb-2 truncate">{project.name}</h3>
+                  <h3 className="font-semibold text-text-ink mb-2 truncate">{project.name}</h3>
 
                   {/* Status Badge */}
                   <span
@@ -339,7 +339,7 @@ export function ProjectsScreen({ projects = [], onCreateProject }: ProjectsScree
 
                 {/* Arrow */}
                 <div className="flex items-center">
-                  <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
@@ -366,14 +366,14 @@ export function AccountScreen({ userEmail = 'user@example.com', onLogout }: Acco
     <div className="px-5 py-6">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900">Account</h1>
+        <h1 className="text-2xl font-semibold text-text-ink">Account</h1>
       </div>
 
       {/* Profile Card */}
       <div className="bg-white rounded-2xl border border-gray-200 p-5 mb-4">
         <Link href="/profile" className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center">
-            <svg className="w-7 h-7 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-7 h-7 text-text-subtle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -383,10 +383,10 @@ export function AccountScreen({ userEmail = 'user@example.com', onLogout }: Acco
             </svg>
           </div>
           <div className="flex-1">
-            <div className="font-semibold text-gray-900">Your Profile</div>
-            <div className="text-gray-500 text-sm">{userEmail}</div>
+            <div className="font-semibold text-text-ink">Your Profile</div>
+            <div className="text-text-subtle text-sm">{userEmail}</div>
           </div>
-          <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </Link>
@@ -395,7 +395,7 @@ export function AccountScreen({ userEmail = 'user@example.com', onLogout }: Acco
       {/* Menu Items */}
       <div className="bg-white rounded-2xl border border-gray-200 divide-y divide-gray-100">
         <Link href="/profile" className="w-full flex items-center gap-4 p-4 text-left">
-          <svg className="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 text-text-subtle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -403,14 +403,14 @@ export function AccountScreen({ userEmail = 'user@example.com', onLogout }: Acco
               d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
             />
           </svg>
-          <span className="flex-1 text-gray-900">Billing & payments</span>
-          <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <span className="flex-1 text-text-ink">Billing & payments</span>
+          <svg className="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </Link>
 
         <button className="w-full flex items-center gap-4 p-4 text-left">
-          <svg className="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 text-text-subtle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -418,8 +418,8 @@ export function AccountScreen({ userEmail = 'user@example.com', onLogout }: Acco
               d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
             />
           </svg>
-          <span className="flex-1 text-gray-900">Notifications</span>
-          <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <span className="flex-1 text-text-ink">Notifications</span>
+          <svg className="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -430,7 +430,7 @@ export function AccountScreen({ userEmail = 'user@example.com', onLogout }: Acco
           }}
           className="w-full flex items-center gap-4 p-4 text-left"
         >
-          <svg className="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 text-text-subtle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -438,8 +438,8 @@ export function AccountScreen({ userEmail = 'user@example.com', onLogout }: Acco
               d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <span className="flex-1 text-gray-900">Help & support</span>
-          <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <span className="flex-1 text-text-ink">Help & support</span>
+          <svg className="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -486,7 +486,7 @@ function BottomNav() {
             <Link
               key={tab.id}
               href={tab.href}
-              className={`flex flex-col items-center gap-1 py-2 px-4 ${active ? 'text-gray-900' : 'text-gray-400'}`}
+              className={`flex flex-col items-center gap-1 py-2 px-4 ${active ? 'text-text-ink' : 'text-muted'}`}
             >
               <Icon className="w-6 h-6" filled={active} />
               <span className="text-xs font-medium">{tab.label}</span>

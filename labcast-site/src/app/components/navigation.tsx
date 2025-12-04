@@ -65,10 +65,10 @@ export function Navigation() {
 
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/40 bg-canvas/80 backdrop-blur-xl">
-      <div className="relative mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
+      <div className="relative mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-2">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-panel/80 px-4 py-2 text-sm font-semibold text-text-ink shadow-card transition hover:opacity-90"
+          className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-panel/80 px-3 py-1.5 text-sm font-semibold text-text-ink shadow-card transition hover:opacity-90"
           onClick={closeMenu}
         >
           <span className="text-base">Labcast</span>
@@ -83,7 +83,7 @@ export function Navigation() {
                 key={link.label}
                 href={href}
                 className={clsx(
-                  "inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition",
+                  "inline-flex items-center rounded-full px-3 py-1 text-sm font-medium transition",
                   active
                     ? "bg-panel text-text-ink shadow-soft"
                     : "text-text-subtle hover:text-text-ink hover:bg-panel/60",
@@ -110,7 +110,7 @@ export function Navigation() {
           </Button>
           <button
             type="button"
-            className="md:hidden w-10 h-10 inline-flex items-center justify-center rounded-full border border-border/80"
+            className="md:hidden w-8 h-8 inline-flex items-center justify-center rounded-full border border-border/80"
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
             onClick={() => setIsMenuOpen((prev) => !prev)}
