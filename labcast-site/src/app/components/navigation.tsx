@@ -68,11 +68,10 @@ export function Navigation() {
       <div className="relative mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-2">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-panel/80 px-3 py-1.5 text-sm font-semibold text-text-ink shadow-card transition hover:opacity-90"
+          className="inline-flex items-center rounded-full border border-white/60 bg-panel/80 px-3 py-1.5 text-sm font-semibold text-text-ink shadow-card transition hover:opacity-90"
           onClick={closeMenu}
         >
           <span className="text-base">Labcast</span>
-          <span className="text-xs uppercase tracking-[0.24em] text-text-subtle">AU</span>
         </Link>
         <div className="hidden md:flex items-center gap-3 text-sm">
           {navLinks.map((link) => {
