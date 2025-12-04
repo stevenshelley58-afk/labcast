@@ -1,7 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import clsx from "clsx";
+import { Button } from "@/ui/Button";
+import { PageSection } from "@/ui/PageSection";
 import { Footer } from "../components/footer";
 import { Navigation } from "../components/navigation";
 
@@ -56,96 +58,58 @@ export default function ServicesPage() {
     };
   }, []);
 
+  const linkClasses = (id: string) =>
+    clsx(
+      "rounded-full px-4 py-2 text-xs font-medium no-underline transition",
+      activeSection === id
+        ? "bg-panel text-text-ink shadow-soft"
+        : "text-text-subtle hover:bg-panel/80 hover:text-text-ink",
+    );
+
   return (
     <div className="bg-background text-foreground">
       <Navigation />
       <main className="min-h-screen">
         {/* Hero */}
-        <section className="pt-40 pb-24 px-6 max-w-[900px] mx-auto text-center">
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal leading-[1.1] mb-6">
-            Packages that <em className="italic">actually</em> deliver.
-          </h1>
-          <p className="text-lg text-muted max-w-[600px] mx-auto mb-10">
-            No retainers that bleed you dry. No scope creep. Just clear
-            deliverables, hard numbers, and real accountability.
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <a
-              href="#packages"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-foreground text-background hover:opacity-90 transition-all hover:-translate-y-0.5"
-            >
-              View packages
-            </a>
-            <a
-              href="#bundle"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-transparent text-foreground border border-border-dark hover:bg-background-alt transition-colors"
-            >
-              See the full stack
-            </a>
+        <PageSection className="pt-32 text-center">
+          <div className="mx-auto max-w-[900px]">
+            <h1 className="mb-6 font-serif text-4xl font-normal leading-[1.1] text-text-ink md:text-6xl lg:text-7xl">
+              Packages that <em className="italic">actually</em> deliver.
+            </h1>
+            <p className="mx-auto mb-10 max-w-[600px] text-lg text-text-subtle">
+              No retainers that bleed you dry. No scope creep. Just clear deliverables, hard numbers, and real
+              accountability.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button as="a" href="#packages" size="lg">
+                View packages
+              </Button>
+              <Button as="a" href="#bundle" size="lg" variant="ghost">
+                See the full stack
+              </Button>
+            </div>
           </div>
-        </section>
+        </PageSection>
 
         {/* Package Navigation */}
-        <div className="sticky top-[60px] bg-background border-b border-border py-4 px-6 z-40 overflow-x-auto">
-          <div className="max-w-[1200px] mx-auto flex gap-2 justify-center">
-            <a
-              href="#package-rebuild"
-              className={`px-4 py-2 rounded-full text-xs text-muted no-underline whitespace-nowrap transition-all border border-transparent hover:bg-background-alt hover:text-foreground ${
-                activeSection === "rebuild"
-                  ? "bg-foreground text-background"
-                  : ""
-              }`}
-            >
+        <div className="package-nav sticky top-[64px] z-40 border-b border-border/60 bg-panel/90 px-6 py-4 backdrop-blur">
+          <div className="mx-auto flex max-w-[1200px] gap-2 overflow-x-auto">
+            <a href="#package-rebuild" className={linkClasses("rebuild")}>
               Site Rebuild
             </a>
-            <a
-              href="#package-imagery"
-              className={`px-4 py-2 rounded-full text-xs text-muted no-underline whitespace-nowrap transition-all border border-transparent hover:bg-background-alt hover:text-foreground ${
-                activeSection === "imagery"
-                  ? "bg-foreground text-background"
-                  : ""
-              }`}
-            >
+            <a href="#package-imagery" className={linkClasses("imagery")}>
               AI Imagery
             </a>
-            <a
-              href="#package-copy"
-              className={`px-4 py-2 rounded-full text-xs text-muted no-underline whitespace-nowrap transition-all border border-transparent hover:bg-background-alt hover:text-foreground ${
-                activeSection === "copy"
-                  ? "bg-foreground text-background"
-                  : ""
-              }`}
-            >
+            <a href="#package-copy" className={linkClasses("copy")}>
               Product Copy
             </a>
-            <a
-              href="#package-tracking"
-              className={`px-4 py-2 rounded-full text-xs text-muted no-underline whitespace-nowrap transition-all border border-transparent hover:bg-background-alt hover:text-foreground ${
-                activeSection === "tracking"
-                  ? "bg-foreground text-background"
-                  : ""
-              }`}
-            >
+            <a href="#package-tracking" className={linkClasses("tracking")}>
               Tracking + Meta
             </a>
-            <a
-              href="#package-creative"
-              className={`px-4 py-2 rounded-full text-xs text-muted no-underline whitespace-nowrap transition-all border border-transparent hover:bg-background-alt hover:text-foreground ${
-                activeSection === "creative"
-                  ? "bg-foreground text-background"
-                  : ""
-              }`}
-            >
+            <a href="#package-creative" className={linkClasses("creative")}>
               Creative Engine
             </a>
-            <a
-              href="#package-growth"
-              className={`px-4 py-2 rounded-full text-xs text-muted no-underline whitespace-nowrap transition-all border border-transparent hover:bg-background-alt hover:text-foreground ${
-                activeSection === "growth"
-                  ? "bg-foreground text-background"
-                  : ""
-              }`}
-            >
+            <a href="#package-growth" className={linkClasses("growth")}>
               Growth Ops
             </a>
           </div>
@@ -166,7 +130,7 @@ export default function ServicesPage() {
         <section className="py-8 px-6 pb-24 max-w-[1200px] mx-auto" id="packages">
           {/* Package 1: Shopify Rebuild */}
           <article
-            className="bg-background-alt border border-border rounded-xl mb-12 overflow-hidden scroll-mt-[140px] animate-fade-up"
+            className="bg-background-alt border border-border rounded-xl mb-12 overflow-hidden scroll-mt-[140px] shadow-soft animate-fade-up"
             id="package-rebuild"
           >
             <div className="p-10 border-b border-border grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-start">
@@ -266,12 +230,9 @@ export default function ServicesPage() {
                 <strong className="text-foreground font-medium">Best for:</strong>{" "}
                 Slow sites, bad conversion rates, messy structure
               </div>
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-foreground text-background hover:opacity-90 transition-opacity"
-              >
+              <Button as="a" href="/#contact" size="md">
                 Get started
-              </Link>
+              </Button>
             </div>
           </article>
 
@@ -371,12 +332,9 @@ export default function ServicesPage() {
                 <strong className="text-foreground font-medium">Best for:</strong>{" "}
                 Poor photos, inconsistent imagery, new product lines
               </div>
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-foreground text-background hover:opacity-90 transition-opacity"
-              >
+              <Button as="a" href="/#contact" size="md">
                 Get started
-              </Link>
+              </Button>
             </div>
           </article>
 
@@ -473,12 +431,9 @@ export default function ServicesPage() {
                 <strong className="text-foreground font-medium">Best for:</strong>{" "}
                 Weak copy, poor readability, inconsistent naming
               </div>
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-foreground text-background hover:opacity-90 transition-opacity"
-              >
+              <Button as="a" href="/#contact" size="md">
                 Get started
-              </Link>
+              </Button>
             </div>
           </article>
 
@@ -577,12 +532,9 @@ export default function ServicesPage() {
                 <strong className="text-foreground font-medium">Best for:</strong>{" "}
                 Anyone wanting ads that actually scale
               </div>
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-foreground text-background hover:opacity-90 transition-opacity"
-              >
+              <Button as="a" href="/#contact" size="md">
                 Get started
-              </Link>
+              </Button>
             </div>
           </article>
 
@@ -679,12 +631,9 @@ export default function ServicesPage() {
                 <strong className="text-foreground font-medium">Best for:</strong>{" "}
                 Weak creative, creative fatigue, lack of fresh ads
               </div>
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-foreground text-background hover:opacity-90 transition-opacity"
-              >
+              <Button as="a" href="/#contact" size="md">
                 Get started
-              </Link>
+              </Button>
             </div>
           </article>
 
@@ -787,64 +736,46 @@ export default function ServicesPage() {
                 <strong className="text-foreground font-medium">Best for:</strong>{" "}
                 Anyone wanting actual revenue results, not consulting
               </div>
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-foreground text-background hover:opacity-90 transition-opacity"
-              >
+              <Button as="a" href="/#contact" size="md">
                 Get started
-              </Link>
+              </Button>
             </div>
           </article>
         </section>
 
         {/* Bundle Section */}
-        <section
-          className="bg-foreground text-background py-20 px-6 my-16"
+        <PageSection
           id="bundle"
+          tone="surface"
+          border="top"
+          className="my-16"
+          containerClassName="max-w-[900px]"
         >
-          <div className="max-w-[900px] mx-auto text-center">
-            <div className="inline-block bg-background/15 px-4 py-1.5 rounded-full text-xs uppercase tracking-wider mb-6">
+          <div className="rounded-3xl bg-foreground p-10 text-center text-background shadow-shell">
+            <div className="mb-6 inline-flex rounded-full bg-background/15 px-4 py-1.5 text-xs uppercase tracking-wider">
               Full Stack 360
             </div>
-            <h2 className="font-serif text-4xl md:text-5xl font-normal mb-4">
-              Everything. One price.
-            </h2>
-            <p className="text-background/70 max-w-[600px] mx-auto mb-8">
-              Site rebuild, imagery, copy, tracking, creative, and 3 months of
-              managed growth. The complete system. Total commitment: $16,000 to $20,000 across 3 months.
+            <h2 className="mb-4 font-serif text-4xl font-normal md:text-5xl">Everything. One price.</h2>
+            <p className="mx-auto mb-8 max-w-[600px] text-background/70">
+              Site rebuild, imagery, copy, tracking, creative, and 3 months of managed growth. The complete system. Total
+              commitment: $16,000 to $20,000 across 3 months.
             </p>
-            <div className="text-5xl font-semibold mb-2">$10,000 – $14,000</div>
-            <div className="text-background/60 text-sm mb-10">
-              Once off + $2,000/month for 3 months
+            <div className="mb-2 text-5xl font-semibold">$10,000 – $14,000</div>
+            <div className="mb-10 text-sm text-background/60">Once off + $2,000/month for 3 months</div>
+            <div className="mb-10 flex flex-wrap justify-center gap-3">
+              {["Site Rebuild", "AI Imagery", "Product Copy", "Tracking Setup", "Creative Engine", "Growth Ops"].map(
+                (item) => (
+                  <span key={item} className="rounded-md bg-background/12 px-4 py-2 text-sm">
+                    {item}
+                  </span>
+                ),
+              )}
             </div>
-            <div className="flex flex-wrap justify-center gap-3 mb-10">
-              <span className="bg-background/10 px-4 py-2 rounded-md text-sm">
-                Site Rebuild
-              </span>
-              <span className="bg-background/10 px-4 py-2 rounded-md text-sm">
-                AI Imagery
-              </span>
-              <span className="bg-background/10 px-4 py-2 rounded-md text-sm">
-                Product Copy
-              </span>
-              <span className="bg-background/10 px-4 py-2 rounded-md text-sm">
-                Tracking Setup
-              </span>
-              <span className="bg-background/10 px-4 py-2 rounded-md text-sm">
-                Creative Engine
-              </span>
-              <span className="bg-background/10 px-4 py-2 rounded-md text-sm">
-                Growth Ops
-              </span>
-            </div>
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-background text-foreground hover:opacity-90 transition-all hover:-translate-y-0.5"
-            >
+            <Button as="a" href="/#contact" variant="secondary" size="lg">
               Talk about the full stack
-            </Link>
+            </Button>
           </div>
-        </section>
+        </PageSection>
 
         {/* Decision Matrix */}
         <section className="py-20 px-6 max-w-[900px] mx-auto">
@@ -902,21 +833,15 @@ export default function ServicesPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-24 px-6 text-center bg-background-alt">
-          <h2 className="font-serif text-4xl md:text-5xl font-normal mb-4">
-            Ready to talk?
-          </h2>
-          <p className="text-muted max-w-[500px] mx-auto mb-8">
-            Tell us what&apos;s broken. No sales pitch — just a conversation to see
-            if we can help.
+        <PageSection tone="surface" border="top" className="text-center">
+          <h2 className="mb-4 font-serif text-4xl font-normal md:text-5xl">Ready to talk?</h2>
+          <p className="mx-auto mb-8 max-w-[500px] text-text-subtle">
+            Tell us what&apos;s broken. No sales pitch — just a conversation to see if we can help.
           </p>
-          <Link
-            href="/#contact"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-foreground text-background hover:opacity-90 transition-opacity"
-          >
+          <Button as="a" href="/#contact" size="lg">
             Get in touch
-          </Link>
-        </section>
+          </Button>
+        </PageSection>
 
         <Footer />
       </main>

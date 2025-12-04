@@ -1,7 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import clsx from "clsx";
+import { Button } from "@/ui/Button";
+import { PageSection } from "@/ui/PageSection";
 import { Footer } from "../components/footer";
 import { Navigation } from "../components/navigation";
 
@@ -191,48 +193,45 @@ export function PricingPageContent() {
     <div className="bg-background text-foreground">
       <Navigation />
       <main className="min-h-screen">
-        <section className="pt-40 pb-20 px-6 max-w-[750px] mx-auto text-center">
-          <p className="text-sm text-muted mb-4 uppercase tracking-[0.2em]">
-            Pricing
-          </p>
-          <h1 className="font-serif text-4xl md:text-6xl font-normal leading-tight mb-6">
-            Clear pricing. <em className="italic">No surprises.</em>
-          </h1>
-          <p className="text-lg text-muted max-w-[550px] mx-auto mb-10">
-            Pick what you need. Everything has a fixed price. No retainers, no
-            scope creep, no awkward conversations.
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <a
-              href="#website"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-foreground text-background hover:opacity-90 transition-all hover:-translate-y-0.5"
-            >
-              View services
-            </a>
-            <a
-              href="#bundle"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-transparent text-foreground border border-border-dark hover:bg-background-alt transition-colors"
-            >
-              See the bundle
-            </a>
+        <PageSection className="pt-32 text-center">
+          <div className="mx-auto max-w-[750px]">
+            <p className="mb-4 text-sm uppercase tracking-[0.2em] text-text-subtle">Pricing</p>
+            <h1 className="mb-6 font-serif text-4xl font-normal leading-tight text-text-ink md:text-6xl">
+              Clear pricing. <em className="italic">No surprises.</em>
+            </h1>
+            <p className="mx-auto mb-10 max-w-[550px] text-lg text-text-subtle">
+              Pick what you need. Everything has a fixed price. No retainers, no scope creep, no awkward conversations.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button as="a" href="#website" size="lg">
+                View services
+              </Button>
+              <Button as="a" href="#bundle" size="lg" variant="ghost">
+                See the bundle
+              </Button>
+            </div>
           </div>
-        </section>
+        </PageSection>
 
-        <div className="pricing-nav sticky top-[60px] bg-background border-b border-border py-4 px-6 z-40 overflow-x-auto">
-          <div className="max-w-[1100px] mx-auto flex gap-2 justify-center">
-            {categoryLinks.map((link) => (
-              <a
-                key={link.id}
-                href={`#${link.id}`}
-                className={`px-4 py-2 rounded-full text-xs no-underline whitespace-nowrap transition-all border border-transparent hover:bg-background-alt hover:text-foreground ${
-                  activeCategory === link.id
-                    ? "bg-foreground text-background"
-                    : "text-muted"
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
+        <div className="pricing-nav sticky top-[64px] z-40 border-b border-border/60 bg-panel/90 px-6 py-4 backdrop-blur">
+          <div className="mx-auto flex max-w-[1100px] gap-2 overflow-x-auto">
+            {categoryLinks.map((link) => {
+              const active = activeCategory === link.id;
+              return (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  className={clsx(
+                    "rounded-full px-4 py-2 text-xs font-medium no-underline transition",
+                    active
+                      ? "bg-panel text-text-ink shadow-soft"
+                      : "text-text-subtle hover:bg-panel/80 hover:text-text-ink",
+                  )}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
         </div>
 
@@ -252,7 +251,7 @@ export function PricingPageContent() {
             {websiteTiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`border rounded-2xl p-8 bg-background-alt ${
+                className={`border rounded-2xl p-8 bg-background-alt shadow-soft ${
                   tier.featured
                     ? "border-border-dark shadow-lg shadow-black/5"
                     : "border-border"
@@ -312,7 +311,7 @@ export function PricingPageContent() {
             {contentServices.map((service) => (
               <article
                 key={service.name}
-                className="bg-background-alt border border-border rounded-2xl overflow-hidden"
+                className="bg-background-alt border border-border rounded-2xl overflow-hidden shadow-soft"
               >
                 <div className="p-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start">
                   <div>
@@ -377,7 +376,7 @@ export function PricingPageContent() {
             </p>
             <h2 className="font-serif text-3xl font-normal">Ready-to-Run Ads</h2>
           </div>
-          <article className="bg-background-alt border border-border rounded-2xl overflow-hidden">
+          <article className="bg-background-alt border border-border rounded-2xl overflow-hidden shadow-soft">
             <div className="p-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start">
               <div>
                 <h3 className="text-lg font-semibold mb-1">
@@ -439,7 +438,7 @@ export function PricingPageContent() {
             </p>
             <h2 className="font-serif text-3xl font-normal">Meta Ads</h2>
           </div>
-          <article className="bg-background-alt border border-border rounded-2xl overflow-hidden">
+          <article className="bg-background-alt border border-border rounded-2xl overflow-hidden shadow-soft">
             <div className="p-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start">
               <div>
                 <h3 className="text-lg font-semibold mb-1">
@@ -503,7 +502,7 @@ export function PricingPageContent() {
             </p>
             <h2 className="font-serif text-3xl font-normal">Meta Setup</h2>
           </div>
-          <article className="bg-background-alt border border-border rounded-2xl overflow-hidden">
+          <article className="bg-background-alt border border-border rounded-2xl overflow-hidden shadow-soft">
             <div className="p-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start">
               <div>
                 <h3 className="text-lg font-semibold mb-1">
@@ -555,61 +554,45 @@ export function PricingPageContent() {
           </article>
         </section>
 
-        <section
+        <PageSection
           id="bundle"
-          className="scroll-mt-[140px] py-20 px-6 max-w-[900px] mx-auto"
+          tone="surface"
+          border="top"
+          className="scroll-mt-[140px]"
+          containerClassName="max-w-[900px]"
         >
-          <div className="bg-foreground text-background rounded-3xl p-10 text-center">
-            <div className="inline-block bg-background/15 px-4 py-1.5 rounded-full text-xs uppercase tracking-[0.3em] mb-6">
+          <div className="rounded-3xl bg-foreground p-10 text-center text-background shadow-shell">
+            <div className="mb-6 inline-flex rounded-full bg-background/10 px-4 py-1.5 text-xs uppercase tracking-[0.3em]">
               360 Ecommerce Bundle
             </div>
-            <h2 className="font-serif text-4xl font-normal mb-3">
-              Everything. 30 days of ads.
-            </h2>
-            <p className="text-background/70 max-w-[500px] mx-auto mb-6">
-              Website rebuild, product content, tracking setup, and a full month
-              of managed Meta ads.
+            <h2 className="mb-3 font-serif text-4xl font-normal">Everything. 30 days of ads.</h2>
+            <p className="mx-auto mb-6 max-w-[500px] text-background/70">
+              Website rebuild, product content, tracking setup, and a full month of managed Meta ads.
             </p>
-            <div className="text-4xl md:text-5xl font-semibold mb-2">
-              $8,800 – $14,400
-            </div>
-            <p className="text-background/60 text-sm mb-8">
-              Depends on Basic vs Custom website
-            </p>
-            <div className="flex flex-wrap justify-center gap-3 mb-10">
+            <div className="mb-2 text-4xl font-semibold md:text-5xl">$8,800 – $14,400</div>
+            <p className="mb-8 text-sm text-background/60">Depends on Basic vs Custom website</p>
+            <div className="mb-10 flex flex-wrap justify-center gap-3">
               {bundleIncludes.map((item) => (
-                <span
-                  key={item}
-                  className="bg-background/10 px-4 py-2 rounded-md text-sm"
-                >
+                <span key={item} className="rounded-md bg-background/15 px-4 py-2 text-sm">
                   {item}
                 </span>
               ))}
             </div>
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-background text-foreground hover:opacity-90 transition-all hover:-translate-y-0.5"
-            >
+            <Button as="a" href="/#contact" variant="secondary" size="lg">
               Talk about the bundle
-            </Link>
+            </Button>
           </div>
-        </section>
+        </PageSection>
 
-        <section className="py-24 px-6 text-center bg-background-alt">
-          <h2 className="font-serif text-4xl md:text-5xl font-normal mb-4">
-            Ready to talk?
-          </h2>
-          <p className="text-muted max-w-[500px] mx-auto mb-8">
-            Tell us what you need. No pitch deck — just a conversation to see if
-            we can help.
+        <PageSection tone="surface" border="top" className="text-center">
+          <h2 className="mb-4 font-serif text-4xl font-normal md:text-5xl">Ready to talk?</h2>
+          <p className="mx-auto mb-8 max-w-[500px] text-text-subtle">
+            Tell us what you need. No pitch deck — just a conversation to see if we can help.
           </p>
-          <Link
-            href="/#contact"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-medium bg-foreground text-background hover:opacity-90 transition-opacity"
-          >
+          <Button as="a" href="/#contact" size="lg">
             Get in touch
-          </Link>
-        </section>
+          </Button>
+        </PageSection>
 
         <Footer />
       </main>

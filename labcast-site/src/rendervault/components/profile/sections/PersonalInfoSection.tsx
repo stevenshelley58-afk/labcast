@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Input } from '../../ui/Input';
-import { Button } from '../../ui/Button';
+import { Button } from '@/ui/Button';
 
 export interface PersonalInfo {
   full_name: string;

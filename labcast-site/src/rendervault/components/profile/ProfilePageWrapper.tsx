@@ -3,6 +3,9 @@
 import { MobileDashboard, AccountScreen } from '../app/MobileDashboard';
 import { ProfilePage } from './ProfilePage';
 import { createSupabaseBrowserClient } from '../../lib/supabase/client';
+import type { BrandInfo } from './sections/BrandSection';
+import type { BillingInfo } from './sections/BillingCreditsSection';
+import type { ProjectsUsage } from './sections/ProjectsUsageSection';
 
 interface ProfilePageWrapperProps {
   initialProfile: {
@@ -17,9 +20,9 @@ interface ProfilePageWrapperProps {
     created_at: string;
     member_id: string;
   };
-  initialBrand: any;
-  initialBilling: any;
-  initialUsage: any;
+  initialBrand: BrandInfo;
+  initialBilling: BillingInfo;
+  initialUsage: ProjectsUsage;
 }
 
 export function ProfilePageWrapper({

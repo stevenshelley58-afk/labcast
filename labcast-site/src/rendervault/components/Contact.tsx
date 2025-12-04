@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Input } from "@/rendervault/components/ui/Input";
 import { TextArea } from "@/rendervault/components/ui/TextArea";
+import { Button } from "@/ui/Button";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -82,7 +83,7 @@ export default function Contact() {
       setTimeout(() => {
         setSuccess(false);
       }, 5000);
-    } catch (err) {
+    } catch {
       setError("Failed to send message. Please try again.");
     } finally {
       setLoading(false);
@@ -96,7 +97,7 @@ export default function Contact() {
           Got a project in mind?
         </h2>
         <p className="text-lg text-text-subtle mb-12 text-center">
-          Tell us what you're working on and we'll get back to you within a day.
+          Tell us what you&rsquo;re working on and we&rsquo;ll get back to you within a day.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -161,7 +162,7 @@ export default function Contact() {
               id="contact-message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Tell us about your brand, your products, and what kind of imagery you're after..."
+              placeholder="Tell us about your brand, your products, and what kind of imagery you&rsquo;re after..."
               required
               disabled={loading}
               rows={6}
@@ -179,19 +180,15 @@ export default function Contact() {
           {success && (
             <div className="p-3 rounded-lg bg-green-50 border border-green-200">
               <p className="text-sm text-green-800">
-                Message sent! We'll get back to you soon.
+                Message sent! We&rsquo;ll get back to you soon.
               </p>
             </div>
           )}
 
           <div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="px-8 py-4 rounded-xl bg-text-ink text-white font-medium hover:bg-text-ink/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-text-ink"
-            >
+            <Button type="submit" size="lg" disabled={loading} fullWidth>
               {loading ? "Sending..." : "Send Message"}
-            </button>
+            </Button>
           </div>
         </form>
       </div>

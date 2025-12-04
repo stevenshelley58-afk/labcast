@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { Button } from "@/ui/Button";
 
 type SceneState = {
   camera: THREE.PerspectiveCamera;
@@ -13,20 +14,20 @@ type SceneState = {
   mouseY: number;
   targetMouseX: number;
   targetMouseY: number;
-  halfX: number;
-  halfY: number;
   amountX: number;
   amountY: number;
 };
 
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const backgroundRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number | undefined>(undefined);
   const sceneRef = useRef<SceneState | undefined>(undefined);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = backgroundRef.current;
+    if (!canvas || !container) return;
 
     const SEPARATION = 26;
     const AMOUNTX = 110;
@@ -38,15 +39,20 @@ export function Hero() {
     const getAmountY = () =>
       getIsMobile() ? Math.floor(AMOUNTY * 0.6) : AMOUNTY;
 
-    let halfX = window.innerWidth / 2;
-    let halfY = window.innerHeight / 2;
+    const getSize = () => {
+      const rect = container.getBoundingClientRect();
+      const width = rect.width || window.innerWidth;
+      const height = rect.height || 640;
+      return { width, height };
+    };
 
+    let { width, height } = getSize();
     const amountX = getAmountX();
     const amountY = getAmountY();
 
     const camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth / window.innerHeight,
+      width / height,
       1,
       10000,
     );
@@ -54,7 +60,7 @@ export function Hero() {
     camera.lookAt(0, 0, 0);
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf8f8f8);
+    scene.background = new THREE.Color("#f5f7fb");
 
     const numParticles = amountX * amountY;
     const positions = new Float32Array(numParticles * 3);
@@ -95,28 +101,26 @@ export function Hero() {
       antialias: true,
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.7));
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(width, height);
 
     const handleResize = () => {
-      halfX = window.innerWidth / 2;
-      halfY = window.innerHeight / 2;
-
-      if (sceneRef.current) {
-        sceneRef.current.halfX = halfX;
-        sceneRef.current.halfY = halfY;
-      }
-
-      camera.aspect = window.innerWidth / window.innerHeight;
+      const nextSize = getSize();
+      width = nextSize.width;
+      height = nextSize.height;
+      camera.aspect = width / height;
       camera.updateProjectionMatrix();
 
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(width, height);
     };
 
     const handleMouseMove = (event: MouseEvent) => {
       if (!sceneRef.current) return;
+      const rect = container.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
 
-      sceneRef.current.targetMouseX = event.clientX - halfX;
-      sceneRef.current.targetMouseY = event.clientY - halfY;
+      sceneRef.current.targetMouseX = event.clientX - centerX;
+      sceneRef.current.targetMouseY = event.clientY - centerY;
     };
 
     window.addEventListener("resize", handleResize);
@@ -132,8 +136,6 @@ export function Hero() {
       mouseY: 0,
       targetMouseX: 0,
       targetMouseY: 0,
-      halfX,
-      halfY,
       amountX,
       amountY,
     };
@@ -206,43 +208,50 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="hero">
-      <div className="hero-inner">
-        <div className="hero-body">
-          <div className="hero-canvas" aria-hidden="true">
-            <canvas id="waveCanvas" ref={canvasRef}></canvas>
+    <section className="relative isolate overflow-hidden bg-canvas pt-32 pb-20 sm:pb-32 lg:pt-40">
+      <div ref={backgroundRef} className="absolute inset-0">
+        <canvas ref={canvasRef} className="absolute inset-0 h-full w-full opacity-70" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(79,120,165,0.12),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(107,203,119,0.1),transparent_42%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-white" />
+      </div>
+
+      <div className="relative mx-auto flex min-h-[560px] max-w-4xl flex-col items-start gap-10 px-6 text-left sm:items-center sm:text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.34em] text-text-subtle sm:text-center">
+          From the founders of bhm.com.au
+        </p>
+
+        <div className="space-y-6">
+          <h1 className="text-4xl font-semibold tracking-tight text-text-ink sm:text-5xl lg:text-6xl">
+            Real execution.
+            <br />
+            <span className="text-foreground-soft">Not agency theatre.</span>
+          </h1>
+          <p className="text-lg leading-relaxed text-text-subtle sm:max-w-3xl">
+            Marketing, creative, and builds from operators in the trenches, not agencies on the sidelines.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap gap-3 sm:justify-center">
+          <Button as="a" href="#services" size="lg">
+            See how we can help
+          </Button>
+          <Button as="a" href="https://bhm.com.au" target="_blank" rel="noopener noreferrer" variant="ghost" size="lg">
+            See our brand &rarr;
+          </Button>
+        </div>
+
+        <div className="mt-4 grid gap-4 sm:grid-cols-3">
+          <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-left text-text-ink shadow-soft">
+            <p className="text-xs uppercase tracking-[0.3em] text-text-subtle">Focus</p>
+            <p className="mt-2 text-base font-semibold">Marketing</p>
           </div>
-
-          <div className="hero-dot-fade" aria-hidden="true" />
-
-          <div className="hero-content">
-            <p className="hero-kicker">From the founders of bhm.com.au</p>
-
-            <div className="hero-text-block">
-              <h1 className="hero-title">
-                Real execution.
-                <br />
-                <span className="hero-no-wrap">Not agency theatre.</span>
-              </h1>
-              <p className="subcopy">
-                Marketing, creative and builds from operators in the trenches,
-                not agencies on the sidelines.
-              </p>
-            </div>
-
-            <div className="hero-actions">
-              <a href="#services" className="btn btn-primary">
-                See how we can help
-              </a>
-              <a
-                href="https://bhm.com.au"
-                className="btn btn-secondary"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                See our brand &rarr;
-              </a>
-            </div>
+          <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-left text-text-ink shadow-soft">
+            <p className="text-xs uppercase tracking-[0.3em] text-text-subtle">Creative</p>
+            <p className="mt-2 text-base font-semibold">Render Vault</p>
+          </div>
+          <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-left text-text-ink shadow-soft">
+            <p className="text-xs uppercase tracking-[0.3em] text-text-subtle">Build</p>
+            <p className="mt-2 text-base font-semibold">Web &amp; product</p>
           </div>
         </div>
       </div>

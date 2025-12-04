@@ -1,45 +1,113 @@
 'use client';
 
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import clsx from "clsx";
+import { Button } from "@/ui/Button";
 
 const navLinks = [
   { href: "/render-vault", label: "Render Vault" },
+  { href: "/services", label: "Services" },
   { href: "/pricing", label: "Pricing" },
   { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/#contact", label: "Contact us", isContact: true },
 ];
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const isDev = process.env.NODE_ENV === "development";
 
   const closeMenu = () => setIsMenuOpen(false);
 
+  const contactHref =
+    pathname?.startsWith("/render-vault") || pathname === "/render-vault"
+      ? "#contact"
+      : "/#contact";
+
+  const resolveHref = (href: string, isContact?: boolean) => {
+    if (isContact) {
+      return contactHref;
+    }
+    return href;
+  };
+
+  const handleLogin = () => {
+    closeMenu();
+    if (isDev) {
+      router.push("/render-vault/dashboard");
+    } else {
+      router.push("/render-vault/login");
+    }
+  };
+
+  const handleSignUp = () => {
+    closeMenu();
+    if (isDev) {
+      router.push("/render-vault/dashboard");
+    } else {
+      router.push("/render-vault/login");
+    }
+  };
+
+  const isActiveLink = (href: string) => {
+    if (!pathname) return false;
+    if (href === "#contact" || href === "/#contact" || href === "/#about") {
+      return pathname === "/";
+    }
+    if (href.startsWith("/render-vault")) {
+      return pathname.startsWith("/render-vault");
+    }
+    return pathname === href;
+  };
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
-      <div className="relative max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-        <Link href="/" className="text-lg font-medium tracking-tight" onClick={closeMenu}>
-          Labcast
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/40 bg-canvas/80 backdrop-blur-xl">
+      <div className="relative mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-panel/80 px-4 py-2 text-sm font-semibold text-text-ink shadow-card transition hover:opacity-90"
+          onClick={closeMenu}
+        >
+          <span className="text-base">Labcast</span>
+          <span className="text-xs uppercase tracking-[0.24em] text-text-subtle">AU</span>
         </Link>
-        <div className="hidden md:flex items-center gap-8 text-sm text-muted">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="hover:text-foreground transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
+        <div className="hidden md:flex items-center gap-3 text-sm">
+          {navLinks.map((link) => {
+            const href = resolveHref(link.href, link.isContact);
+            const active = isActiveLink(href);
+            return (
+              <Link
+                key={link.label}
+                href={href}
+                className={clsx(
+                  "inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition",
+                  active
+                    ? "bg-panel text-text-ink shadow-soft"
+                    : "text-text-subtle hover:text-text-ink hover:bg-panel/60",
+                )}
+                onClick={closeMenu}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
         <div className="flex items-center gap-3">
-          <Link
-            href="/#contact"
-            className="text-sm px-4 py-2 bg-foreground text-background rounded-full hover:opacity-80 transition-opacity"
-            onClick={closeMenu}
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={handleLogin}
+            className="text-muted hover:text-foreground"
           >
-            Get in touch
-          </Link>
+            Login
+          </Button>
+          <Button type="button" size="sm" onClick={handleSignUp}>
+            Sign up
+          </Button>
           <button
             type="button"
             className="md:hidden w-10 h-10 inline-flex items-center justify-center rounded-full border border-border/80"
@@ -73,25 +141,31 @@ export function Navigation() {
           </button>
         </div>
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 mt-3 border border-border/80 rounded-2xl bg-background/95 shadow-xl">
-            <div className="flex flex-col px-5 py-4 gap-2 text-sm text-muted">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="py-2 hover:text-foreground transition-colors"
-                  onClick={closeMenu}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Link
-                href="/#contact"
-                className="mt-2 text-center px-4 py-2 bg-foreground text-background rounded-full hover:opacity-80 transition-opacity"
-                onClick={closeMenu}
-              >
-                Get in touch
-              </Link>
+          <div className="absolute left-0 right-0 top-full mt-3 rounded-2xl border border-border/60 bg-panel/95 p-4 shadow-shell md:hidden">
+            <div className="flex flex-col gap-2 text-sm text-text-subtle">
+              {navLinks.map((link) => {
+                const href = resolveHref(link.href, link.isContact);
+                const active = isActiveLink(href);
+                return (
+                  <Link
+                    key={link.label}
+                    href={href}
+                    className={clsx(
+                      "rounded-full px-4 py-2 font-medium transition",
+                      active ? "bg-panel text-text-ink shadow-soft" : "hover:bg-panel/70 hover:text-text-ink",
+                    )}
+                    onClick={closeMenu}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+              <Button type="button" variant="ghost" fullWidth onClick={handleLogin}>
+                Login
+              </Button>
+              <Button type="button" fullWidth onClick={handleSignUp}>
+                Sign up
+              </Button>
             </div>
           </div>
         )}

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { Navigation } from "@/app/components/navigation";
 
 // Dynamically import components to avoid SSR issues with framer-motion
-const Navbar = dynamic(() => import("@/rendervault/components/Navbar"), { ssr: false });
 const Hero = dynamic(() => import("@/rendervault/components/Hero"), { ssr: false });
 const FounderSection = dynamic(() => import("@/rendervault/components/FounderSection"), { ssr: false });
 const PainContrast = dynamic(() => import("@/rendervault/components/PainContrast"), { ssr: false });
@@ -19,14 +19,16 @@ export default function RenderVaultHome() {
 
   return (
     <main className="bg-bg-paper min-h-screen relative selection:bg-accent/20">
-      <Navbar />
-      <Hero />
-      <FounderSection />
-      <PainContrast />
-      <HowItWorks onOpenWizard={() => setIsWizardOpen(true)} />
-      <Pricing />
-      <Contact />
-      <FAQ />
+      <Navigation />
+      <div className="pt-24 md:pt-28">
+        <Hero />
+        <FounderSection />
+        <PainContrast />
+        <HowItWorks onOpenWizard={() => setIsWizardOpen(true)} />
+        <Pricing />
+        <Contact />
+        <FAQ />
+      </div>
 
       {isWizardOpen && <IntakeWizard onClose={() => setIsWizardOpen(false)} />}
     </main>

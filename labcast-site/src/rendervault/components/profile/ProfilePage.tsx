@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { AccordionItem } from '../ui/Accordion';
-import { Button } from '../ui/Button';
+import { Button } from '@/ui/Button';
 import { ProfileHeader } from './ProfileHeader';
 import { PersonalInfoSection, type PersonalInfo } from './sections/PersonalInfoSection';
 import { BrandSection, type BrandInfo } from './sections/BrandSection';

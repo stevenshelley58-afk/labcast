@@ -5,7 +5,7 @@ import type { ComponentType } from 'react';
 import { Calendar, ChevronRight, Image as ImageIcon, Layers, Plus, Search, Sparkles } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
-import { Button } from '@/rendervault/components/ui/Button';
+import { Button } from '@/ui/Button';
 import { Badge } from '@/rendervault/components/ui/Badge';
 import { Input } from '@/rendervault/components/ui/Input';
 import { StatusPill } from '@/rendervault/components/app/StatusPill';
@@ -292,7 +292,13 @@ export default function DashboardPage() {
   }, [router]);
 
   useEffect(() => {
-    loadProjects();
+    const timeout = window.setTimeout(() => {
+      void loadProjects();
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timeout);
+    };
   }, [loadProjects]);
 
   const counts = useMemo(() => {

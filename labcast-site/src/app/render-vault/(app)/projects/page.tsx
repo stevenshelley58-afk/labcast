@@ -73,7 +73,13 @@ export default function ProjectsPage() {
   }, [router]);
 
   useEffect(() => {
-    loadProjects();
+    const timeout = window.setTimeout(() => {
+      void loadProjects();
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timeout);
+    };
   }, [loadProjects]);
 
   const handleCreateProject = async (input: NewProjectFormValues) => {

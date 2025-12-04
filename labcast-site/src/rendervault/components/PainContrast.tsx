@@ -1,4 +1,4 @@
-import { X, Check, Clock, Camera, Box, Zap } from "lucide-react";
+import { Check, Clock, Camera, Box, Zap } from "lucide-react";
 
 export default function PainContrast() {
     return (
@@ -30,7 +30,7 @@ export default function PainContrast() {
                                 </div>
                                 <div>
                                     <h3 className="font-medium text-text-ink">No room for changes</h3>
-                                    <p className="text-sm text-text-subtle mt-1">If you don't like the shot, too late</p>
+                                    <p className="text-sm text-text-subtle mt-1">If you don&rsquo;t like the shot, too late</p>
                                 </div>
                             </div>
 

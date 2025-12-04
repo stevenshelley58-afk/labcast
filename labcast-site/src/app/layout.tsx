@@ -69,7 +69,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${instrumentSerif.variable} ${inter.variable} antialiased`}>
+      <body
+        className={`${instrumentSerif.variable} ${inter.variable} antialiased bg-background text-foreground min-h-screen`}
+      >
         {children}
       </body>
     </html>

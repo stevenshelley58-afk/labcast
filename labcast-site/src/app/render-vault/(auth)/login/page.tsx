@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { createSupabaseBrowserClient } from '@/rendervault/lib/supabase/client';
-import { Button } from '@/rendervault/components/ui/Button';
+import { Button } from '@/ui/Button';
 import { Input } from '@/rendervault/components/ui/Input';
 
 export default function LoginPage() {

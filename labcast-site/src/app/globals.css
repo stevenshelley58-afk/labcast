@@ -1,71 +1,157 @@
 @import "tailwindcss";
 
 :root {
-  /* Labcast tokens */
-  --background: #fafafa;
-  --background-alt: #ffffff;
-  --background-dark: #0f0f0f;
-  --foreground: #0f0f0f;
-  --foreground-light: #ffffff;
-  --muted: #6b6b6b;
-  --muted-light: rgba(255, 255, 255, 0.6);
-  --border: #e5e5e5;
-  --border-dark: #333333;
+  /* Render Vault palette */
+  --rv-color-canvas: #f5f7fb;
+  --rv-color-surface: #fbfcff;
+  --rv-color-panel: #ffffff;
+  --rv-color-elevated: #fdfdff;
+  --rv-color-contrast: #101736;
 
-  /* Render Vault tokens */
-  --bg-paper: #FBFBFD;
-  --bg-surface: #F2F2F7;
-  --text-ink: #1D1D1F;
-  --text-subtle: #86868B;
-  --border-ghost: rgba(0, 0, 0, 0.06);
-  --accent: #0071E3;
+  --rv-color-ink: #1b2559;
+  --rv-color-ink-soft: #2c3654;
+  --rv-color-muted: #7e8aa7;
+  --rv-color-muted-strong: #93a0bd;
+  --rv-color-subtle: #b7c4de;
+
+  --rv-color-accent: #4f78a5;
+  --rv-color-accent-strong: #1b2559;
+  --rv-color-accent-soft: #e6edf7;
+  --rv-color-highlight: #6bcb77;
+
+  --rv-color-border-soft: rgba(27, 37, 89, 0.14);
+  --rv-color-border-ghost: rgba(27, 37, 89, 0.09);
+  --rv-color-border-strong: rgba(27, 37, 89, 0.22);
+
+  --rv-color-success: #2f9e44;
+  --rv-color-danger: #e25555;
+  --rv-color-warning: #f1a44a;
+
+  --rv-shadow-soft: 0 18px 40px rgba(112, 144, 176, 0.14);
+  --rv-shadow-shell: 0 18px 40px rgba(112, 144, 176, 0.16);
+  --rv-shadow-card: 0 14px 32px rgba(112, 144, 176, 0.14);
+  --rv-shadow-button: 0 10px 28px rgba(27, 37, 89, 0.2);
+
+  --rv-radius-lg: 18px;
+  --rv-radius-xl: 22px;
+  --rv-radius-2xl: 28px;
+  --rv-radius-pill: 999px;
+
+  --rv-font-sans: var(--font-sans), "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --rv-font-serif: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  --rv-font-mono: "JetBrains Mono", "DM Mono", Menlo, monospace;
+
+  /* Legacy aliases to keep previous utility names compatible */
+  --background: var(--rv-color-canvas);
+  --background-alt: var(--rv-color-surface);
+  --background-dark: var(--rv-color-contrast);
+  --foreground: var(--rv-color-ink);
+  --foreground-light: var(--rv-color-panel);
+  --muted: var(--rv-color-muted);
+  --muted-light: rgba(255, 255, 255, 0.72);
+  --border: var(--rv-color-border-soft);
+  --border-dark: var(--rv-color-border-strong);
+
+  /* Render Vault utility aliases */
+  --bg-paper: var(--rv-color-canvas);
+  --text-ink: var(--rv-color-ink);
+  --text-subtle: var(--rv-color-muted);
+  --border-ghost: var(--rv-color-border-ghost);
+  --accent: var(--rv-color-accent);
 }
 
 @theme inline {
-  /* Labcast */
-  --color-background: var(--background);
-  --color-background-alt: var(--background-alt);
-  --color-background-dark: var(--background-dark);
-  --color-foreground: var(--foreground);
-  --color-foreground-light: var(--foreground-light);
-  --color-muted: var(--muted);
-  --color-muted-light: var(--muted-light);
-  --color-border: var(--border);
-  --color-border-dark: var(--border-dark);
+  /* Base colors */
+  --color-background: var(--rv-color-canvas);
+  --color-background-alt: var(--rv-color-surface);
+  --color-background-dark: var(--rv-color-contrast);
+  --color-foreground: var(--rv-color-ink);
+  --color-foreground-soft: var(--rv-color-ink-soft);
+  --color-foreground-light: var(--rv-color-panel);
 
-  /* Render Vault */
-  --color-bg-paper: var(--bg-paper);
-  --color-bg-surface: var(--bg-surface);
-  --color-text-ink: var(--text-ink);
-  --color-text-subtle: var(--text-subtle);
-  --color-border-ghost: var(--border-ghost);
-  --color-accent: var(--accent);
+  /* Surfaces */
+  --color-paper: var(--rv-color-canvas);
+  --color-bg-paper: var(--rv-color-canvas);
+  --color-surface: var(--rv-color-surface);
+  --color-panel: var(--rv-color-panel);
+  --color-elevated: var(--rv-color-elevated);
 
-  --font-sans: var(--font-geist-sans), var(--font-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Text & feedback */
+  --color-ink: var(--rv-color-ink);
+  --color-text-ink: var(--rv-color-ink);
+  --color-text-subtle: var(--rv-color-muted);
+  --color-muted: var(--rv-color-muted);
+  --color-muted-strong: var(--rv-color-muted-strong);
+  --color-muted-subtle: var(--rv-color-subtle);
+
+  /* Borders & outlines */
+  --color-border: var(--rv-color-border-soft);
+  --color-border-dark: var(--rv-color-border-strong);
+  --color-border-ghost: var(--rv-color-border-ghost);
+
+  /* Brand accents */
+  --color-accent: var(--rv-color-accent);
+  --color-accent-strong: var(--rv-color-accent-strong);
+  --color-accent-soft: var(--rv-color-accent-soft);
+  --color-highlight: var(--rv-color-highlight);
+  --color-success: var(--rv-color-success);
+  --color-danger: var(--rv-color-danger);
+  --color-warning: var(--rv-color-warning);
+
+  /* Shadows */
+  --shadow-soft: var(--rv-shadow-soft);
+  --shadow-shell: var(--rv-shadow-shell);
+  --shadow-card: var(--rv-shadow-card);
+  --shadow-button: var(--rv-shadow-button);
+
+  /* Radii */
+  --radius-lg: var(--rv-radius-lg);
+  --radius-xl: var(--rv-radius-xl);
+  --radius-2xl: var(--rv-radius-2xl);
+  --radius-pill: var(--rv-radius-pill);
+  --radius-shell: var(--rv-radius-xl);
+
+  /* Typography */
+  --font-sans: var(--rv-font-sans);
+  --font-display: var(--rv-font-serif);
+  --font-serif: var(--rv-font-serif);
+  --font-mono: var(--rv-font-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--rv-color-canvas);
+  background-image: radial-gradient(circle at 20% 20%, rgba(79, 120, 165, 0.08), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(107, 203, 119, 0.07), transparent 40%);
+  color: var(--rv-color-ink);
+  font-family: var(--rv-font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: -0.01em;
-}
-
-.font-serif {
-  font-family: var(--font-serif), Georgia, serif;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 html {
+  color-scheme: light;
   scroll-behavior: smooth;
+  background-color: var(--rv-color-canvas);
+}
+
+.font-serif,
+.font-display {
+  font-family: var(--rv-font-serif);
+}
+
+.font-sans {
+  font-family: var(--rv-font-sans);
 }
 
 ::selection {
-  background: var(--foreground);
-  color: var(--background);
+  background: rgba(79, 120, 165, 0.2);
+  color: var(--rv-color-ink);
 }
 
 ::-webkit-scrollbar {
@@ -120,384 +206,3 @@ html {
   animation-delay: 500ms;
 }
 
-/* HERO LAYOUT */
-.hero {
-  position: relative;
-  overflow: hidden;
-  background: #f8f8f8;
-  min-height: clamp(640px, 100vh, 940px);
-}
-
-.hero--concept {
-  background: linear-gradient(180deg, #f8f8f8 0%, #ffffff 100%);
-}
-
-.hero-inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: inherit;
-  padding: clamp(56px, 9vw, 128px) clamp(5vw, 8vw, 140px) clamp(48px, 8vw, 112px);
-}
-
-/* Canvas + text area, vertically centered */
-.hero-body {
-  position: relative;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  min-height: clamp(520px, 70vh, 820px);
-  z-index: 2;
-}
-
-.hero-text-mask {
-  display: none; /* disable overlay mask entirely */
-}
-
-/* The canvas with dots */
-.hero-canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.hero-canvas canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.hero-wave-mask {
-  position: absolute;
-  right: -12%;
-  bottom: -6%;
-  width: clamp(420px, 56vw, 960px);
-  height: clamp(260px, 48vh, 560px);
-  background: #f8f8f8;
-  pointer-events: none;
-  z-index: 1;
-  clip-path: polygon(
-    0% 62%,
-    14% 50%,
-    32% 40%,
-    54% 34%,
-    74% 34%,
-    92% 44%,
-    100% 54%,
-    100% 100%,
-    0% 100%
-  );
-  box-shadow: -40px 0 60px rgba(248, 248, 248, 0.88);
-}
-
-@supports (clip-path: path("M0 0 L1 0")) {
-  .hero-wave-mask {
-    clip-path: path(
-      "M0 0.62 C0.22 0.5 0.38 0.42 0.58 0.36 C0.78 0.32 0.94 0.36 1 0.5 L1 1 L0 1 Z"
-    );
-  }
-}
-
-.hero-wave-mask {
-  position: absolute;
-  pointer-events: none;
-  right: -12%;
-  bottom: -6%;
-  width: clamp(420px, 56vw, 960px);
-  height: clamp(260px, 48vh, 560px);
-  background: #f8f8f8;
-  z-index: 1;
-  clip-path: polygon(
-    0% 62%,
-    14% 50%,
-    32% 40%,
-    54% 34%,
-    74% 34%,
-    92% 44%,
-    100% 54%,
-    100% 100%,
-    0% 100%
-  );
-  box-shadow: -40px 0 60px rgba(248, 248, 248, 0.9);
-}
-
-@supports (clip-path: path("M0 0 L1 0")) {
-  .hero-wave-mask {
-    clip-path: path(
-      "M0 0.62 C0.18 0.5 0.36 0.4 0.58 0.35 C0.78 0.32 0.94 0.36 1 0.5 L1 1 L0 1 Z"
-    );
-  }
-}
-
-
-/* Text sits above dots */
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 760px;
-  width: 100%;
-  margin-top: clamp(0px, 2vh, 32px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* ensure text block and buttons share same left edge */
-}
-
-.hero-variant-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: #7a7a7a;
-  margin-bottom: 12px;
-}
-
-.hero-variant-tag::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: #0f0f0f;
-  opacity: 0.5;
-}
-
-/* TYPOGRAPHY (adjust to match your current sizes) */
-.hero-kicker {
-  font-size: 0.875rem;
-  margin-bottom: 16px;
-  color: #666666;
-}
-
-.hero-kicker-inner {
-  background: #f8f8f8; /* hide dots directly behind the kicker text */
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  padding: 0.1em 0.35em;
-  position: relative;
-  display: inline-block;
-  z-index: 2;
-}
-
-.hero-kicker-inner::before {
-  content: "";
-  position: absolute;
-  inset: -12px -20px;
-  background: radial-gradient(
-    circle,
-    rgba(248, 248, 248, 1) 0%,
-    rgba(248, 248, 248, 0.85) 55%,
-    rgba(248, 248, 248, 0) 100%
-  );
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.96;
-}
-
-.hero-title {
-  font-size: clamp(2.8rem, 4vw, 4rem);
-  line-height: 1.06;
-  margin: 0 0 16px;
-  letter-spacing: -0.02em;
-}
-
-.hero-title-inner {
-  background: #f8f8f8;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  padding: 0 0.08em;
-}
-
-.hero-no-wrap {
-  white-space: nowrap;
-}
-
-.subcopy {
-  max-width: 32rem;
-  margin: 0 0 32px;
-  color: #444444;
-  font-size: 1.125rem;
-  line-height: 1.5;
-  background: #f8f8f8;
-}
-
-/* BUTTON ROW */
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  position: relative;
-  z-index: 2;
-  padding: 16px 20px 0 0;
-}
-
-.hero-actions::before {
-  content: "";
-  position: absolute;
-  inset: -12px -24px -28px -8px;
-  background: radial-gradient(
-    circle,
-    rgba(248, 248, 248, 1) 0%,
-    rgba(248, 248, 248, 0.9) 55%,
-    rgba(248, 248, 248, 0) 100%
-  );
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.95;
-}
-
-.hero-debug-panel {
-  position: absolute;
-  right: 16px;
-  top: 96px;
-  z-index: 20;
-  padding: 8px 10px;
-  max-width: 260px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-  font-size: 11px;
-  color: #222;
-}
-
-.hero-debug-panel label {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-bottom: 4px;
-}
-
-.hero-debug-label {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 500;
-}
-
-.hero-debug-value {
-  font-variant-numeric: tabular-nums;
-  font-size: 11px;
-  color: #4a4a4a;
-  margin-left: 4px;
-}
-
-.hero-debug-panel input[type="range"] {
-  width: 180px;
-}
-
-.hero-debug-title {
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.btn {
-  border-radius: 999px;
-  padding: 11px 24px;
-  font-size: 15px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #111;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.btn:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-.btn-primary {
-  background: #111111;
-  color: #ffffff;
-}
-
-.btn-secondary {
-  background: #ffffff;
-  color: #111111;
-}
-
-/* TARGETED TEXT BLOCK FADE */
-
-/* Wrap around h1 + subcopy */
-.hero-text-block {
-  position: relative;
-  display: block;
-  max-width: 32rem;
-  padding: 0; /* let text align with buttons/gutter */
-  margin-bottom: 24px;
-  z-index: 2; /* ensure halo overlay sits above the canvas */
-}
-
-.hero-text-block::before {
-  content: "";
-  position: absolute;
-  inset: -36px -72px -48px;
-  background: radial-gradient(
-    circle at center,
-    rgba(248, 248, 248, 1) 0%,
-    rgba(248, 248, 248, 0.95) 45%,
-    rgba(248, 248, 248, 0) 100%
-  );
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.96;
-}
-
-/* RESPONSIVE TWEAKS */
-
-@media (max-width: 768px) {
-  .hero {
-    min-height: auto;
-  }
-
-  .hero-inner {
-    min-height: auto;
-    padding: 96px 6vw 60px;
-    justify-content: flex-start;
-  }
-
-  .hero-body {
-    align-items: flex-start;
-    min-height: auto;
-  }
-
-  .hero-title {
-    font-size: clamp(2.2rem, 7vw, 3rem);
-  }
-
-  .hero-variant-tag {
-    letter-spacing: 0.18em;
-  }
-
-  .subcopy {
-    margin-bottom: 24px;
-  }
-
-  .hero-actions {
-    padding: 12px 12px 0 0;
-  }
-
-  .hero-text-block::before {
-    inset: -18px -28px -28px; /* slightly tighter on mobile */
-  }
-
-  .hero-actions::before {
-    inset: -10px -18px -20px -4px;
-  }
-
-  .hero-text-mask {
-    border-radius: clamp(22px, 6vw, 32px);
-  }
-
-  .hero-wave-mask {
-    width: clamp(280px, 96vw, 620px);
-    height: clamp(220px, 52vh, 420px);
-    right: -42%;
-    bottom: -2%;
-  }
-}

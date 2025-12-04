@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Input } from '../ui/Input';
 import { TextArea } from '../ui/TextArea';
-import { Button } from '../ui/Button';
+import { Button } from '@/ui/Button';
 import type { ProjectType } from '../../lib/project-types';
 
 type NewProjectFormProps = {
