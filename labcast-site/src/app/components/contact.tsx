@@ -1,11 +1,32 @@
 "use client";
 
 import { useState } from "react";
-import { Input } from "@/rendervault/components/ui/Input";
-import { TextArea } from "@/rendervault/components/ui/TextArea";
+import { Input } from "@/ui/Input";
+import { TextArea } from "@/ui/TextArea";
 import { Button } from "@/ui/Button";
 
-export default function Contact() {
+interface ContactProps {
+  /** Override the default heading */
+  heading?: string;
+  /** Override the default subheading */
+  subheading?: string;
+  /** Override the default placeholder for the message field */
+  messagePlaceholder?: string;
+}
+
+/**
+ * Shared contact form used across all marketing pages.
+ * Posts to /api/contact with honeypot spam protection.
+ *
+ * @example
+ * <Contact />
+ * <Contact heading="Let's talk" subheading="We reply within 24 hours." />
+ */
+export default function Contact({
+  heading = "Got a project in mind?",
+  subheading = "Tell us what you're working on and we'll get back to you within a day.",
+  messagePlaceholder = "Tell us about your brand and what you're looking to achieve...",
+}: ContactProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -14,7 +35,6 @@ export default function Contact() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Client-side validation (server is source of truth)
   const validateForm = (): boolean => {
     const nameTrimmed = name.trim();
     const emailTrimmed = email.trim();
@@ -52,7 +72,6 @@ export default function Contact() {
 
     try {
       const response = await fetch("/api/contact", {
-        // Uses Labcast's main contact endpoint
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,14 +91,12 @@ export default function Contact() {
         return;
       }
 
-      // Success
       setSuccess(true);
       setName("");
       setEmail("");
       setMessage("");
       setWebsite("");
 
-      // Reset success message after 5 seconds
       setTimeout(() => {
         setSuccess(false);
       }, 5000);
@@ -91,13 +108,13 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 md:px-0 bg-paper">
+    <section id="contact" className="py-24 px-6 bg-background-alt">
       <div className="max-w-[560px] mx-auto w-full">
-        <h2 className="text-4xl font-medium text-text-ink mb-4 text-center tracking-tight">
-          Got a project in mind?
+        <h2 className="text-3xl md:text-4xl font-medium mb-4 text-center tracking-tight">
+          {heading}
         </h2>
-        <p className="text-lg text-text-subtle mb-12 text-center">
-          Tell us what you&rsquo;re working on and we&rsquo;ll get back to you within a day.
+        <p className="text-lg text-muted mb-12 text-center">
+          {subheading}
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -117,7 +134,7 @@ export default function Contact() {
             <div>
               <label
                 htmlFor="contact-name"
-                className="block text-sm font-medium text-text-ink mb-2"
+                className="block text-sm font-medium mb-2"
               >
                 Name
               </label>
@@ -135,7 +152,7 @@ export default function Contact() {
             <div>
               <label
                 htmlFor="contact-email"
-                className="block text-sm font-medium text-text-ink mb-2"
+                className="block text-sm font-medium mb-2"
               >
                 Email
               </label>
@@ -154,7 +171,7 @@ export default function Contact() {
           <div>
             <label
               htmlFor="contact-message"
-              className="block text-sm font-medium text-text-ink mb-2"
+              className="block text-sm font-medium mb-2"
             >
               What are you working on?
             </label>
@@ -162,25 +179,23 @@ export default function Contact() {
               id="contact-message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Tell us about your brand, your products, and what kind of imagery you&rsquo;re after..."
+              placeholder={messagePlaceholder}
               required
               disabled={loading}
-              rows={6}
+              rows={5}
             />
           </div>
 
-          {/* Error message */}
           {error && (
             <div className="p-3 rounded-lg bg-red-50 border border-red-200">
               <p className="text-sm text-red-800">{error}</p>
             </div>
           )}
 
-          {/* Success message */}
           {success && (
             <div className="p-3 rounded-lg bg-green-50 border border-green-200">
               <p className="text-sm text-green-800">
-                Message sent! We&rsquo;ll get back to you soon.
+                Message sent! We&apos;ll get back to you soon.
               </p>
             </div>
           )}
@@ -195,3 +210,4 @@ export default function Contact() {
     </section>
   );
 }
+

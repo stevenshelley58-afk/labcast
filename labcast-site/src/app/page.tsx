@@ -1,60 +1,11 @@
-"use client";
-
 import Link from "next/link";
-import { useState, type FormEvent } from "react";
-import { Button } from "@/ui/Button";
 import { PageSection } from "@/ui/PageSection";
 import { Footer } from "./components/footer";
 import { Hero } from "./components/hero";
 import { Navigation } from "./components/navigation";
+import Contact from "./components/contact";
 
 export default function Home() {
-  const [formState, setFormState] = useState<
-    "idle" | "submitting" | "success" | "error"
-  >("idle");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    const payload = {
-      name: (formData.get("name") || "").toString().trim(),
-      email: (formData.get("email") || "").toString().trim(),
-      message: (formData.get("message") || "").toString().trim(),
-      website: (formData.get("website") || "").toString().trim(),
-      source:
-        (formData.get("source") || "Homepage contact form").toString().trim(),
-    };
-
-    setFormState("submitting");
-    setErrorMessage("");
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result?.error || "Something went wrong.");
-      }
-
-      setFormState("success");
-      form.reset();
-    } catch (error) {
-      setFormState("error");
-      setErrorMessage(
-        error instanceof Error ? error.message : "Something went wrong."
-      );
-    }
-  };
-
   return (
     <div className="bg-background text-foreground">
       <Navigation />
@@ -121,8 +72,8 @@ export default function Home() {
                 <li>Lifestyle &amp; hero imagery</li>
                 <li>Ad creative at scale</li>
               </ul>
-              <Link href="/rendervault" className="inline-block mt-4 text-sm text-foreground hover:underline">
-                Learn about RenderVault →
+              <Link href="/render-vault" className="inline-block mt-4 text-sm text-foreground hover:underline">
+                Learn about Render Vault →
               </Link>
             </div>
 
@@ -280,92 +231,11 @@ export default function Home() {
         </PageSection>
 
         {/* Contact */}
-        <PageSection id="contact" border="top" className="scroll-mt-24">
-          <div className="max-w-2xl">
-              <p className="text-sm text-muted mb-4">Get in touch</p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-[1.15] mb-8">
-                Ready to talk?
-              </h2>
-              <p className="text-lg text-muted leading-relaxed mb-12">
-                Tell us about your brand and what&apos;s not working. No sales pitch —
-                just a conversation to see if we can help.
-              </p>
-
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <input type="hidden" name="source" value="Homepage contact form" />
-              <div className="grid gap-6 md:grid-cols-2">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    autoComplete="name"
-                    className="w-full rounded-lg border border-border px-4 py-3 bg-transparent transition-colors focus:border-foreground focus:outline-none"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    autoComplete="email"
-                    className="w-full rounded-lg border border-border px-4 py-3 bg-transparent transition-colors focus:border-foreground focus:outline-none"
-                    placeholder="you@company.com"
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="website" className="block text-sm font-medium mb-2">
-                  Website
-                </label>
-                <input
-                  type="url"
-                  id="website"
-                  name="website"
-                  autoComplete="url"
-                  className="w-full rounded-lg border border-border px-4 py-3 bg-transparent transition-colors focus:border-foreground focus:outline-none"
-                  placeholder="https://yourbrand.com"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  What&apos;s not working?
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  required
-                  autoComplete="off"
-                  className="w-full resize-none rounded-lg border border-border px-4 py-3 bg-transparent transition-colors focus:border-foreground focus:outline-none"
-                  placeholder="Tell us about your brand and what you&apos;re struggling with..."
-                ></textarea>
-              </div>
-              <Button type="submit" size="lg" disabled={formState === "submitting"} aria-busy={formState === "submitting"}>
-                {formState === "submitting" ? "Sending..." : "Send message"}
-              </Button>
-              {formState === "success" && (
-                <p className="text-sm text-muted" role="status" aria-live="polite">
-                  Thanks for reaching out. We&apos;ll get back to you soon.
-                </p>
-              )}
-              {formState === "error" && (
-                <p className="text-sm text-red-600" role="alert" aria-live="assertive">
-                  {errorMessage || "Something went wrong. Please try again."}
-                </p>
-              )}
-            </form>
-          </div>
-        </PageSection>
+        <Contact
+          heading="Ready to talk?"
+          subheading="Tell us about your brand and what's not working. No sales pitch — just a conversation to see if we can help."
+          messagePlaceholder="Tell us about your brand and what you're struggling with..."
+        />
 
         <Footer />
       </main>

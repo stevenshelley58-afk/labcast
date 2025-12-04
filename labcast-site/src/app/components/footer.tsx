@@ -18,10 +18,10 @@ export function Footer() {
             bhm.com.au
           </a>
           <Link
-            href="/rendervault"
+            href="/render-vault"
             className="hover:text-foreground transition-colors"
           >
-            RenderVault
+            Render Vault
           </Link>
           <a
             href="mailto:hello@labcast.com.au"
