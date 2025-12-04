@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Footer } from "../components/footer";
 import { Navigation } from "../components/navigation";
-import Hero from "@/rendervault/components/Hero";
-import ProofWall from "@/rendervault/components/ProofWall";
-import PainContrast from "@/rendervault/components/PainContrast";
-import HowItWorks from "@/rendervault/components/HowItWorks";
 import FounderSection from "@/rendervault/components/FounderSection";
+import Hero from "@/rendervault/components/Hero";
+import HowItWorks from "@/rendervault/components/HowItWorks";
+import PainContrast from "@/rendervault/components/PainContrast";
+import ProofWall from "@/rendervault/components/ProofWall";
 import Pricing from "@/rendervault/components/Pricing";
 import FAQ from "@/rendervault/components/FAQ";
 import Contact from "@/app/components/contact";
@@ -47,9 +47,9 @@ export default function RenderVaultPage() {
       <main className="flex flex-col">
         <Hero />
         <ProofWall />
+        <FounderSection />
         <PainContrast />
         <HowItWorks />
-        <FounderSection />
         <Pricing />
         <FAQ />
         <Contact />
