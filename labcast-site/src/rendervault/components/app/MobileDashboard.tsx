@@ -252,7 +252,6 @@ export function ProjectsScreen({ projects = [], onCreateProject }: ProjectsScree
           <button
             onClick={onCreateProject}
             className="flex items-center gap-2 rounded-full bg-[color:var(--color-accent)] px-5 py-3 text-base font-medium text-white shadow-soft transition hover:opacity-90"
-            style={{ backgroundColor: '#1a2b4a' }}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -262,8 +261,8 @@ export function ProjectsScreen({ projects = [], onCreateProject }: ProjectsScree
         </div>
 
         {/* Empty State */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center">
-          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+        <div className="bg-panel rounded-2xl border border-border p-8 text-center">
+          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-background flex items-center justify-center">
             <svg className="w-8 h-8 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
@@ -279,8 +278,7 @@ export function ProjectsScreen({ projects = [], onCreateProject }: ProjectsScree
           </p>
           <button
             onClick={onCreateProject}
-            className="w-full text-white py-4 rounded-xl font-medium"
-            style={{ backgroundColor: '#1a2b4a' }}
+            className="w-full bg-[color:var(--color-accent)] text-white py-4 rounded-xl font-medium shadow-soft transition hover:opacity-90"
           >
             + New project
           </button>
@@ -297,7 +295,7 @@ export function ProjectsScreen({ projects = [], onCreateProject }: ProjectsScree
         <button
           onClick={onCreateProject}
           className="flex items-center gap-2 rounded-full bg-[color:var(--color-accent)] px-5 py-3 text-base font-medium text-white shadow-soft transition hover:opacity-90"
-          style={{ backgroundColor: '#1a2b4a' }}
+
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -316,11 +314,11 @@ export function ProjectsScreen({ projects = [], onCreateProject }: ProjectsScree
             <Link
               key={project.id}
               href={`/projects/${project.id}`}
-              className="w-full bg-white rounded-2xl border border-gray-200 p-4 text-left active:bg-gray-50 transition-colors"
+              className="w-full bg-panel rounded-2xl border border-border p-4 text-left active:bg-background transition-colors"
             >
               <div className="flex gap-4">
                 {/* Thumbnail */}
-                <div className="w-16 h-16 rounded-xl bg-gray-200 overflow-hidden flex-shrink-0">
+                <div className="w-16 h-16 rounded-xl bg-background overflow-hidden flex-shrink-0">
                   <img src={thumbnail} alt="" className="w-full h-full object-cover" />
                 </div>
 
@@ -370,9 +368,9 @@ export function AccountScreen({ userEmail = 'user@example.com', onLogout }: Acco
       </div>
 
       {/* Profile Card */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-5 mb-4">
+      <div className="bg-panel rounded-2xl border border-border p-5 mb-4">
         <Link href="/profile" className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center">
+          <div className="w-14 h-14 rounded-full bg-background flex items-center justify-center">
             <svg className="w-7 h-7 text-text-subtle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
@@ -393,7 +391,7 @@ export function AccountScreen({ userEmail = 'user@example.com', onLogout }: Acco
       </div>
 
       {/* Menu Items */}
-      <div className="bg-white rounded-2xl border border-gray-200 divide-y divide-gray-100">
+      <div className="bg-panel rounded-2xl border border-border divide-y divide-border">
         <Link href="/profile" className="w-full flex items-center gap-4 p-4 text-left">
           <svg className="w-5 h-5 text-text-subtle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
@@ -477,7 +475,7 @@ function BottomNav() {
   };
 
   return (
-    <nav className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-2 pb-4">
+    <nav className="absolute bottom-0 left-0 right-0 bg-panel border-t border-border px-6 py-2 pb-4">
       <div className="flex items-center justify-around">
         {tabs.map((tab) => {
           const Icon = tab.icon;
