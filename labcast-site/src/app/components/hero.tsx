@@ -215,8 +215,8 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-white" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[560px] max-w-4xl flex-col items-start gap-10 px-6 text-left sm:items-center sm:text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.34em] text-text-subtle sm:text-center">
+      <div className="relative mx-auto flex min-h-[560px] w-full max-w-5xl flex-col items-start gap-10 px-6 text-left">
+        <p className="text-xs font-semibold uppercase tracking-[0.34em] text-text-subtle">
           From the founders of bhm.com.au
         </p>
 
@@ -226,12 +226,12 @@ export function Hero() {
             <br />
             <span className="text-foreground-soft">Not agency theatre.</span>
           </h1>
-          <p className="text-lg leading-relaxed text-text-subtle sm:max-w-3xl">
+          <p className="text-lg leading-relaxed text-text-subtle max-w-3xl">
             Marketing, creative, and builds from operators in the trenches, not agencies on the sidelines.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-3 sm:justify-center">
+        <div className="flex flex-wrap gap-3">
           <Button as="a" href="#services" size="lg">
             See how we can help
           </Button>
@@ -241,15 +241,15 @@ export function Hero() {
         </div>
 
         <div className="mt-4 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-left text-text-ink shadow-soft">
+          <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-text-ink shadow-soft">
             <p className="text-xs uppercase tracking-[0.3em] text-text-subtle">Focus</p>
             <p className="mt-2 text-base font-semibold">Marketing</p>
           </div>
-          <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-left text-text-ink shadow-soft">
+          <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-text-ink shadow-soft">
             <p className="text-xs uppercase tracking-[0.3em] text-text-subtle">Creative</p>
             <p className="mt-2 text-base font-semibold">Render Vault</p>
           </div>
-          <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-left text-text-ink shadow-soft">
+          <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-text-ink shadow-soft">
             <p className="text-xs uppercase tracking-[0.3em] text-text-subtle">Build</p>
             <p className="mt-2 text-base font-semibold">Web &amp; product</p>
           </div>
