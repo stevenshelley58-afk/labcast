@@ -5,7 +5,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 
 interface ProcessSectionProps {
-    onOpenWizard: () => void;
+    onOpenWizard?: () => void;
 }
 
 const springConfig = {
@@ -81,7 +81,7 @@ const steps = [
     },
 ];
 
-export default function ProcessSection({ onOpenWizard }: ProcessSectionProps) {
+export default function ProcessSection({ onOpenWizard = () => {} }: ProcessSectionProps) {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
