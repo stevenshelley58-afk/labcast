@@ -5,7 +5,6 @@ import FounderSection from "@/rendervault/components/FounderSection";
 import Hero from "@/rendervault/components/Hero";
 import HowItWorks from "@/rendervault/components/HowItWorks";
 import PainContrast from "@/rendervault/components/PainContrast";
-import ProofWall from "@/rendervault/components/ProofWall";
 import Pricing from "@/rendervault/components/Pricing";
 import FAQ from "@/rendervault/components/FAQ";
 import Contact from "@/app/components/contact";
@@ -46,7 +45,6 @@ export default function RenderVaultPage() {
       <Navigation />
       <main className="flex flex-col">
         <Hero />
-        <ProofWall />
         <FounderSection />
         <PainContrast />
         <HowItWorks />
