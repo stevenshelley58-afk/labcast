@@ -9,7 +9,7 @@ export default function Pricing() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                     {/* Tier 1: Standard */}
-                    <div className="bg-white p-8 rounded-2xl border border-border-ghost flex flex-col">
+                    <div className="bg-panel p-8 rounded-2xl border border-border-ghost flex flex-col">
                         <div className="mb-8">
                             <h3 className="text-xl font-medium text-text-ink">Single Image</h3>
                             <div className="mt-4 flex items-baseline">
@@ -28,14 +28,14 @@ export default function Pricing() {
                                 </li>
                             ))}
                         </ul>
-                        <button className="w-full py-4 rounded-xl border border-black text-black font-medium hover:bg-gray-50 transition-colors">
+                        <button className="w-full py-4 rounded-xl border border-accent text-accent font-medium hover:bg-background transition-colors">
                             Get Started
                         </button>
                     </div>
 
                     {/* Tier 2: Pro */}
-                    <div className="bg-black p-8 rounded-2xl border border-black flex flex-col relative transform md:-translate-y-4 md:shadow-2xl">
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                    <div className="bg-accent p-8 rounded-2xl border border-accent flex flex-col relative transform md:-translate-y-4 md:shadow-2xl">
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-foreground-soft text-accent px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                             Most Popular
                         </div>
                         <div className="mb-8">
@@ -43,25 +43,25 @@ export default function Pricing() {
                             <div className="mt-4 flex items-baseline">
                                 <span className="text-4xl font-bold text-white">$980</span>
                             </div>
-                            <p className="text-sm text-gray-400 mt-4 leading-relaxed">
+                            <p className="text-sm text-white/60 mt-4 leading-relaxed">
                                 The AI photoshoot / One batch of hero images, done for you.
                             </p>
                         </div>
                         <ul className="space-y-4 mb-8 flex-1">
                             {["20 images built from your product shots, scenes can vary across 20 images", "Sized for ads, site, email, and PDP.", "Human art direction and QA on every batch.", "Commercial rights for your brand.", "Delivery in 5 business days after brief approval."].map((item) => (
                                 <li key={item} className="flex gap-3 items-center text-sm text-white">
-                                    <Check size={16} className="text-accent shrink-0" />
+                                    <Check size={16} className="text-white/80 shrink-0" />
                                     {item}
                                 </li>
                             ))}
                         </ul>
-                        <button className="w-full py-4 rounded-xl bg-white text-black font-bold hover:bg-gray-100 transition-colors">
+                        <button className="w-full py-4 rounded-xl bg-panel text-accent font-bold hover:bg-background transition-colors">
                             Get Pro
                         </button>
                     </div>
 
                     {/* Tier 3: The Vault (Recurring) */}
-                    <div className="bg-white p-8 rounded-2xl border border-border-ghost flex flex-col">
+                    <div className="bg-panel p-8 rounded-2xl border border-border-ghost flex flex-col">
                         <div className="mb-8">
                             <h3 className="text-xl font-medium text-text-ink">The Vault</h3>
                             <div className="mt-4 flex items-baseline">
@@ -80,7 +80,7 @@ export default function Pricing() {
                                 </li>
                             ))}
                         </ul>
-                        <button className="w-full py-4 rounded-xl border border-black text-black font-medium hover:bg-gray-50 transition-colors">
+                        <button className="w-full py-4 rounded-xl border border-accent text-accent font-medium hover:bg-background transition-colors">
                             Join Vault
                         </button>
                     </div>

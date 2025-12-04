@@ -198,9 +198,9 @@ export default function TactileReveal({
                     className="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize pointer-events-none z-10"
                     style={{ left: sliderLeft }}
                 >
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-xl flex items-center justify-center border-2 border-gray-100">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-panel rounded-full shadow-xl flex items-center justify-center border-2 border-border">
                         <svg
-                            className="w-5 h-5 text-gray-900"
+                            className="w-5 h-5 text-text-ink"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"

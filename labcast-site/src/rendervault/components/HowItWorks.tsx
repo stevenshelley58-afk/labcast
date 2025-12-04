@@ -99,10 +99,10 @@ export default function ProcessSection({ onOpenWizard }: ProcessSectionProps) {
                     transition={springConfig}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-ink tracking-tight mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-text-ink tracking-tight mb-4">
                         How it works
                     </h2>
-                    <p className="text-xl text-gray-500 max-w-md mx-auto font-medium">
+                    <p className="text-xl text-text-subtle max-w-md mx-auto font-medium">
                         Three steps from brief to creation.
                     </p>
                 </motion.div>
@@ -132,15 +132,15 @@ export default function ProcessSection({ onOpenWizard }: ProcessSectionProps) {
                                     initial={{ scale: 0 }}
                                     animate={isInView ? { scale: 1 } : { scale: 0 }}
                                     transition={{ delay: 0.4 + index * 0.2, ...springConfig }}
-                                    className="relative z-10 w-12 h-12 rounded-full bg-gray-100 text-ink flex items-center justify-center flex-shrink-0 font-bold"
+                                    className="relative z-10 w-12 h-12 rounded-full bg-background text-text-ink flex items-center justify-center flex-shrink-0 font-bold"
                                 >
                                     <span className="text-lg">{step.number}</span>
                                 </motion.div>
 
                                 {/* Content */}
                                 <div className="pt-2">
-                                    <h3 className="font-bold text-ink mb-1 text-lg">{step.title}</h3>
-                                    <p className="text-base text-gray-600 leading-relaxed font-medium">
+                                    <h3 className="font-bold text-text-ink mb-1 text-lg">{step.title}</h3>
+                                    <p className="text-base text-text-subtle leading-relaxed font-medium">
                                         {step.description}
                                     </p>
                                 </div>
@@ -154,7 +154,7 @@ export default function ProcessSection({ onOpenWizard }: ProcessSectionProps) {
                     {/* Horizontal connector line */}
                     <div className="absolute top-[60px] left-[100px] right-[100px] h-0.5 bg-border-ghost">
                         <motion.div
-                            className="h-full bg-ink"
+                            className="h-full bg-accent"
                             initial={{ scaleX: 0 }}
                             animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
                             transition={{ duration: 1.2, delay: 0.3 }}
@@ -176,19 +176,19 @@ export default function ProcessSection({ onOpenWizard }: ProcessSectionProps) {
                                     initial={{ scale: 0 }}
                                     animate={isInView ? { scale: 1 } : { scale: 0 }}
                                     transition={{ delay: 0.5 + index * 0.2, ...springConfig }}
-                                    className="relative z-10 w-[120px] h-[120px] rounded-full bg-gray-100 border border-border-ghost flex flex-col items-center justify-center mx-auto mb-6"
+                                    className="relative z-10 w-[120px] h-[120px] rounded-full bg-background border border-border-ghost flex flex-col items-center justify-center mx-auto mb-6"
                                 >
-                                    <div className="text-ink mb-2">{step.icon}</div>
-                                    <span className="text-2xl font-bold text-ink">
+                                    <div className="text-text-ink mb-2">{step.icon}</div>
+                                    <span className="text-2xl font-bold text-text-ink">
                                         {step.number}
                                     </span>
                                 </motion.div>
 
                                 {/* Content */}
-                                <h3 className="text-xl font-bold text-ink mb-3">
+                                <h3 className="text-xl font-bold text-text-ink mb-3">
                                     {step.title}
                                 </h3>
-                                <p className="text-gray-600 leading-relaxed max-w-[280px] mx-auto font-medium text-base">
+                                <p className="text-text-subtle leading-relaxed max-w-[280px] mx-auto font-medium text-base">
                                     {step.description}
                                 </p>
                             </motion.div>
@@ -207,7 +207,7 @@ export default function ProcessSection({ onOpenWizard }: ProcessSectionProps) {
                         onClick={onOpenWizard}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="bg-black text-white rounded-full px-8 py-4 text-lg font-medium hover:bg-gray-900 transition-all shadow-lg"
+                        className="bg-accent text-white rounded-full px-8 py-4 text-lg font-medium hover:opacity-90 transition-all shadow-lg"
                     >
                         Start brief
                     </motion.button>

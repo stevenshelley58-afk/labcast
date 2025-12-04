@@ -86,11 +86,11 @@ export function Hero() {
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
     const material = new THREE.PointsMaterial({
-      color: 0x555555,
+      color: 0x404040,
       size: 4.0,
       sizeAttenuation: true,
       transparent: true,
-      opacity: 0.5,
+      opacity: 0.4,
     });
 
     const particles = new THREE.Points(geometry, material);
