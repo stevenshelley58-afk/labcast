@@ -2,7 +2,7 @@ import TactileReveal from "./TactileReveal";
 
 export default function Hero() {
     return (
-        <section className="min-h-screen flex items-center pt-24 pb-20 px-6 md:px-0">
+        <section className="min-h-screen flex items-center pt-8 pb-20 px-6 md:px-0">
             <div className="max-w-[1200px] mx-auto w-full grid grid-cols-4 md:grid-cols-12 gap-4 md:gap-16 items-center">
 
                 {/* Text Content - Left */}

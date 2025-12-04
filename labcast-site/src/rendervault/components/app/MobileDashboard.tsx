@@ -10,15 +10,15 @@ interface MobileDashboardProps {
 
 export function MobileDashboard({ children }: MobileDashboardProps) {
   return (
-    <div className="flex justify-center items-start pt-8 pb-8 min-h-screen bg-gray-100 md:hidden">
-      <div className="w-[390px] bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
+    <div className="flex justify-center items-start pt-8 pb-8 min-h-screen bg-background md:hidden">
+      <div className="w-[390px] rounded-3xl border border-border bg-panel shadow-shell overflow-hidden">
         {/* Phone Notch */}
-        <div className="bg-gray-900 h-8 flex items-center justify-center">
-          <div className="w-24 h-5 bg-black rounded-full" />
+        <div className="bg-background-dark h-8 flex items-center justify-center">
+          <div className="w-24 h-5 rounded-full bg-[color:var(--color-dark)]" />
         </div>
 
         {/* Phone Content */}
-        <div className="h-[750px] overflow-hidden relative bg-gray-50">
+        <div className="h-[750px] overflow-hidden relative bg-background">
           {/* App Header - Simple */}
           <DashboardHeader />
 
@@ -39,7 +39,7 @@ export function MobileDashboard({ children }: MobileDashboardProps) {
 
 function DashboardHeader() {
   return (
-    <header className="bg-white border-b border-gray-100 px-5 py-4">
+    <header className="bg-panel border-b border-border px-5 py-4">
       <div className="flex items-center justify-between">
         {/* Logo - single instance */}
         <span
@@ -48,15 +48,15 @@ function DashboardHeader() {
             fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
             fontWeight: 400,
             letterSpacing: '0.12em',
-            color: '#1a2b4a',
+            color: 'var(--color-dark)',
           }}
         >
           RENDER VAULT
         </span>
 
         {/* User Avatar */}
-        <Link href="/profile" className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">
-          <svg className="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <Link href="/profile" className="w-9 h-9 rounded-full border border-border bg-background flex items-center justify-center">
+          <svg className="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -84,8 +84,8 @@ export function HomeScreen({ activeCount = 0, onNewProject }: HomeScreenProps) {
     <div className="px-5 py-6">
       {/* Greeting */}
       <div className="mb-8">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-1">Welcome back</h1>
-        <p className="text-gray-500">What would you like to do?</p>
+        <h1 className="text-2xl font-semibold text-text-ink mb-1">Welcome back</h1>
+        <p className="text-muted">What would you like to do?</p>
       </div>
 
       {/* Quick Actions */}
@@ -93,10 +93,9 @@ export function HomeScreen({ activeCount = 0, onNewProject }: HomeScreenProps) {
         {/* New Project - Primary CTA */}
         <button
           onClick={onNewProject}
-          className="w-full flex items-center gap-4 p-5 rounded-2xl text-white"
-          style={{ backgroundColor: '#1a2b4a' }}
+          className="w-full flex items-center gap-4 p-5 rounded-2xl text-white bg-[color:var(--color-accent)]"
         >
-          <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-xl bg-panel/20 flex items-center justify-center">
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
@@ -111,12 +110,9 @@ export function HomeScreen({ activeCount = 0, onNewProject }: HomeScreenProps) {
         </button>
 
         {/* Current Projects */}
-        <Link
-          href="/projects"
-          className="w-full flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-200 text-left"
-        >
-          <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center">
-            <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <Link href="/projects" className="w-full flex items-center gap-4 p-5 bg-panel rounded-2xl border border-border text-left">
+          <div className="w-12 h-12 rounded-xl bg-background flex items-center justify-center">
+            <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -126,21 +122,18 @@ export function HomeScreen({ activeCount = 0, onNewProject }: HomeScreenProps) {
             </svg>
           </div>
           <div className="flex-1">
-            <div className="font-semibold text-gray-900">Current Projects</div>
-            <div className="text-gray-500 text-sm">{activeCount} active</div>
+            <div className="font-semibold text-text-ink">Current Projects</div>
+            <div className="text-muted text-sm">{activeCount} active</div>
           </div>
-          <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </Link>
 
         {/* Your Account */}
-        <Link
-          href="/profile"
-          className="w-full flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-200 text-left"
-        >
-          <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center">
-            <svg className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <Link href="/profile" className="w-full flex items-center gap-4 p-5 bg-panel rounded-2xl border border-border text-left">
+          <div className="w-12 h-12 rounded-xl bg-background flex items-center justify-center">
+            <svg className="w-6 h-6 text-text-subtle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -150,10 +143,10 @@ export function HomeScreen({ activeCount = 0, onNewProject }: HomeScreenProps) {
             </svg>
           </div>
           <div className="flex-1">
-            <div className="font-semibold text-gray-900">Your Account</div>
-            <div className="text-gray-500 text-sm">Profile, billing & preferences</div>
+            <div className="font-semibold text-text-ink">Your Account</div>
+            <div className="text-muted text-sm">Profile, billing & preferences</div>
           </div>
-          <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </Link>
@@ -163,10 +156,10 @@ export function HomeScreen({ activeCount = 0, onNewProject }: HomeScreenProps) {
           onClick={() => {
             window.location.href = 'mailto:hello@rendervault.studio';
           }}
-          className="w-full flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-200 text-left"
+          className="w-full flex items-center gap-4 p-5 bg-panel rounded-2xl border border-border text-left"
         >
-          <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center">
-            <svg className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="w-12 h-12 rounded-xl bg-background flex items-center justify-center">
+            <svg className="w-6 h-6 text-text-subtle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -176,10 +169,10 @@ export function HomeScreen({ activeCount = 0, onNewProject }: HomeScreenProps) {
             </svg>
           </div>
           <div className="flex-1">
-            <div className="font-semibold text-gray-900">Contact Us</div>
-            <div className="text-gray-500 text-sm">Get help or send feedback</div>
+            <div className="font-semibold text-text-ink">Contact Us</div>
+            <div className="text-muted text-sm">Get help or send feedback</div>
           </div>
-          <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>

@@ -58,7 +58,7 @@ export default function Home() {
   return (
     <div className="bg-background text-foreground">
       <Navigation />
-      <main className="min-h-screen pt-32 md:pt-36 lg:pt-40">
+      <main className="min-h-screen pt-20 md:pt-24 lg:pt-28">
         {/* Hero */}
         <Hero />
 

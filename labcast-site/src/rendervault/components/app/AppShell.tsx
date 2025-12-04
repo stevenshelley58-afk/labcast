@@ -48,16 +48,16 @@ export function AppShell({ children }: AppShellProps) {
 
   const sidebarFooter = (
     <>
-      <div className="rounded-[18px] border border-white/80 bg-gradient-to-br from-[#e7f2ff] via-white to-[#f2f7ff] p-4 shadow-[0_14px_32px_rgba(112,144,176,0.14)]">
-        <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-[#4f78a5] shadow-sm">
+      <div className="rounded-[18px] border border-border bg-gradient-to-br from-[color:var(--color-bg)] via-panel to-white p-4 shadow-soft">
+        <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-panel px-3 py-1 text-[11px] font-semibold text-accent shadow-sm">
           <Sparkles className="h-3.5 w-3.5" />
           Vault ready
         </div>
-        <p className="text-sm font-semibold text-[#1b2559]">Upgrade for priority renders</p>
-        <p className="mt-1 text-xs text-[#7e8aa7]">Move to the Vault tier for reserved capacity.</p>
+        <p className="text-sm font-semibold text-text-ink">Upgrade for priority renders</p>
+        <p className="mt-1 text-xs text-text-subtle">Move to the Vault tier for reserved capacity.</p>
         <Button
           fullWidth
-          className="mt-3 bg-[#4f78a5] text-white shadow-[0_10px_28px_rgba(79,120,165,0.28)] hover:bg-[#486f98]"
+          className="mt-3"
         >
           Upgrade
         </Button>
@@ -67,7 +67,6 @@ export function AppShell({ children }: AppShellProps) {
         <Button
           fullWidth
           iconLeft={<Plus className="h-4 w-4" />}
-          className="bg-[#1b2559] text-white shadow-[0_10px_28px_rgba(27,37,89,0.2)] hover:bg-[#162042]"
         >
           New project
         </Button>
