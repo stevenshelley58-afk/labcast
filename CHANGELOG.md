@@ -5,6 +5,70 @@ All notable changes to Better Agents will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.6-beta.0](https://github.com/stevenshelley58-afk/labcast/compare/v0.1.5-beta.0...v0.1.6-beta.0) (2025-12-04)
+
+
+### Features
+
+* add Compass & Cradle proposal page ([e7065ee](https://github.com/stevenshelley58-afk/labcast/commit/e7065eeb0ee5dffa4b29cb3b5877da26bfd1f44e))
+* add fade overlay and vertical centering to hero section ([14df9cd](https://github.com/stevenshelley58-afk/labcast/commit/14df9cd18f937caf641b41761a26a7032d572128))
+* add product images for Compass & Cradle hero ([6ff5ce7](https://github.com/stevenshelley58-afk/labcast/commit/6ff5ce71d688aab5f8afa8442551fa453893002b))
+* add responsive hero section with three.js wave animation ([9eef7df](https://github.com/stevenshelley58-afk/labcast/commit/9eef7df7be752e33c8119eae0230aa636d033b0e))
+* add services page with updated pricing ([bd5f71d](https://github.com/stevenshelley58-afk/labcast/commit/bd5f71d7d06cd3ef886932ac63653501b4857ac6))
+* add white background and fade overlay to hero text section ([9032faa](https://github.com/stevenshelley58-afk/labcast/commit/9032faa64cd7889bd6d3f9abc0841a4807369eda))
+* apply new neutral color palette ([0d6b756](https://github.com/stevenshelley58-afk/labcast/commit/0d6b7566d28c0362acaab981cafb42b2e4c98073))
+* apply Render Vault styling across site ([485afec](https://github.com/stevenshelley58-afk/labcast/commit/485afecc1fe6f8e3220a9cf7ce4318d6aa583d5e))
+* consolidate render vault routes and standardise contact form ([e5c39b9](https://github.com/stevenshelley58-afk/labcast/commit/e5c39b983bacae4181dbcde06e90d5081ab62d38))
+* integrate Render Vault into Labcast under /render-vault ([a787b07](https://github.com/stevenshelley58-afk/labcast/commit/a787b0729c81e496cd8c44bf8a232a0170a78c04))
+* left align hero content ([38eea07](https://github.com/stevenshelley58-afk/labcast/commit/38eea07637b9718c90368f7e0730df004f11ee47))
+* redesign Compass & Cradle sample homepage mock ([089fa00](https://github.com/stevenshelley58-afk/labcast/commit/089fa00d76c87e1bffd6cafba92fe4ad68a58847))
+* replace hero placeholders with real product images ([f30fee4](https://github.com/stevenshelley58-afk/labcast/commit/f30fee47e9212d311c47dc3ec6fc144423c7c11f))
+* restore RenderVault marketing page ([88d0c7b](https://github.com/stevenshelley58-afk/labcast/commit/88d0c7b6cd5d2f7603161ea84f381b56289a48c8))
+* **services:** add services page with packages and pricing ([74f7c20](https://github.com/stevenshelley58-afk/labcast/commit/74f7c20157b6531ec5e130a7f58bea6bf2e15134))
+* **services:** update pricing to mid-tier Australian market rates ([776c22e](https://github.com/stevenshelley58-afk/labcast/commit/776c22e54b68d854efa13230aa1ab42c52ac1fde))
+* show global nav everywhere ([2dab788](https://github.com/stevenshelley58-afk/labcast/commit/2dab78825bc6f7f2b2adb9eb91715abfafe6b009))
+* switch contact form to Resend ([9056fde](https://github.com/stevenshelley58-afk/labcast/commit/9056fde04ddd7c9e69c1ee8027618c0b1a6d9f57))
+* tweak hat card sizing and placement ([6538f55](https://github.com/stevenshelley58-afk/labcast/commit/6538f5517744927052c04f183ddb8944b57ea87c))
+* update Compass & Cradle mock homepage ([ce0ec56](https://github.com/stevenshelley58-afk/labcast/commit/ce0ec56b7052763db3699b9127a7db1213d874b3))
+
+
+### Bug Fixes
+
+* add explicit weight for Instrument Serif font ([bbdf32d](https://github.com/stevenshelley58-afk/labcast/commit/bbdf32d3a185bb4db776c61330846aa91860901f))
+* add initial values for useRef hooks in Hero component ([f777613](https://github.com/stevenshelley58-afk/labcast/commit/f77761386c631d89e20b6ba8c867092e835189e2))
+* align header spacing ([0517fab](https://github.com/stevenshelley58-afk/labcast/commit/0517fabf594a217ad9dd54a0cad00800e4bf9d0a))
+* change hero gradient to white background ([140f4ed](https://github.com/stevenshelley58-afk/labcast/commit/140f4ede30f4d1d1713c5880c163419ce5aac91e))
+* make onOpenWizard prop optional in HowItWorks ([8b942c1](https://github.com/stevenshelley58-afk/labcast/commit/8b942c1d771dcefcc1078778aa3cc0d6a911f7aa))
+* refine hero gradient fade and padding ([b578213](https://github.com/stevenshelley58-afk/labcast/commit/b578213ff7675d518f0c186803e38bf90214e88c))
+* remove AU suffix from logo ([8b6966a](https://github.com/stevenshelley58-afk/labcast/commit/8b6966a2b579ca0579d269bff422f87eb28213f9))
+* remove empty rendervault page causing build failure ([366301b](https://github.com/stevenshelley58-afk/labcast/commit/366301b2248f162741fe30d61c98ed5252a4c733))
+* remove unnecessary turbopack.root config to resolve build warning ([d85af9f](https://github.com/stevenshelley58-afk/labcast/commit/d85af9fb1b53a15f8ece932764dba4ba5b893642))
+* run contact route on node runtime ([966d8b8](https://github.com/stevenshelley58-afk/labcast/commit/966d8b8b306209219e8957a37e92f31fc376225c))
+* slim down navigation bar ([0aa5e2c](https://github.com/stevenshelley58-afk/labcast/commit/0aa5e2c39b278ff469fd743258fa6b389b3a7d1f))
+* update hero gradient to match canvas background ([67d5fd4](https://github.com/stevenshelley58-afk/labcast/commit/67d5fd43d2ac1574913795fa363e50edc52bc4dc))
+
+
+### Miscellaneous
+
+* add build script ([c246f7b](https://github.com/stevenshelley58-afk/labcast/commit/c246f7b8e039f8a75379e4fe6b3f4b04cc35be92))
+* add vercel.json ([49bb35f](https://github.com/stevenshelley58-afk/labcast/commit/49bb35f3ddb0d7d7efdfcb16abf0f0cf624600eb))
+* configure vercel to build from labcast-site directory ([4847774](https://github.com/stevenshelley58-afk/labcast/commit/4847774de666247d09f7e517f3b273da31aafe8c))
+* fix vercel build settings ([89bfcbb](https://github.com/stevenshelley58-afk/labcast/commit/89bfcbb4c3281949a23990d8b4d2c4005331bb62))
+* hide framework and services menus ([2611afe](https://github.com/stevenshelley58-afk/labcast/commit/2611afe79540b124a00b89a313b0e9e5327103f7))
+* ignore vercel artifacts ([eed414f](https://github.com/stevenshelley58-afk/labcast/commit/eed414f84aa9d889ba65a5b147a888f1ca7f5373))
+* initial commit with demo-agent and labcast-site ([7c48ff3](https://github.com/stevenshelley58-afk/labcast/commit/7c48ff34f7504262c86421c50f527ea1231bebc8))
+* merge preview branch with services page features ([90b3f29](https://github.com/stevenshelley58-afk/labcast/commit/90b3f2978bd155c661d8c4020154011a580b2e90))
+* polish labcast site for vercel ([96f36c4](https://github.com/stevenshelley58-afk/labcast/commit/96f36c4fe6371a0f5621c2c2891e78aaf5a32beb))
+* refresh mockup copy ([05f6e16](https://github.com/stevenshelley58-afk/labcast/commit/05f6e167caf43b78f26ce6e5b165d6f6cae9b188))
+* route monorepo traffic to labcast-site ([2516aeb](https://github.com/stevenshelley58-afk/labcast/commit/2516aeb1baace905df4b048723c60bac753dcc3a))
+* update project configuration and workflows ([c51ee84](https://github.com/stevenshelley58-afk/labcast/commit/c51ee849ccae25f48e4d12cc12ab1744946462ff))
+* update vercel config for monorepo structure ([786664a](https://github.com/stevenshelley58-afk/labcast/commit/786664a72f5b1b6ff41e8e25f1b65cbafef0b1bc))
+
+
+### Code Refactoring
+
+* remove duplicate ProofWall section from render-vault page ([cdebf0b](https://github.com/stevenshelley58-afk/labcast/commit/cdebf0b859cedb1bea25e9ac29fcec83dacc4759))
+
 ## [0.1.5-beta.0](https://github.com/langwatch/better-agents/compare/v0.1.4-beta.0...v0.1.5-beta.0) (2025-11-28)
 
 
