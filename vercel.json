@@ -1,16 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "version": 2,
-  "builds": [
-    {
-      "src": "labcast-site/package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "labcast-site/$1"
-    }
-  ]
+  "framework": "nextjs"
 }
