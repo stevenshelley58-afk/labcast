@@ -13,6 +13,42 @@ export default function Home() {
         {/* Hero */}
         <Hero />
 
+        {/* Proof */}
+        <PageSection id="about" tone="surface" border="top" className="scroll-mt-24">
+          <div className="max-w-3xl">
+            <p className="text-sm text-muted mb-4">The proof</p>
+            <h2 className="text-3xl md:text-4xl font-medium tracking-tight leading-[1.15] mb-8">
+              We&apos;re Em &amp; Steve.
+              <br />
+              We built BHM.
+            </h2>
+            <div className="space-y-6 text-lg text-muted leading-relaxed">
+              <p>BHM is a premium teak furniture brand. We source reclaimed pieces from artisans in Rajasthan and sell them across Australia.</p>
+              <p>
+                We&apos;ve handled every part of the business ourselves — from Meta ads and email flows to product photography and the Shopify store. No
+                agencies. No outsourcing. Just figuring out what actually works.
+              </p>
+              <p className="text-foreground">Labcast is that knowledge, packaged for other founders.</p>
+            </div>
+            <a
+              href="https://bhm.com.au"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+            >
+              Visit bhm.com.au
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </a>
+          </div>
+        </PageSection>
+
         {/* The Problem */}
         <PageSection border="top">
           <div className="max-w-3xl">
@@ -127,42 +163,6 @@ export default function Home() {
                 </p>
               </div>
             </div>
-          </div>
-        </PageSection>
-
-        {/* Proof */}
-        <PageSection id="about" border="top" className="scroll-mt-24 bg-foreground text-background">
-          <div className="max-w-3xl">
-            <p className="text-sm text-background/60 mb-4">The proof</p>
-            <h2 className="text-3xl md:text-4xl font-medium tracking-tight leading-[1.15] mb-8">
-              We&apos;re Em &amp; Steve.
-              <br />
-              We built BHM.
-            </h2>
-            <div className="space-y-6 text-lg text-background/80 leading-relaxed">
-              <p>BHM is a premium teak furniture brand. We source reclaimed pieces from artisans in Rajasthan and sell them across Australia.</p>
-              <p>
-                We&apos;ve handled every part of the business ourselves — from Meta ads and email flows to product photography and the Shopify store. No
-                agencies. No outsourcing. Just figuring out what actually works.
-              </p>
-              <p className="text-background">Labcast is that knowledge, packaged for other founders.</p>
-            </div>
-            <a
-              href="https://bhm.com.au"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-background px-6 py-3 text-sm font-medium text-foreground transition-opacity hover:opacity-90"
-            >
-              Visit bhm.com.au
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-            </a>
           </div>
         </PageSection>
 
