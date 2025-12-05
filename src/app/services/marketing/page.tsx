@@ -8,7 +8,7 @@ import styles from "./marketing.module.css";
 
 /**
  * Marketing services page featuring Meta ads offerings.
- * Includes chaos-to-signal hero animation, comparison table, and pricing cards.
+ * Includes chaos-to-signal hero animation, comparison table, timeline, and pricing.
  *
  * @example
  * ```tsx
@@ -99,30 +99,6 @@ export default function MarketingServicesPage() {
               {/* Center Box */}
               <g transform="translate(380, 50)">
                 <rect x="0" y="0" width="140" height="100" fill="var(--rv-color-ink)" rx="4" />
-                <text
-                  x="70"
-                  y="45"
-                  fill="var(--rv-color-panel)"
-                  textAnchor="middle"
-                  fontFamily="var(--rv-font-sans)"
-                  fontSize="10"
-                  fontWeight="600"
-                  letterSpacing="0.15em"
-                >
-                  30 DAY
-                </text>
-                <text
-                  x="70"
-                  y="62"
-                  fill="var(--rv-color-panel)"
-                  textAnchor="middle"
-                  fontFamily="var(--rv-font-sans)"
-                  fontSize="10"
-                  fontWeight="600"
-                  letterSpacing="0.15em"
-                >
-                  RESET
-                </text>
               </g>
 
               {/* Clean Lines (Right) */}
@@ -146,7 +122,7 @@ export default function MarketingServicesPage() {
               Hate Ads?
             </h1>
             <p className={styles.heroSub}>
-              Give us 30 days to clean up tracking, reset your Meta setup and turn the chaos into a system that works.
+              We verify your data infrastructure and reset your Meta system to move you from ad chaos into a measurable, scalable system.
             </p>
           </div>
         </section>
@@ -231,124 +207,70 @@ export default function MarketingServicesPage() {
           </div>
         </section>
 
-        {/* Pricing */}
-        <section className={styles.pricingSection}>
+        {/* The Growth Framework */}
+        <section className={styles.frameworkSection}>
           <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-4`}>
-            How we can help
+            The Growth Framework
           </h2>
-          <p className={`${styles.fadeIn} ${styles.heroSub}`}>
-            Most brands start with the Reset. Then you decide if you want us to stay on, or just buy the creative fuel.
+          <p className={`${styles.fadeIn} ${styles.heroSub}`} style={{ maxWidth: "600px", margin: "0 0 32px 0" }}>
+            We start every project the same way. Four weeks to fix what&apos;s broken, test what might work, and build a plan you can actually execute.
           </p>
 
-          {/* Main Offer: 30 Day Reset */}
-          <div className={`${styles.fadeIn} ${styles.bundleFeatured}`}>
-            <div className={styles.bundleHeader}>
-              <div>
-                <h3 className="font-serif text-2xl md:text-3xl font-normal text-text-ink mb-2">
-                  30 Day Meta Reset
-                </h3>
-                <p className="text-text-subtle" style={{ maxWidth: "420px" }}>
-                  One month to fix tracking, simplify structure, and find at least one angle we can scale profitably.
-                </p>
-              </div>
-              <div className={styles.bundlePrice}>
-                <span className={styles.amount}>$3,500</span>
-                <span className="text-sm text-text-subtle">for 30 days</span>
-              </div>
+          <div className={styles.timeline}>
+            <div className={`${styles.fadeIn} ${styles.timelineItem}`}>
+              <div className={styles.timelineDot}></div>
+              <span className={styles.timelineWeek}>Week 1</span>
+              <h4 className="font-serif text-xl text-text-ink mb-2">Fix the tracking</h4>
+              <p className="text-text-subtle text-sm leading-relaxed" style={{ maxWidth: "500px" }}>
+                We validate or install your Pixel and Conversions API. Events get mapped properly. Deduplication gets configured. No more guessing if your data is right.
+              </p>
             </div>
 
-            <div className={styles.deliverablesGrid}>
-              <div className={styles.deliverableItem}>
-                Tracking fixed. Pixel and CAPI installed or repaired and tested.
-              </div>
-              <div className={styles.deliverableItem}>
-                Account restructured into a simple, scalable setup.
-              </div>
-              <div className={styles.deliverableItem}>
-                8 ready to run ads created, launched, and tested.
-              </div>
-              <div className={styles.deliverableItem}>
-                Clear read on what is working, what is wasting spend, and what to test next.
-              </div>
+            <div className={`${styles.fadeIn} ${styles.timelineItem}`}>
+              <div className={styles.timelineDot}></div>
+              <span className={styles.timelineWeek}>Week 2</span>
+              <h4 className="font-serif text-xl text-text-ink mb-2">Test what converts</h4>
+              <p className="text-text-subtle text-sm leading-relaxed" style={{ maxWidth: "500px" }}>
+                We deploy 6-8 performance ads with a small test budget. Different angles, different hooks. We&apos;re looking for the one that actually moves people to buy.
+              </p>
             </div>
 
-            <div className={styles.bundleNote}>
-              <p>
-                <strong className="text-text-ink">What happens after:</strong> At the end of 30 days you choose: keep us on weekly, keep the system and just buy creative, or pause.
+            <div className={`${styles.fadeIn} ${styles.timelineItem}`}>
+              <div className={styles.timelineDot}></div>
+              <span className={styles.timelineWeek}>Week 3</span>
+              <h4 className="font-serif text-xl text-text-ink mb-2">Check the math</h4>
+              <p className="text-text-subtle text-sm leading-relaxed" style={{ maxWidth: "500px" }}>
+                Platform ROAS lies. We reconcile what Meta says against what your bank account says. MER, LTV, true margins. We find the real numbers.
+              </p>
+            </div>
+
+            <div className={`${styles.fadeIn} ${styles.timelineItem}`}>
+              <div className={styles.timelineDot}></div>
+              <span className={styles.timelineWeek}>Week 4</span>
+              <h4 className="font-serif text-xl text-text-ink mb-2">Build the roadmap</h4>
+              <p className="text-text-subtle text-sm leading-relaxed" style={{ maxWidth: "500px" }}>
+                We deliver a 90-day plan: account structure, winning audiences, and the next 12 creative tests. Everything you need to scale or hand off.
               </p>
             </div>
           </div>
 
-          {/* Options Grid */}
-          <div className={styles.optionsGrid}>
-            <div className={`${styles.fadeIn} ${styles.optionCard}`}>
-              <h4>Meta ads management</h4>
-              <p className={styles.optionDesc}>
-                Ongoing account management. We are in the account daily, testing, optimising, and scaling what works.
-              </p>
-              <div className={styles.optionIncludes}>
-                <p>Includes</p>
-                <ul>
-                  <li>Daily account monitoring and optimisation</li>
-                  <li>Weekly performance reporting</li>
-                  <li>Ongoing creative rotation recommendations</li>
-                  <li>Budget pacing and scaling decisions</li>
-                  <li>Direct Slack or email access</li>
-                </ul>
-              </div>
-              <div className={styles.optionPrice}>
-                $400 <span>per week</span>
-              </div>
-              <p className={styles.optionBest}>
-                Best if you want someone in the account every day while you focus on the rest of the business.
-              </p>
+          <div className={`${styles.fadeIn} ${styles.priceBlock}`}>
+            <span className={styles.amount}>$4,500</span>
+            <div className={styles.priceDetail}>
+              <span>4 weeks, delivered remotely</span>
+              <span className={styles.priceDetailSub}>This is where every project starts.</span>
             </div>
+          </div>
 
-            <div className={`${styles.fadeIn} ${styles.optionCard}`}>
-              <h4>Tracking and CAPI setup</h4>
-              <p className={styles.optionDesc}>
-                Full pixel and Conversions API setup, with events mapped properly to your funnel.
-              </p>
-              <div className={styles.optionIncludes}>
-                <p>Includes</p>
-                <ul>
-                  <li>Meta Pixel installation or repair</li>
-                  <li>Conversions API server-side setup</li>
-                  <li>Event mapping for your specific funnel</li>
-                  <li>Event deduplication configured</li>
-                  <li>Testing and validation report</li>
-                </ul>
-              </div>
-              <div className={styles.optionPrice}>
-                $1,000 <span>once</span>
-              </div>
-              <p className={styles.optionBest}>
-                Best if you manage ads yourself but need the foundation fixed first.
-              </p>
-            </div>
+          <div className={`${styles.fadeIn} ${styles.afterNote}`}>
+            <p>
+              <strong className="text-text-ink">What you get:</strong> Your data infrastructure fully installed and verified, plus a detailed framework on how to keep scaling. Custom-built over four weeks specifically for your business, never a copy/paste solution. Use it internally, or partner with us ongoing.
+            </p>
+          </div>
 
-            <div className={`${styles.fadeIn} ${styles.optionCard}`}>
-              <h4>Ready to run ads</h4>
-              <p className={styles.optionDesc}>
-                Static images, carousels, or simple video built to match your brand but look native in the feed.
-              </p>
-              <div className={styles.optionIncludes}>
-                <p>Includes</p>
-                <ul>
-                  <li>Scroll-stopping concept and hook</li>
-                  <li>Design matched to your brand</li>
-                  <li>Primary text and headline copy</li>
-                  <li>Multiple aspect ratios (1:1, 4:5, 9:16)</li>
-                  <li>Source files included</li>
-                </ul>
-              </div>
-              <div className={styles.optionPrice}>
-                $200 <span>per ad</span>
-              </div>
-              <p className={styles.optionBest}>
-                Best if you have strategy handled but need fresh creative on a regular basis.
-              </p>
-            </div>
+          <div className={`${styles.fadeIn} ${styles.customCallout}`}>
+            <p className={styles.calloutMain}>We work with businesses at every stage.</p>
+            <p className={styles.calloutSub}>Need rapid creative, a quick install, or something custom? Get in touch below and we&apos;ll put together a plan.</p>
           </div>
         </section>
 
