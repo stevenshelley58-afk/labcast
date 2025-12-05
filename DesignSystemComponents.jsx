@@ -74,7 +74,7 @@ const radiusOptions = [
   { name: 'Soft', value: '16px' },
 ];
 
-// ============ PREVIEW COMPONENT ============
+// ============ PREVIEW COMPONENT (Simple - for widgets) ============
 const Preview = ({ palette, font = 'Inter, sans-serif', radius = '6px', scale = 1 }) => (
   <div style={{ 
     background: palette.bg, 
@@ -157,6 +157,166 @@ const Preview = ({ palette, font = 'Inter, sans-serif', radius = '6px', scale = 
           <div style={{ fontSize: `${8 * scale}px`, color: palette.mid, transition: 'color 0.6s ease' }}>{stat.l}</div>
         </div>
       ))}
+    </div>
+  </div>
+);
+
+// ============ FULL WEBSITE PREVIEW (Expanded - for desktop modal) ============
+const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px' }) => (
+  <div style={{ 
+    background: palette.bg, 
+    borderRadius: '16px',
+    overflow: 'hidden',
+    transition: 'all 0.5s ease',
+    boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+    width: '100%',
+  }}>
+    {/* Navigation */}
+    <div style={{ 
+      display: 'flex', 
+      justifyContent: 'space-between', 
+      alignItems: 'center',
+      padding: '18px 32px',
+      borderBottom: `1px solid ${palette.bgAlt}`,
+      background: palette.bg,
+    }}>
+      <div style={{ 
+        fontSize: '16px', 
+        fontWeight: 700, 
+        color: palette.dark, 
+        fontFamily: font,
+        letterSpacing: '-0.5px',
+        transition: 'color 0.5s ease',
+      }}>BRAND</div>
+      <div style={{ display: 'flex', gap: '28px', alignItems: 'center' }}>
+        <span style={{ fontSize: '13px', color: palette.mid, cursor: 'pointer', transition: 'color 0.5s ease' }}>Products</span>
+        <span style={{ fontSize: '13px', color: palette.mid, cursor: 'pointer', transition: 'color 0.5s ease' }}>About</span>
+        <button style={{
+          padding: '10px 22px',
+          fontSize: '13px',
+          fontWeight: 600,
+          borderRadius: radius,
+          background: palette.dark,
+          color: getContrastColor(palette.dark),
+          border: 'none',
+          cursor: 'pointer',
+          transition: 'all 0.5s ease',
+        }}>Shop</button>
+      </div>
+    </div>
+
+    {/* Hero Section */}
+    <div style={{ padding: '56px 32px 40px', textAlign: 'center' }}>
+      <p style={{ 
+        fontSize: '11px', 
+        color: palette.mid, 
+        textTransform: 'uppercase', 
+        letterSpacing: '3px', 
+        marginBottom: '12px',
+        fontWeight: 500,
+        transition: 'color 0.5s ease',
+      }}>Introducing</p>
+      <h1 style={{ 
+        fontSize: '36px', 
+        fontWeight: 400, 
+        color: palette.dark,
+        margin: '0 0 16px 0',
+        lineHeight: 1.15,
+        fontFamily: font,
+        letterSpacing: '-1px',
+        transition: 'color 0.5s ease',
+      }}>
+        Beautiful things,<br />thoughtfully made.
+      </h1>
+      <p style={{ 
+        fontSize: '14px', 
+        color: palette.mid, 
+        margin: '0 0 28px 0',
+        transition: 'color 0.5s ease',
+      }}>
+        Crafted with care for people who appreciate quality.
+      </p>
+      <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+        <button style={{
+          padding: '14px 28px',
+          fontSize: '13px',
+          fontWeight: 600,
+          borderRadius: radius,
+          background: palette.dark,
+          color: getContrastColor(palette.dark),
+          border: 'none',
+          cursor: 'pointer',
+          transition: 'all 0.5s ease',
+        }}>Explore</button>
+        <button style={{
+          padding: '14px 28px',
+          fontSize: '13px',
+          fontWeight: 600,
+          borderRadius: radius,
+          background: 'transparent',
+          color: palette.dark,
+          border: `1.5px solid ${palette.mid}`,
+          cursor: 'pointer',
+          transition: 'all 0.5s ease',
+        }}>Our Story</button>
+      </div>
+    </div>
+
+    {/* Stats Bar */}
+    <div style={{ 
+      background: palette.accent, 
+      padding: '24px 32px',
+      display: 'flex',
+      justifyContent: 'center',
+      gap: '72px',
+      transition: 'background 0.5s ease',
+    }}>
+      {[
+        { n: '10K+', l: 'Customers' }, 
+        { n: '150+', l: 'Products' }, 
+        { n: '4.9', l: 'Rating' }
+      ].map((stat) => (
+        <div key={stat.n} style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '22px', fontWeight: 700, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>{stat.n}</div>
+          <div style={{ fontSize: '11px', color: palette.mid, marginTop: '2px', transition: 'color 0.5s ease' }}>{stat.l}</div>
+        </div>
+      ))}
+    </div>
+
+    {/* Product Cards */}
+    <div style={{ padding: '32px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+      {[1, 2, 3].map((i) => (
+        <div key={i} style={{
+          background: palette.bgAlt,
+          borderRadius: radius,
+          overflow: 'hidden',
+          transition: 'all 0.5s ease',
+        }}>
+          <div style={{ 
+            height: '140px', 
+            background: palette.accent,
+            transition: 'background 0.5s ease',
+          }} />
+          <div style={{ padding: '16px' }}>
+            <div style={{ fontSize: '14px', fontWeight: 600, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>Product</div>
+            <div style={{ fontSize: '13px', color: palette.mid, marginTop: '4px', transition: 'color 0.5s ease' }}>$299</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Footer */}
+    <div style={{ 
+      padding: '20px 32px',
+      borderTop: `1px solid ${palette.bgAlt}`,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      background: palette.dark,
+      transition: 'background 0.5s ease',
+    }}>
+      <div style={{ fontSize: '12px', fontWeight: 600, color: getContrastColor(palette.dark), fontFamily: font }}>BRAND</div>
+      <div style={{ fontSize: '11px', color: getContrastColor(palette.dark), opacity: 0.7 }}>© 2025</div>
     </div>
   </div>
 );
@@ -652,7 +812,7 @@ export const MobileFullDesigner = ({ onClose }) => {
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// 4. DESKTOP FULL DESIGNER — V2 Floating card modal
+// 4. DESKTOP FULL DESIGNER — V2 Large side-by-side layout
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 export const DesktopFullDesigner = ({ onClose }) => {
@@ -671,86 +831,177 @@ export const DesktopFullDesigner = ({ onClose }) => {
     <div style={{ 
       position: 'fixed', 
       inset: 0, 
-      background: 'rgba(0,0,0,0.6)', 
-      backdropFilter: 'blur(12px)', 
+      background: 'rgba(0,0,0,0.7)', 
+      backdropFilter: 'blur(16px)', 
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'center', 
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', 
       zIndex: 1000,
+      padding: '40px',
     }}>
       <div style={{ 
         background: '#fff', 
         borderRadius: '24px', 
-        padding: '40px', 
-        maxWidth: '560px', 
-        width: '90%', 
-        boxShadow: '0 32px 80px rgba(0,0,0,0.3)',
+        display: 'flex',
+        maxWidth: '1200px',
+        width: '100%',
+        maxHeight: 'calc(100vh - 80px)',
+        overflow: 'hidden',
+        boxShadow: '0 40px 100px rgba(0,0,0,0.35)',
       }}>
-        {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '32px' }}>
-          <div>
-            <div style={{ fontSize: '24px', fontWeight: 600 }}>Design System</div>
-            <div style={{ fontSize: '14px', color: '#888', marginTop: '4px' }}>Customize your brand</div>
-          </div>
-          <button onClick={onClose} style={{ 
-            width: '36px', 
-            height: '36px', 
-            borderRadius: '50%', 
-            background: '#f5f5f5', 
-            border: 'none', 
-            fontSize: '18px', 
-            color: '#888', 
-            cursor: 'pointer',
-          }}>×</button>
-        </div>
-
-        {/* Preview */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
-          <Preview palette={palette} font={font} radius={radius} scale={1.3} />
-        </div>
-
-        {/* Palette */}
-        <div style={{ display: 'flex', borderRadius: '10px', overflow: 'hidden', marginBottom: '24px' }}>
-          {Object.values(palette).map((c, i) => (
-            <div key={i} style={{ flex: 1, height: '32px', background: c, transition: 'background 0.6s ease' }} />
-          ))}
-        </div>
-
-        {/* Tabs */}
-        <div style={{ display: 'flex', gap: '8px', marginBottom: '20px' }}>
-          {['color', 'type', 'shape'].map(t => (
-            <button key={t} onClick={() => setTab(t)} style={{
-              padding: '10px 20px', borderRadius: '20px',
-              background: tab === t ? '#1a1a1a' : '#f5f5f5',
-              color: tab === t ? '#fff' : '#666',
-              border: 'none', fontSize: '13px', fontWeight: 500, textTransform: 'capitalize', 
-              cursor: 'pointer',
-            }}>{t}</button>
-          ))}
-        </div>
-
-        {/* Content */}
-        <div style={{ marginBottom: '24px' }}>
-          {tab === 'color' && <ColorPicker color={color} onChange={handleColorChange} />}
-          {tab === 'type' && <FontPicker selectedFont={font} onChange={setFont} />}
-          {tab === 'shape' && <ShapePicker radius={radius} onChange={setRadius} />}
-        </div>
-
-        {/* CTA */}
-        <button style={{ 
-          width: '100%', 
-          background: '#1a1a1a', 
-          color: '#fff', 
-          border: 'none', 
-          padding: '16px', 
-          borderRadius: '12px', 
-          fontSize: '14px', 
-          fontWeight: 500, 
-          cursor: 'pointer',
+        {/* Left Panel - Website Preview */}
+        <div style={{ 
+          flex: '1 1 60%',
+          background: '#f8f9fa',
+          padding: '32px',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'auto',
         }}>
-          Let's build yours →
-        </button>
+          <div style={{ 
+            fontSize: '12px', 
+            color: '#888', 
+            marginBottom: '16px',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            fontWeight: 500,
+          }}>
+            Live Preview
+          </div>
+          <div style={{ flex: 1, display: 'flex', alignItems: 'flex-start' }}>
+            <FullWebsitePreview palette={palette} font={font} radius={radius} />
+          </div>
+          {/* Generated Palette Strip */}
+          <div style={{ marginTop: '24px' }}>
+            <div style={{ fontSize: '11px', color: '#888', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              Generated Palette
+            </div>
+            <div style={{ display: 'flex', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
+              {Object.entries(palette).map(([name, c]) => (
+                <div key={name} style={{ flex: 1, padding: '16px 8px', background: c, textAlign: 'center', transition: 'background 0.5s ease' }}>
+                  <div style={{ fontSize: '9px', color: getContrastColor(c), textTransform: 'uppercase', letterSpacing: '0.5px', opacity: 0.8 }}>
+                    {name}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right Panel - Controls */}
+        <div style={{ 
+          flex: '0 0 380px',
+          padding: '32px',
+          display: 'flex',
+          flexDirection: 'column',
+          borderLeft: '1px solid #eee',
+          overflow: 'auto',
+        }}>
+          {/* Header */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '28px' }}>
+            <div>
+              <div style={{ fontSize: '22px', fontWeight: 600, letterSpacing: '-0.5px' }}>Design System</div>
+              <div style={{ fontSize: '13px', color: '#888', marginTop: '4px' }}>Customize your brand identity</div>
+            </div>
+            <button onClick={onClose} style={{ 
+              width: '36px', 
+              height: '36px', 
+              borderRadius: '50%', 
+              background: '#f5f5f5', 
+              border: 'none', 
+              fontSize: '18px', 
+              color: '#888', 
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.2s ease',
+            }}>×</button>
+          </div>
+
+          {/* Tabs */}
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '24px' }}>
+            {[
+              { id: 'color', label: 'Color' },
+              { id: 'type', label: 'Typography' },
+              { id: 'shape', label: 'Shape' }
+            ].map(t => (
+              <button key={t.id} onClick={() => setTab(t.id)} style={{
+                padding: '10px 18px', 
+                borderRadius: '20px',
+                background: tab === t.id ? '#1a1a1a' : '#f5f5f5',
+                color: tab === t.id ? '#fff' : '#666',
+                border: 'none', 
+                fontSize: '12px', 
+                fontWeight: 500, 
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+              }}>{t.label}</button>
+            ))}
+          </div>
+
+          {/* Tab Content */}
+          <div style={{ flex: 1, marginBottom: '24px' }}>
+            {tab === 'color' && (
+              <div>
+                <div style={{ fontSize: '13px', fontWeight: 500, marginBottom: '12px', color: '#333' }}>
+                  Choose your accent color
+                </div>
+                <ColorPicker color={color} onChange={handleColorChange} />
+              </div>
+            )}
+            {tab === 'type' && (
+              <div>
+                <div style={{ fontSize: '13px', fontWeight: 500, marginBottom: '12px', color: '#333' }}>
+                  Select your typeface
+                </div>
+                <FontPicker selectedFont={font} onChange={setFont} />
+              </div>
+            )}
+            {tab === 'shape' && (
+              <div>
+                <div style={{ fontSize: '13px', fontWeight: 500, marginBottom: '12px', color: '#333' }}>
+                  Choose corner style
+                </div>
+                <ShapePicker radius={radius} onChange={setRadius} />
+              </div>
+            )}
+          </div>
+
+          {/* Export Info */}
+          <div style={{ 
+            background: '#f8f9fa', 
+            borderRadius: '12px', 
+            padding: '16px',
+            marginBottom: '20px',
+          }}>
+            <div style={{ fontSize: '12px', fontWeight: 600, marginBottom: '8px', color: '#333' }}>
+              Your selections
+            </div>
+            <div style={{ fontSize: '11px', color: '#666', lineHeight: 1.6 }}>
+              <div><span style={{ color: '#999' }}>Font:</span> {font.split(',')[0]}</div>
+              <div><span style={{ color: '#999' }}>Accent:</span> {color}</div>
+              <div><span style={{ color: '#999' }}>Radius:</span> {radius}</div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <button style={{ 
+            width: '100%', 
+            background: '#1a1a1a', 
+            color: '#fff', 
+            border: 'none', 
+            padding: '16px', 
+            borderRadius: '12px', 
+            fontSize: '14px', 
+            fontWeight: 600, 
+            cursor: 'pointer',
+            transition: 'all 0.2s ease',
+          }}>
+            Let's build yours →
+          </button>
+        </div>
       </div>
     </div>
   );
