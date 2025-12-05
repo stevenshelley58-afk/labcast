@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Input } from "@/ui/Input";
 import { TextArea } from "@/ui/TextArea";
 import { Button } from "@/ui/Button";
+import { trackEvent } from "./meta-pixel";
 
 interface ContactProps {
   /** Override the default heading */
@@ -96,6 +97,12 @@ export default function Contact({
       setEmail("");
       setMessage("");
       setWebsite("");
+
+      // Fire Meta Pixel Lead event for conversion tracking
+      trackEvent("Lead", {
+        content_name: "Contact Form",
+        content_category: "Lead Generation",
+      });
 
       setTimeout(() => {
         setSuccess(false);

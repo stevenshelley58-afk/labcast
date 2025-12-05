@@ -4,9 +4,10 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'reac
 import clsx from 'clsx';
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'subtle' | 'danger';
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 const sizeMap: Record<ButtonSize, string> = {
+  xs: 'h-7 rounded-full px-3 text-xs',
   sm: 'h-9 rounded-full px-4 text-sm',
   md: 'h-11 rounded-full px-5 text-sm',
   lg: 'h-12 rounded-full px-6 text-base',

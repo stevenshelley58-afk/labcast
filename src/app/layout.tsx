@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Assistant } from "next/font/google";
 import "./globals.css";
+import { MetaPixel } from "./components/meta-pixel";
 
 // Serif headings: Cormorant Garamond (matches mock)
 const instrumentSerif = Cormorant_Garamond({
@@ -72,6 +73,7 @@ export default function RootLayout({
       <body
         className={`${instrumentSerif.variable} ${inter.variable} antialiased bg-background text-foreground min-h-screen`}
       >
+        <MetaPixel />
         {children}
       </body>
     </html>

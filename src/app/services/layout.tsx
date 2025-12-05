@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services & Packages — Labcast",
+  title: "What We Do — Labcast",
   description:
-    "No retainers that bleed you dry. No scope creep. Just clear deliverables, hard numbers, and real accountability. Six packages. No fluff.",
+    "Three ways we help you grow: Marketing, Creative, and Build. Meta ads, AI product imagery, and websites that convert.",
   alternates: {
     canonical: "https://labcast.com.au/services",
   },
   openGraph: {
-    title: "Services & Packages — Labcast",
+    title: "What We Do — Labcast",
     description:
-      "No retainers that bleed you dry. No scope creep. Just clear deliverables, hard numbers, and real accountability.",
+      "Three ways we help you grow: Marketing, Creative, and Build.",
     url: "https://labcast.com.au/services",
     images: [
       {
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Services & Packages — Labcast",
+    title: "What We Do — Labcast",
     description:
-      "No retainers that bleed you dry. No scope creep. Just clear deliverables, hard numbers, and real accountability.",
+      "Three ways we help you grow: Marketing, Creative, and Build.",
     images: ["/twitter-image"],
   },
 };
