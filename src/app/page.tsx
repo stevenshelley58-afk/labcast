@@ -1,5 +1,6 @@
 import { PageSection } from "@/ui/PageSection";
 import { Footer } from "./components/footer";
+import { FoundersIntro } from "./components/FoundersIntro";
 import { Hero } from "./components/hero";
 import { Navigation } from "./components/navigation";
 import Contact from "./components/contact";
@@ -14,6 +15,9 @@ export default function Home() {
       <main className="min-h-screen">
         {/* Hero */}
         <Hero />
+
+        {/* Founders Intro */}
+        <FoundersIntro />
 
         {/* The Problem */}
         <PageSection border="top">
