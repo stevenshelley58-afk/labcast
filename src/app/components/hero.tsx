@@ -208,7 +208,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative isolate overflow-hidden bg-canvas pt-20 pb-20 sm:pb-32 lg:pt-28">
+    <section className="relative isolate overflow-hidden bg-canvas pb-20 sm:pb-32">
       <div ref={backgroundRef} className="absolute inset-0">
         <canvas ref={canvasRef} className="absolute inset-0 h-full w-full opacity-70" aria-hidden="true" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(13,13,13,0.08),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(64,64,64,0.08),transparent_42%)]" />
