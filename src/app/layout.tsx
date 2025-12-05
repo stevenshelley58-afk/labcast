@@ -20,9 +20,9 @@ const inter = Assistant({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://labcast.com.au"),
-  title: "Labcast — Marketing. Creative. Build.",
+  title: "Labcast. Marketing. Creative. Build.",
   description:
-    "Ecom growth from founders who actually run a brand. Marketing, creative, and build from the team behind bhm.com.au.",
+    "Labcast is a performance growth partner delivering real execution across marketing, creative, and web builds.",
   keywords: [
     "ecommerce",
     "marketing",
@@ -36,8 +36,9 @@ export const metadata: Metadata = {
     canonical: "https://labcast.com.au",
   },
   openGraph: {
-    title: "Labcast — Marketing. Creative. Build.",
-    description: "Ecom growth from founders who actually run a brand.",
+    title: "Labcast. Marketing. Creative. Build.",
+    description:
+      "Labcast is a performance growth partner delivering real execution across marketing, creative, and web builds.",
     url: "https://labcast.com.au",
     siteName: "Labcast",
     locale: "en_AU",
@@ -47,14 +48,15 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Labcast — Marketing. Creative. Build.",
+        alt: "Labcast. Marketing. Creative. Build.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Labcast — Marketing. Creative. Build.",
-    description: "Ecom growth from founders who actually run a brand.",
+    title: "Labcast. Marketing. Creative. Build.",
+    description:
+      "Labcast is a performance growth partner delivering real execution across marketing, creative, and web builds.",
     images: ["/twitter-image"],
   },
   robots: {
