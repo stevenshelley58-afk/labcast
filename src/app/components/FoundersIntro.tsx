@@ -1,4 +1,5 @@
 import { PageSection } from "@/ui/PageSection";
+import { ExternalLink } from "lucide-react";
 
 /**
  * Founders introduction section displayed after the hero.
@@ -32,6 +33,17 @@ export function FoundersIntro() {
         <p className="text-foreground font-medium">
           Labcast is that knowledge, packaged for other founders.
         </p>
+        <div className="mt-8">
+          <a
+            href="https://bhm.com.au"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-foreground hover:bg-foreground/90 text-background rounded-full transition-colors duration-200 font-medium text-sm"
+          >
+            Visit bhm.com.au
+            <ExternalLink className="w-4 h-4" />
+          </a>
+        </div>
       </div>
     </PageSection>
   );
