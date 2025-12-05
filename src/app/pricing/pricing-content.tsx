@@ -214,7 +214,7 @@ export function PricingPageContent() {
         </PageSection>
 
         <div className="pricing-nav sticky top-[64px] z-40 border-b border-border/60 bg-panel/90 px-6 py-4 backdrop-blur">
-          <div className="mx-auto flex max-w-[1100px] gap-2 overflow-x-auto">
+          <div className="mx-auto flex max-w-[750px] justify-center gap-2 overflow-x-auto">
             {categoryLinks.map((link) => {
               const active = activeCategory === link.id;
               return (
@@ -559,7 +559,7 @@ export function PricingPageContent() {
           tone="surface"
           border="top"
           className="scroll-mt-[140px]"
-          containerClassName="max-w-[900px]"
+          containerClassName="max-w-[750px]"
         >
           <div className="rounded-3xl bg-foreground p-10 text-center text-background shadow-shell">
             <div className="mb-6 inline-flex rounded-full bg-background/10 px-4 py-1.5 text-xs uppercase tracking-[0.3em]">
