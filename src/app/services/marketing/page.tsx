@@ -25,19 +25,73 @@ export default function MarketingServicesPage() {
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
+    let observer: IntersectionObserver | null = null;
 
-    document.querySelectorAll(`.${styles.fadeIn}`).forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const initObserver = () => {
+      // Use data attribute for reliable selection
+      const elements = Array.from(
+        document.querySelectorAll('[data-fade-in]')
+      ) as HTMLElement[];
+
+      if (elements.length === 0) return;
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const target = entry.target as HTMLElement;
+              target.classList.add(styles.visible);
+              observer?.unobserve(target);
+            }
+          });
+        },
+        {
+          threshold: 0.01,
+          rootMargin: "0px",
+        }
+      );
+
+      // Check initial visibility and observe
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const isInView = rect.top < viewportHeight && rect.bottom > 0;
+
+        if (isInView) {
+          // Element is already visible, add class immediately
+          requestAnimationFrame(() => {
+            el.classList.add(styles.visible);
+          });
+        } else {
+          // Observe for scroll
+          observer?.observe(el);
+        }
+      });
+    };
+
+    // Initialize with multiple attempts for mobile reliability
+    const init = () => {
+      initObserver();
+      // Retry after a short delay in case DOM isn't ready
+      setTimeout(initObserver, 100);
+    };
+
+    // Wait for DOM to be ready
+    if (document.readyState === 'complete') {
+      init();
+    } else {
+      window.addEventListener('load', init);
+      // Also try immediately
+      setTimeout(init, 0);
+    }
+
+    return () => {
+      window.removeEventListener('load', init);
+      if (observer) {
+        observer.disconnect();
+      }
+    };
   }, []);
 
   // Suppress unused variable warning - scrollY used for potential scroll effects
@@ -129,10 +183,10 @@ export default function MarketingServicesPage() {
 
         {/* The Approach */}
         <section className={styles.section}>
-          <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-10`}>
+          <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-10`} data-fade-in>
             Stop fighting Meta. Partner with it.
           </h2>
-          <div className={`${styles.fadeIn} ${styles.heroSub}`} style={{ maxWidth: "650px" }}>
+          <div className={`${styles.fadeIn} ${styles.heroSub}`} style={{ maxWidth: "650px" }} data-fade-in>
             <p className="mb-6">
               You can&apos;t beat a trillion-dollar algorithm with $50 hacks and audience exclusions.
             </p>
@@ -146,7 +200,7 @@ export default function MarketingServicesPage() {
           </div>
 
           {/* Founder Proof */}
-          <div className={`${styles.fadeIn} ${styles.founderBlock}`}>
+          <div className={`${styles.fadeIn} ${styles.founderBlock}`} data-fade-in>
             <h3 className="font-serif text-2xl font-normal text-text-ink mb-4">
               Run by founders, not account managers.
             </h3>
@@ -160,7 +214,7 @@ export default function MarketingServicesPage() {
           </div>
 
           {/* Comparison Table */}
-          <div className={`${styles.fadeIn} ${styles.comparisonSection}`}>
+          <div className={`${styles.fadeIn} ${styles.comparisonSection}`} data-fade-in>
             <div className={styles.comparisonTable}>
               <div className={styles.comparisonHeader}>
                 <div></div>
@@ -209,15 +263,15 @@ export default function MarketingServicesPage() {
 
         {/* The Growth Framework */}
         <section className={styles.frameworkSection}>
-          <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-4`}>
+          <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-4`} data-fade-in>
             The Growth Framework
           </h2>
-          <p className={`${styles.fadeIn} ${styles.heroSub}`} style={{ maxWidth: "600px", margin: "0 0 32px 0" }}>
+          <p className={`${styles.fadeIn} ${styles.heroSub}`} style={{ maxWidth: "600px", margin: "0 0 32px 0" }} data-fade-in>
             We start every project the same way. Four weeks to fix what&apos;s broken, test what might work, and build a plan you can actually execute.
           </p>
 
           <div className={styles.timeline}>
-            <div className={`${styles.fadeIn} ${styles.timelineItem}`}>
+            <div className={`${styles.fadeIn} ${styles.timelineItem}`} data-fade-in>
               <div className={styles.timelineDot}></div>
               <span className={styles.timelineWeek}>Week 1</span>
               <h4 className="font-serif text-xl text-text-ink mb-2">Fix the tracking</h4>
@@ -226,7 +280,7 @@ export default function MarketingServicesPage() {
               </p>
             </div>
 
-            <div className={`${styles.fadeIn} ${styles.timelineItem}`}>
+            <div className={`${styles.fadeIn} ${styles.timelineItem}`} data-fade-in>
               <div className={styles.timelineDot}></div>
               <span className={styles.timelineWeek}>Week 2</span>
               <h4 className="font-serif text-xl text-text-ink mb-2">Test what converts</h4>
@@ -235,7 +289,7 @@ export default function MarketingServicesPage() {
               </p>
             </div>
 
-            <div className={`${styles.fadeIn} ${styles.timelineItem}`}>
+            <div className={`${styles.fadeIn} ${styles.timelineItem}`} data-fade-in>
               <div className={styles.timelineDot}></div>
               <span className={styles.timelineWeek}>Week 3</span>
               <h4 className="font-serif text-xl text-text-ink mb-2">Check the math</h4>
@@ -244,7 +298,7 @@ export default function MarketingServicesPage() {
               </p>
             </div>
 
-            <div className={`${styles.fadeIn} ${styles.timelineItem}`}>
+            <div className={`${styles.fadeIn} ${styles.timelineItem}`} data-fade-in>
               <div className={styles.timelineDot}></div>
               <span className={styles.timelineWeek}>Week 4</span>
               <h4 className="font-serif text-xl text-text-ink mb-2">Build the roadmap</h4>
@@ -254,7 +308,7 @@ export default function MarketingServicesPage() {
             </div>
           </div>
 
-          <div className={`${styles.fadeIn} ${styles.priceBlock}`}>
+          <div className={`${styles.fadeIn} ${styles.priceBlock}`} data-fade-in>
             <span className={styles.amount}>$4,500</span>
             <div className={styles.priceDetail}>
               <span>4 weeks, delivered remotely</span>
@@ -262,13 +316,13 @@ export default function MarketingServicesPage() {
             </div>
           </div>
 
-          <div className={`${styles.fadeIn} ${styles.afterNote}`}>
+          <div className={`${styles.fadeIn} ${styles.afterNote}`} data-fade-in>
             <p>
               <strong className="text-text-ink">What you get:</strong> Your data infrastructure fully installed and verified, plus a detailed framework on how to keep scaling. Custom-built over four weeks specifically for your business, never a copy/paste solution. Use it internally, or partner with us ongoing.
             </p>
           </div>
 
-          <div className={`${styles.fadeIn} ${styles.customCallout}`}>
+          <div className={`${styles.fadeIn} ${styles.customCallout}`} data-fade-in>
             <p className={styles.calloutMain}>We work with businesses at every stage.</p>
             <p className={styles.calloutSub}>Need rapid creative, a quick install, or something custom? Get in touch below and we&apos;ll put together a plan.</p>
           </div>
@@ -276,15 +330,15 @@ export default function MarketingServicesPage() {
 
         {/* Footer CTA */}
         <section className={styles.footerCta}>
-          <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-6`}>
+          <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-6`} data-fade-in>
             Ready to talk?
           </h2>
-          <p className={`${styles.fadeIn} text-text-subtle mb-8`} style={{ maxWidth: "400px", textAlign: "center" }}>
+          <p className={`${styles.fadeIn} text-text-subtle mb-8`} style={{ maxWidth: "400px", textAlign: "center" }} data-fade-in>
             Tell us about your brand and what&apos;s not working.
             <br />
             No sales pitch, just a conversation to see if we can help.
           </p>
-          <Button as="a" href="/#contact" size="lg" className={styles.fadeIn}>
+          <Button as="a" href="/#contact" size="lg" className={styles.fadeIn} data-fade-in>
             Get in touch
           </Button>
         </section>

@@ -5,11 +5,22 @@
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .fadeIn.visible {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
+}
+
+/* Ensure animations work on mobile */
+@media (prefers-reduced-motion: no-preference) {
+  .fadeIn {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
 }
 
 /* Hero Section - SVG Chaos to Signal */

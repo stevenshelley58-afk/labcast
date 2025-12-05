@@ -1,9 +1,11 @@
-import Link from "next/link";
 import { PageSection } from "@/ui/PageSection";
 import { Footer } from "./components/footer";
 import { Hero } from "./components/hero";
 import { Navigation } from "./components/navigation";
 import Contact from "./components/contact";
+import { MarketingSection } from "./components/MarketingSection";
+import { CreativeSection } from "./components/CreativeSection";
+import { DesignSystemSection } from "./components/DesignSystemSection";
 
 export default function Home() {
   return (
@@ -12,42 +14,6 @@ export default function Home() {
       <main className="min-h-screen pt-20 md:pt-24 lg:pt-28">
         {/* Hero */}
         <Hero />
-
-        {/* Proof */}
-        <PageSection id="about" tone="surface" border="top" className="scroll-mt-24">
-          <div className="max-w-3xl">
-            <p className="text-sm text-muted mb-4">The proof</p>
-            <h2 className="text-3xl md:text-4xl font-medium tracking-tight leading-[1.15] mb-8">
-              We&apos;re Em &amp; Steve.
-              <br />
-              We built BHM.
-            </h2>
-            <div className="space-y-6 text-lg text-muted leading-relaxed">
-              <p>BHM is a premium teak furniture brand. We source reclaimed pieces from artisans in Rajasthan and sell them across Australia.</p>
-              <p>
-                We&apos;ve handled every part of the business ourselves — from Meta ads and email flows to product photography and the Shopify store. No
-                agencies. No outsourcing. Just figuring out what actually works.
-              </p>
-              <p className="text-foreground">Labcast is that knowledge, packaged for other founders.</p>
-            </div>
-            <a
-              href="https://bhm.com.au"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
-            >
-              Visit bhm.com.au
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-            </a>
-          </div>
-        </PageSection>
 
         {/* The Problem */}
         <PageSection border="top">
@@ -77,57 +43,9 @@ export default function Home() {
         </PageSection>
 
         {/* Services */}
-        <PageSection id="services" tone="surface" border="top" className="scroll-mt-24">
-          <p className="text-sm text-muted mb-4">What we do</p>
-          <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-16">Three ways we help you grow</h2>
-
-          <div className="grid gap-8 md:grid-cols-3 md:gap-12">
-            <div>
-              <div className="text-6xl font-serif italic text-muted/30 mb-4">01</div>
-              <h3 className="text-xl font-medium mb-3">Marketing</h3>
-              <p className="text-muted leading-relaxed mb-4">
-                Meta ads, email flows, growth strategy. The exact playbook we use to profitably scale BHM — now applied
-                to your brand.
-              </p>
-              <ul className="space-y-2 text-sm text-muted list-disc list-inside">
-                <li>Meta ads management &amp; creative strategy</li>
-                <li>Email &amp; SMS flows that convert</li>
-                <li>Analytics &amp; attribution setup</li>
-              </ul>
-            </div>
-
-            <div>
-              <div className="text-6xl font-serif italic text-muted/30 mb-4">02</div>
-              <h3 className="text-xl font-medium mb-3">Creative</h3>
-              <p className="text-muted leading-relaxed mb-4">
-                Product imagery without the photoshoot price tag. AI-powered visuals that look natural, not plastic.
-                Powered by RenderVault.
-              </p>
-              <ul className="space-y-2 text-sm text-muted list-disc list-inside">
-                <li>AI product photography</li>
-                <li>Lifestyle &amp; hero imagery</li>
-                <li>Ad creative at scale</li>
-              </ul>
-              <Link href="/render-vault" className="inline-block mt-4 text-sm text-foreground hover:underline">
-                Learn about Render Vault →
-              </Link>
-            </div>
-
-            <div>
-              <div className="text-6xl font-serif italic text-muted/30 mb-4">03</div>
-              <h3 className="text-xl font-medium mb-3">Build</h3>
-              <p className="text-muted leading-relaxed mb-4">
-                Websites and apps that convert, not just look good. Clean code, fast load times, built for real business
-                outcomes.
-              </p>
-              <ul className="space-y-2 text-sm text-muted list-disc list-inside">
-                <li>Shopify &amp; custom ecom builds</li>
-                <li>Landing pages that convert</li>
-                <li>Web &amp; mobile apps</li>
-              </ul>
-            </div>
-          </div>
-        </PageSection>
+        <MarketingSection />
+        <CreativeSection />
+        <DesignSystemSection />
 
         {/* Why Us */}
         <PageSection border="top">

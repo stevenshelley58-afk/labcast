@@ -239,8 +239,8 @@ export function Hero() {
 
         <div className="mt-4 grid gap-4 sm:grid-cols-3">
           <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-text-ink shadow-soft">
-            <p className="text-xs uppercase tracking-[0.3em] text-text-subtle">Focus</p>
-            <p className="mt-2 text-base font-semibold">Marketing Meta Ads</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-text-subtle">Marketing</p>
+            <p className="mt-2 text-base font-semibold">Meta Ads</p>
           </div>
           <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-text-ink shadow-soft">
             <p className="text-xs uppercase tracking-[0.3em] text-text-subtle">Creative</p>

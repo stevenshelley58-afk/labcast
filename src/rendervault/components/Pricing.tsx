@@ -13,7 +13,7 @@ export default function Pricing() {
                         <div className="mb-8">
                             <h3 className="text-xl font-medium text-text-ink">Single Image</h3>
                             <div className="mt-4 flex items-baseline">
-                                <span className="text-4xl font-bold text-text-ink">$70</span>
+                                <span className="text-4xl font-bold text-text-ink">$200</span>
                                 <span className="ml-2 text-text-subtle">per image</span>
                             </div>
                             <p className="text-sm text-text-subtle mt-4 leading-relaxed">
@@ -41,14 +41,14 @@ export default function Pricing() {
                         <div className="mb-8">
                             <h3 className="text-xl font-medium text-white">One-time batch</h3>
                             <div className="mt-4 flex items-baseline">
-                                <span className="text-4xl font-bold text-white">$980</span>
+                                <span className="text-4xl font-bold text-white">$1000</span>
                             </div>
                             <p className="text-sm text-white/60 mt-4 leading-relaxed">
                                 The AI photoshoot / One batch of hero images, done for you.
                             </p>
                         </div>
                         <ul className="space-y-4 mb-8 flex-1">
-                            {["20 images built from your product shots, scenes can vary across 20 images", "Sized for ads, site, email, and PDP.", "Human art direction and QA on every batch.", "Commercial rights for your brand.", "Delivery in 5 business days after brief approval."].map((item) => (
+                            {["10 images built from your product shots, scenes can vary across 10 images", "Sized for ads, site, email, and PDP.", "Human art direction and QA on every batch.", "Commercial rights for your brand.", "Delivery in 5 business days after brief approval."].map((item) => (
                                 <li key={item} className="flex gap-3 items-center text-sm text-white">
                                     <Check size={16} className="text-white/80 shrink-0" />
                                     {item}
@@ -73,7 +73,7 @@ export default function Pricing() {
                             </p>
                         </div>
                         <ul className="space-y-4 mb-8 flex-1">
-                            {["Unlimited Renders", "Prioritised Queue", "Dedicated Art Director", "Monthly Strategy Call", "Cancel Anytime"].map((item) => (
+                            {["10 images per month", "Prioritised Queue", "Dedicated Art Director", "Monthly Strategy Call", "3 month minimum"].map((item) => (
                                 <li key={item} className="flex gap-3 items-center text-sm text-text-ink">
                                     <Check size={16} className="text-accent shrink-0" />
                                     {item}
