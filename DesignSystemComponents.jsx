@@ -161,14 +161,14 @@ const Preview = ({ palette, font = 'Inter, sans-serif', radius = '6px', scale = 
   </div>
 );
 
-// ============ FULL WEBSITE PREVIEW (Expanded - for desktop modal) ============
+// ============ FULL WEBSITE PREVIEW (Compact - for desktop modal, no scroll) ============
 const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px' }) => (
   <div style={{ 
     background: palette.bg, 
-    borderRadius: '16px',
+    borderRadius: '10px',
     overflow: 'hidden',
     transition: 'all 0.5s ease',
-    boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
     width: '100%',
   }}>
     {/* Navigation */}
@@ -176,24 +176,24 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
       display: 'flex', 
       justifyContent: 'space-between', 
       alignItems: 'center',
-      padding: '18px 32px',
+      padding: '8px 14px',
       borderBottom: `1px solid ${palette.bgAlt}`,
       background: palette.bg,
     }}>
       <div style={{ 
-        fontSize: '16px', 
+        fontSize: '11px', 
         fontWeight: 700, 
         color: palette.dark, 
         fontFamily: font,
-        letterSpacing: '-0.5px',
+        letterSpacing: '-0.2px',
         transition: 'color 0.5s ease',
       }}>BRAND</div>
-      <div style={{ display: 'flex', gap: '28px', alignItems: 'center' }}>
-        <span style={{ fontSize: '13px', color: palette.mid, cursor: 'pointer', transition: 'color 0.5s ease' }}>Products</span>
-        <span style={{ fontSize: '13px', color: palette.mid, cursor: 'pointer', transition: 'color 0.5s ease' }}>About</span>
+      <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
+        <span style={{ fontSize: '9px', color: palette.mid, cursor: 'pointer', transition: 'color 0.5s ease' }}>Products</span>
+        <span style={{ fontSize: '9px', color: palette.mid, cursor: 'pointer', transition: 'color 0.5s ease' }}>About</span>
         <button style={{
-          padding: '10px 22px',
-          fontSize: '13px',
+          padding: '5px 12px',
+          fontSize: '9px',
           fontWeight: 600,
           borderRadius: radius,
           background: palette.dark,
@@ -206,40 +206,40 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
     </div>
 
     {/* Hero Section */}
-    <div style={{ padding: '56px 32px 40px', textAlign: 'center' }}>
+    <div style={{ padding: '16px 14px 12px', textAlign: 'center' }}>
       <p style={{ 
-        fontSize: '11px', 
+        fontSize: '7px', 
         color: palette.mid, 
         textTransform: 'uppercase', 
-        letterSpacing: '3px', 
-        marginBottom: '12px',
+        letterSpacing: '1.5px', 
+        marginBottom: '6px',
         fontWeight: 500,
         transition: 'color 0.5s ease',
       }}>Introducing</p>
       <h1 style={{ 
-        fontSize: '36px', 
+        fontSize: '18px', 
         fontWeight: 400, 
         color: palette.dark,
-        margin: '0 0 16px 0',
+        margin: '0 0 6px 0',
         lineHeight: 1.15,
         fontFamily: font,
-        letterSpacing: '-1px',
+        letterSpacing: '-0.4px',
         transition: 'color 0.5s ease',
       }}>
         Beautiful things,<br />thoughtfully made.
       </h1>
       <p style={{ 
-        fontSize: '14px', 
+        fontSize: '9px', 
         color: palette.mid, 
-        margin: '0 0 28px 0',
+        margin: '0 0 10px 0',
         transition: 'color 0.5s ease',
       }}>
         Crafted with care for people who appreciate quality.
       </p>
-      <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', gap: '6px', justifyContent: 'center' }}>
         <button style={{
-          padding: '14px 28px',
-          fontSize: '13px',
+          padding: '7px 14px',
+          fontSize: '9px',
           fontWeight: 600,
           borderRadius: radius,
           background: palette.dark,
@@ -249,13 +249,13 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
           transition: 'all 0.5s ease',
         }}>Explore</button>
         <button style={{
-          padding: '14px 28px',
-          fontSize: '13px',
+          padding: '7px 14px',
+          fontSize: '9px',
           fontWeight: 600,
           borderRadius: radius,
           background: 'transparent',
           color: palette.dark,
-          border: `1.5px solid ${palette.mid}`,
+          border: `1px solid ${palette.mid}`,
           cursor: 'pointer',
           transition: 'all 0.5s ease',
         }}>Our Story</button>
@@ -265,10 +265,10 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
     {/* Stats Bar */}
     <div style={{ 
       background: palette.accent, 
-      padding: '24px 32px',
+      padding: '10px 14px',
       display: 'flex',
       justifyContent: 'center',
-      gap: '72px',
+      gap: '32px',
       transition: 'background 0.5s ease',
     }}>
       {[
@@ -277,14 +277,14 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
         { n: '4.9', l: 'Rating' }
       ].map((stat) => (
         <div key={stat.n} style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '22px', fontWeight: 700, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>{stat.n}</div>
-          <div style={{ fontSize: '11px', color: palette.mid, marginTop: '2px', transition: 'color 0.5s ease' }}>{stat.l}</div>
+          <div style={{ fontSize: '13px', fontWeight: 700, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>{stat.n}</div>
+          <div style={{ fontSize: '8px', color: palette.mid, marginTop: '1px', transition: 'color 0.5s ease' }}>{stat.l}</div>
         </div>
       ))}
     </div>
 
     {/* Product Cards */}
-    <div style={{ padding: '32px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+    <div style={{ padding: '10px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
       {[1, 2, 3].map((i) => (
         <div key={i} style={{
           background: palette.bgAlt,
@@ -293,13 +293,13 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
           transition: 'all 0.5s ease',
         }}>
           <div style={{ 
-            height: '140px', 
+            height: '50px', 
             background: palette.accent,
             transition: 'background 0.5s ease',
           }} />
-          <div style={{ padding: '16px' }}>
-            <div style={{ fontSize: '14px', fontWeight: 600, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>Product</div>
-            <div style={{ fontSize: '13px', color: palette.mid, marginTop: '4px', transition: 'color 0.5s ease' }}>$299</div>
+          <div style={{ padding: '6px' }}>
+            <div style={{ fontSize: '9px', fontWeight: 600, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>Product</div>
+            <div style={{ fontSize: '8px', color: palette.mid, marginTop: '1px', transition: 'color 0.5s ease' }}>$299</div>
           </div>
         </div>
       ))}
@@ -307,7 +307,7 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
 
     {/* Footer */}
     <div style={{ 
-      padding: '20px 32px',
+      padding: '8px 14px',
       borderTop: `1px solid ${palette.bgAlt}`,
       display: 'flex',
       justifyContent: 'space-between',
@@ -315,8 +315,8 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
       background: palette.dark,
       transition: 'background 0.5s ease',
     }}>
-      <div style={{ fontSize: '12px', fontWeight: 600, color: getContrastColor(palette.dark), fontFamily: font }}>BRAND</div>
-      <div style={{ fontSize: '11px', color: getContrastColor(palette.dark), opacity: 0.7 }}>© 2025</div>
+      <div style={{ fontSize: '9px', fontWeight: 600, color: getContrastColor(palette.dark), fontFamily: font }}>BRAND</div>
+      <div style={{ fontSize: '8px', color: getContrastColor(palette.dark), opacity: 0.7 }}>© 2025</div>
     </div>
   </div>
 );
@@ -812,7 +812,7 @@ export const MobileFullDesigner = ({ onClose }) => {
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// 4. DESKTOP FULL DESIGNER — V2 Large side-by-side layout
+// 4. DESKTOP FULL DESIGNER — Full viewport, no scroll
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 export const DesktopFullDesigner = ({ onClose }) => {
@@ -831,56 +831,60 @@ export const DesktopFullDesigner = ({ onClose }) => {
     <div style={{ 
       position: 'fixed', 
       inset: 0, 
-      background: 'rgba(0,0,0,0.7)', 
+      background: 'rgba(0,0,0,0.75)', 
       backdropFilter: 'blur(16px)', 
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'center', 
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', 
       zIndex: 1000,
-      padding: '40px',
+      padding: '24px',
     }}>
       <div style={{ 
         background: '#fff', 
-        borderRadius: '24px', 
+        borderRadius: '20px', 
         display: 'flex',
-        maxWidth: '1200px',
         width: '100%',
-        maxHeight: 'calc(100vh - 80px)',
+        maxWidth: '1100px',
+        height: 'calc(100vh - 48px)',
+        maxHeight: '720px',
         overflow: 'hidden',
         boxShadow: '0 40px 100px rgba(0,0,0,0.35)',
       }}>
         {/* Left Panel - Website Preview */}
         <div style={{ 
-          flex: '1 1 60%',
-          background: '#f8f9fa',
-          padding: '32px',
+          flex: '1 1 55%',
+          background: '#f5f6f7',
+          padding: '16px',
           display: 'flex',
           flexDirection: 'column',
-          overflow: 'auto',
+          minWidth: 0,
+          overflow: 'hidden',
         }}>
           <div style={{ 
-            fontSize: '12px', 
+            fontSize: '9px', 
             color: '#888', 
-            marginBottom: '16px',
+            marginBottom: '8px',
             textTransform: 'uppercase',
             letterSpacing: '1px',
             fontWeight: 500,
           }}>
             Live Preview
           </div>
-          <div style={{ flex: 1, display: 'flex', alignItems: 'flex-start' }}>
-            <FullWebsitePreview palette={palette} font={font} radius={radius} />
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 0, overflow: 'hidden' }}>
+            <div style={{ width: '100%', maxWidth: '420px', maxHeight: '100%', display: 'flex', alignItems: 'center' }}>
+              <FullWebsitePreview palette={palette} font={font} radius={radius} />
+            </div>
           </div>
           {/* Generated Palette Strip */}
-          <div style={{ marginTop: '24px' }}>
-            <div style={{ fontSize: '11px', color: '#888', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+          <div style={{ marginTop: '10px', flexShrink: 0 }}>
+            <div style={{ fontSize: '8px', color: '#888', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '1px' }}>
               Generated Palette
             </div>
-            <div style={{ display: 'flex', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
+            <div style={{ display: 'flex', borderRadius: '6px', overflow: 'hidden', boxShadow: '0 2px 6px rgba(0,0,0,0.05)' }}>
               {Object.entries(palette).map(([name, c]) => (
-                <div key={name} style={{ flex: 1, padding: '16px 8px', background: c, textAlign: 'center', transition: 'background 0.5s ease' }}>
-                  <div style={{ fontSize: '9px', color: getContrastColor(c), textTransform: 'uppercase', letterSpacing: '0.5px', opacity: 0.8 }}>
+                <div key={name} style={{ flex: 1, padding: '6px 3px', background: c, textAlign: 'center', transition: 'background 0.5s ease' }}>
+                  <div style={{ fontSize: '7px', color: getContrastColor(c), textTransform: 'uppercase', letterSpacing: '0.2px', opacity: 0.85 }}>
                     {name}
                   </div>
                 </div>
@@ -891,77 +895,80 @@ export const DesktopFullDesigner = ({ onClose }) => {
 
         {/* Right Panel - Controls */}
         <div style={{ 
-          flex: '0 0 380px',
-          padding: '32px',
+          flex: '0 0 340px',
+          padding: '24px',
           display: 'flex',
           flexDirection: 'column',
           borderLeft: '1px solid #eee',
-          overflow: 'auto',
+          background: '#fff',
         }}>
           {/* Header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '28px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
             <div>
-              <div style={{ fontSize: '22px', fontWeight: 600, letterSpacing: '-0.5px' }}>Design System</div>
-              <div style={{ fontSize: '13px', color: '#888', marginTop: '4px' }}>Customize your brand identity</div>
+              <div style={{ fontSize: '20px', fontWeight: 600, letterSpacing: '-0.5px' }}>Design System</div>
+              <div style={{ fontSize: '12px', color: '#888', marginTop: '2px' }}>Customize your brand</div>
             </div>
             <button onClick={onClose} style={{ 
-              width: '36px', 
-              height: '36px', 
+              width: '32px', 
+              height: '32px', 
               borderRadius: '50%', 
               background: '#f5f5f5', 
               border: 'none', 
-              fontSize: '18px', 
+              fontSize: '16px', 
               color: '#888', 
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              transition: 'all 0.2s ease',
+              flexShrink: 0,
             }}>×</button>
           </div>
 
           {/* Tabs */}
-          <div style={{ display: 'flex', gap: '8px', marginBottom: '24px' }}>
+          <div style={{ display: 'flex', gap: '6px', marginBottom: '16px' }}>
             {[
               { id: 'color', label: 'Color' },
-              { id: 'type', label: 'Typography' },
+              { id: 'type', label: 'Type' },
               { id: 'shape', label: 'Shape' }
             ].map(t => (
               <button key={t.id} onClick={() => setTab(t.id)} style={{
-                padding: '10px 18px', 
-                borderRadius: '20px',
+                padding: '8px 16px', 
+                borderRadius: '16px',
                 background: tab === t.id ? '#1a1a1a' : '#f5f5f5',
                 color: tab === t.id ? '#fff' : '#666',
                 border: 'none', 
-                fontSize: '12px', 
+                fontSize: '11px', 
                 fontWeight: 500, 
                 cursor: 'pointer',
-                transition: 'all 0.2s ease',
               }}>{t.label}</button>
             ))}
           </div>
 
-          {/* Tab Content */}
-          <div style={{ flex: 1, marginBottom: '24px' }}>
+          {/* Tab Content - Fixed height area */}
+          <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
             {tab === 'color' && (
-              <div>
-                <div style={{ fontSize: '13px', fontWeight: 500, marginBottom: '12px', color: '#333' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <div style={{ fontSize: '12px', fontWeight: 500, marginBottom: '10px', color: '#333' }}>
                   Choose your accent color
                 </div>
-                <ColorPicker color={color} onChange={handleColorChange} />
+                <div style={{ flex: 1, minHeight: 0 }}>
+                  <ColorPickerCompact color={color} onChange={handleColorChange} />
+                </div>
               </div>
             )}
             {tab === 'type' && (
-              <div>
-                <div style={{ fontSize: '13px', fontWeight: 500, marginBottom: '12px', color: '#333' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <div style={{ fontSize: '12px', fontWeight: 500, marginBottom: '10px', color: '#333' }}>
                   Select your typeface
                 </div>
-                <FontPicker selectedFont={font} onChange={setFont} />
+                <div style={{ flex: 1, minHeight: 0, overflow: 'auto' }}>
+                  <FontPickerCompact selectedFont={font} onChange={setFont} />
+                </div>
               </div>
             )}
             {tab === 'shape' && (
               <div>
-                <div style={{ fontSize: '13px', fontWeight: 500, marginBottom: '12px', color: '#333' }}>
+                <div style={{ fontSize: '12px', fontWeight: 500, marginBottom: '10px', color: '#333' }}>
                   Choose corner style
                 </div>
                 <ShapePicker radius={radius} onChange={setRadius} />
@@ -969,19 +976,19 @@ export const DesktopFullDesigner = ({ onClose }) => {
             )}
           </div>
 
-          {/* Export Info */}
+          {/* Selection Summary */}
           <div style={{ 
             background: '#f8f9fa', 
-            borderRadius: '12px', 
-            padding: '16px',
-            marginBottom: '20px',
+            borderRadius: '10px', 
+            padding: '12px',
+            marginTop: '16px',
           }}>
-            <div style={{ fontSize: '12px', fontWeight: 600, marginBottom: '8px', color: '#333' }}>
+            <div style={{ fontSize: '10px', fontWeight: 600, marginBottom: '6px', color: '#333', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Your selections
             </div>
-            <div style={{ fontSize: '11px', color: '#666', lineHeight: 1.6 }}>
+            <div style={{ fontSize: '11px', color: '#666', display: 'flex', gap: '16px' }}>
               <div><span style={{ color: '#999' }}>Font:</span> {font.split(',')[0]}</div>
-              <div><span style={{ color: '#999' }}>Accent:</span> {color}</div>
+              <div><span style={{ color: '#999' }}>Color:</span> {color}</div>
               <div><span style={{ color: '#999' }}>Radius:</span> {radius}</div>
             </div>
           </div>
@@ -992,16 +999,172 @@ export const DesktopFullDesigner = ({ onClose }) => {
             background: '#1a1a1a', 
             color: '#fff', 
             border: 'none', 
-            padding: '16px', 
-            borderRadius: '12px', 
-            fontSize: '14px', 
+            padding: '14px', 
+            borderRadius: '10px', 
+            fontSize: '13px', 
             fontWeight: 600, 
             cursor: 'pointer',
-            transition: 'all 0.2s ease',
+            marginTop: '16px',
           }}>
             Let's build yours →
           </button>
         </div>
+      </div>
+    </div>
+  );
+};
+
+// ============ COMPACT COLOR PICKER (for no-scroll modal) ============
+const ColorPickerCompact = ({ color, onChange }) => {
+  const hsl = hexToHSL(color);
+  const [hue, setHue] = useState(hsl.h);
+  const [saturation, setSaturation] = useState(hsl.s);
+  const [lightness, setLightness] = useState(hsl.l);
+  const gradientRef = useRef(null);
+
+  const handleHueChange = (newHue) => {
+    setHue(newHue);
+    onChange(hslToHex(newHue, saturation, lightness));
+  };
+
+  const handleGradientClick = (e) => {
+    const rect = gradientRef.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    const y = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
+    const newSat = Math.round(x * 100);
+    const newLight = Math.round((1 - y) * 100);
+    setSaturation(newSat);
+    setLightness(newLight);
+    onChange(hslToHex(hue, newSat, newLight));
+  };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div
+        ref={gradientRef}
+        onClick={handleGradientClick}
+        style={{
+          width: '100%',
+          flex: 1,
+          minHeight: '100px',
+          maxHeight: '140px',
+          borderRadius: '10px',
+          background: `linear-gradient(to bottom, white, transparent, black), linear-gradient(to right, #888, hsl(${hue}, 100%, 50%))`,
+          cursor: 'crosshair',
+          position: 'relative',
+          marginBottom: '10px',
+        }}
+      >
+        <div style={{
+          position: 'absolute',
+          left: `${saturation}%`,
+          top: `${100 - lightness}%`,
+          width: '16px',
+          height: '16px',
+          borderRadius: '50%',
+          border: '3px solid white',
+          boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+          background: color,
+          transform: 'translate(-50%, -50%)',
+          pointerEvents: 'none',
+        }} />
+      </div>
+      <input
+        type="range"
+        min="0"
+        max="360"
+        value={hue}
+        onChange={(e) => handleHueChange(Number(e.target.value))}
+        style={{
+          width: '100%',
+          height: '20px',
+          borderRadius: '10px',
+          background: 'linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)',
+          appearance: 'none',
+          cursor: 'pointer',
+          marginBottom: '10px',
+        }}
+      />
+      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+        {presetColors.map((c) => (
+          <button
+            key={c}
+            onClick={() => {
+              const newHsl = hexToHSL(c);
+              setHue(newHsl.h);
+              setSaturation(newHsl.s);
+              setLightness(newHsl.l);
+              onChange(c);
+            }}
+            style={{
+              width: '26px',
+              height: '26px',
+              borderRadius: '6px',
+              background: c,
+              border: color === c ? '2px solid #1a1a1a' : '1px solid rgba(0,0,0,0.1)',
+              cursor: 'pointer',
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ============ COMPACT FONT PICKER (for no-scroll modal) ============
+const FontPickerCompact = ({ selectedFont, onChange }) => {
+  const [filter, setFilter] = useState('all');
+  const filteredFonts = fonts.filter(f => {
+    if (filter === 'all') return true;
+    if (filter === 'sans') return f.category === 'sans-serif';
+    if (filter === 'serif') return f.category === 'serif';
+    return true;
+  });
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div style={{ display: 'flex', gap: '4px', marginBottom: '10px' }}>
+        {[{ id: 'all', label: 'All' }, { id: 'sans', label: 'Sans' }, { id: 'serif', label: 'Serif' }].map(f => (
+          <button
+            key={f.id}
+            onClick={() => setFilter(f.id)}
+            style={{
+              padding: '5px 12px',
+              borderRadius: '12px',
+              background: filter === f.id ? '#1a1a1a' : '#f0f0f0',
+              color: filter === f.id ? '#fff' : '#666',
+              border: 'none',
+              fontSize: '10px',
+              fontWeight: 500,
+              cursor: 'pointer',
+            }}
+          >{f.label}</button>
+        ))}
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        {filteredFonts.map(f => (
+          <button
+            key={f.name}
+            onClick={() => onChange(`${f.name}, ${f.category}`)}
+            style={{
+              padding: '10px 12px',
+              borderRadius: '8px',
+              background: selectedFont.includes(f.name) ? '#f5f5f5' : '#fff',
+              border: selectedFont.includes(f.name) ? '2px solid #1a1a1a' : '1px solid #eee',
+              cursor: 'pointer',
+              textAlign: 'left',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <div>
+              <div style={{ fontFamily: `${f.name}, ${f.category}`, fontSize: '13px', fontWeight: 500 }}>{f.name}</div>
+              <div style={{ fontSize: '9px', color: '#999' }}>{f.category}</div>
+            </div>
+            <div style={{ fontFamily: `${f.name}, ${f.category}`, fontSize: '11px', color: '#888' }}>{f.sample}</div>
+          </button>
+        ))}
       </div>
     </div>
   );

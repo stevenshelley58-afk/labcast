@@ -1,4 +1,5 @@
 import TactileReveal from "./TactileReveal";
+import { ExternalLink } from "lucide-react";
 
 export default function FounderSection() {
   const examples = [
@@ -42,6 +43,17 @@ export default function FounderSection() {
             <p className="text-sm text-stone-400 pt-2 leading-relaxed">
               No plastic skin · No weird hands · No AI slop
             </p>
+          </div>
+          <div className="mt-8">
+            <a
+              href="https://bhm.com.au"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-stone-800 hover:bg-stone-900 text-stone-50 rounded-full transition-colors duration-200 font-medium text-sm"
+            >
+              Visit bhm.com.au
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
         </div>
 
