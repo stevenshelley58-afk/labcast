@@ -24,33 +24,6 @@ export default function Home() {
         <MarketingSection />
         <CreativeSection />
 
-        {/* The Problem */}
-        <PageSection border="top">
-          <div className="max-w-3xl">
-            <p className="text-sm text-muted mb-4">The problem</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-[1.15] mb-8">
-              Agencies talk.
-              <br />
-              We ship.
-            </h2>
-            <div className="space-y-6 text-lg text-muted leading-relaxed">
-              <p>
-                You&apos;ve been here before. The slick pitch deck. The promises about &quot;growth hacking&quot; and
-                &quot;omnichannel strategies&quot;. Then months later — reports full of vanity metrics, burnt budget,
-                and account managers who&apos;ve never spent a dollar of their own money on ads.
-              </p>
-              <p>
-                We got tired of it too. So we learned everything ourselves and built{' '}
-                <a href="https://bhm.com.au" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline">
-                  bhm.com.au
-                </a>{' '}
-                from scratch — Meta ads, email, creative, web, the lot.
-              </p>
-              <p className="text-foreground">Now we do the same for other founders.</p>
-            </div>
-          </div>
-        </PageSection>
-
         {/* Why Us */}
         <PageSection border="top">
           <div className="grid items-start gap-16 md:grid-cols-2">
