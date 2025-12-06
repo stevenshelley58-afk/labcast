@@ -19,6 +19,11 @@ export default function Home() {
         {/* Founders Intro */}
         <FoundersIntro />
 
+        {/* Services */}
+        <DesignSystemSection />
+        <MarketingSection />
+        <CreativeSection />
+
         {/* The Problem */}
         <PageSection border="top">
           <div className="max-w-3xl">
@@ -45,11 +50,6 @@ export default function Home() {
             </div>
           </div>
         </PageSection>
-
-        {/* Services */}
-        <MarketingSection />
-        <CreativeSection />
-        <DesignSystemSection />
 
         {/* Why Us */}
         <PageSection border="top">
