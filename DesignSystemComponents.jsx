@@ -163,37 +163,37 @@ const Preview = ({ palette, font = 'Inter, sans-serif', radius = '6px', scale = 
 
 // ============ FULL WEBSITE PREVIEW (Compact - for desktop modal, no scroll) ============
 const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px' }) => (
-  <div style={{ 
-    background: palette.bg, 
-    borderRadius: '10px',
+  <div style={{
+    background: palette.bg,
+    borderRadius: '12px',
     overflow: 'hidden',
     transition: 'all 0.5s ease',
     boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
     width: '100%',
   }}>
     {/* Navigation */}
-    <div style={{ 
-      display: 'flex', 
-      justifyContent: 'space-between', 
+    <div style={{
+      display: 'flex',
+      justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '8px 14px',
+      padding: '12px 18px',
       borderBottom: `1px solid ${palette.bgAlt}`,
       background: palette.bg,
     }}>
-      <div style={{ 
-        fontSize: '11px', 
-        fontWeight: 700, 
-        color: palette.dark, 
+      <div style={{
+        fontSize: '13px',
+        fontWeight: 700,
+        color: palette.dark,
         fontFamily: font,
         letterSpacing: '-0.2px',
         transition: 'color 0.5s ease',
       }}>BRAND</div>
-      <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
-        <span style={{ fontSize: '9px', color: palette.mid, cursor: 'pointer', transition: 'color 0.5s ease' }}>Products</span>
-        <span style={{ fontSize: '9px', color: palette.mid, cursor: 'pointer', transition: 'color 0.5s ease' }}>About</span>
+      <div style={{ display: 'flex', gap: '18px', alignItems: 'center' }}>
+        <span style={{ fontSize: '11px', color: palette.mid, cursor: 'pointer', transition: 'color 0.5s ease' }}>Products</span>
+        <span style={{ fontSize: '11px', color: palette.mid, cursor: 'pointer', transition: 'color 0.5s ease' }}>About</span>
         <button style={{
-          padding: '5px 12px',
-          fontSize: '9px',
+          padding: '6px 14px',
+          fontSize: '11px',
           fontWeight: 600,
           borderRadius: radius,
           background: palette.dark,
@@ -206,40 +206,40 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
     </div>
 
     {/* Hero Section */}
-    <div style={{ padding: '16px 14px 12px', textAlign: 'center' }}>
-      <p style={{ 
-        fontSize: '7px', 
-        color: palette.mid, 
-        textTransform: 'uppercase', 
-        letterSpacing: '1.5px', 
-        marginBottom: '6px',
+    <div style={{ padding: '24px 18px 18px', textAlign: 'center' }}>
+      <p style={{
+        fontSize: '8px',
+        color: palette.mid,
+        textTransform: 'uppercase',
+        letterSpacing: '1.5px',
+        marginBottom: '8px',
         fontWeight: 500,
         transition: 'color 0.5s ease',
       }}>Introducing</p>
-      <h1 style={{ 
-        fontSize: '18px', 
-        fontWeight: 400, 
+      <h1 style={{
+        fontSize: '22px',
+        fontWeight: 400,
         color: palette.dark,
-        margin: '0 0 6px 0',
-        lineHeight: 1.15,
+        margin: '0 0 8px 0',
+        lineHeight: 1.2,
         fontFamily: font,
-        letterSpacing: '-0.4px',
+        letterSpacing: '-0.5px',
         transition: 'color 0.5s ease',
       }}>
         Beautiful things,<br />thoughtfully made.
       </h1>
-      <p style={{ 
-        fontSize: '9px', 
-        color: palette.mid, 
-        margin: '0 0 10px 0',
+      <p style={{
+        fontSize: '11px',
+        color: palette.mid,
+        margin: '0 0 14px 0',
         transition: 'color 0.5s ease',
       }}>
         Crafted with care for people who appreciate quality.
       </p>
-      <div style={{ display: 'flex', gap: '6px', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
         <button style={{
-          padding: '7px 14px',
-          fontSize: '9px',
+          padding: '9px 16px',
+          fontSize: '11px',
           fontWeight: 600,
           borderRadius: radius,
           background: palette.dark,
@@ -249,8 +249,8 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
           transition: 'all 0.5s ease',
         }}>Explore</button>
         <button style={{
-          padding: '7px 14px',
-          fontSize: '9px',
+          padding: '9px 16px',
+          fontSize: '11px',
           fontWeight: 600,
           borderRadius: radius,
           background: 'transparent',
@@ -263,28 +263,28 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
     </div>
 
     {/* Stats Bar */}
-    <div style={{ 
-      background: palette.accent, 
-      padding: '10px 14px',
+    <div style={{
+      background: palette.accent,
+      padding: '14px 18px',
       display: 'flex',
       justifyContent: 'center',
-      gap: '32px',
+      gap: '40px',
       transition: 'background 0.5s ease',
     }}>
       {[
-        { n: '10K+', l: 'Customers' }, 
-        { n: '150+', l: 'Products' }, 
+        { n: '10K+', l: 'Customers' },
+        { n: '150+', l: 'Products' },
         { n: '4.9', l: 'Rating' }
       ].map((stat) => (
         <div key={stat.n} style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '13px', fontWeight: 700, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>{stat.n}</div>
-          <div style={{ fontSize: '8px', color: palette.mid, marginTop: '1px', transition: 'color 0.5s ease' }}>{stat.l}</div>
+          <div style={{ fontSize: '16px', fontWeight: 700, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>{stat.n}</div>
+          <div style={{ fontSize: '10px', color: palette.mid, marginTop: '2px', transition: 'color 0.5s ease' }}>{stat.l}</div>
         </div>
       ))}
     </div>
 
     {/* Product Cards */}
-    <div style={{ padding: '10px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+    <div style={{ padding: '14px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
       {[1, 2, 3].map((i) => (
         <div key={i} style={{
           background: palette.bgAlt,
@@ -292,22 +292,22 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
           overflow: 'hidden',
           transition: 'all 0.5s ease',
         }}>
-          <div style={{ 
-            height: '50px', 
+          <div style={{
+            height: '70px',
             background: palette.accent,
             transition: 'background 0.5s ease',
           }} />
-          <div style={{ padding: '6px' }}>
-            <div style={{ fontSize: '9px', fontWeight: 600, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>Product</div>
-            <div style={{ fontSize: '8px', color: palette.mid, marginTop: '1px', transition: 'color 0.5s ease' }}>$299</div>
+          <div style={{ padding: '8px' }}>
+            <div style={{ fontSize: '11px', fontWeight: 600, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>Product</div>
+            <div style={{ fontSize: '10px', color: palette.mid, marginTop: '2px', transition: 'color 0.5s ease' }}>$299</div>
           </div>
         </div>
       ))}
     </div>
 
     {/* Footer */}
-    <div style={{ 
-      padding: '8px 14px',
+    <div style={{
+      padding: '12px 18px',
       borderTop: `1px solid ${palette.bgAlt}`,
       display: 'flex',
       justifyContent: 'space-between',
@@ -315,8 +315,8 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
       background: palette.dark,
       transition: 'background 0.5s ease',
     }}>
-      <div style={{ fontSize: '9px', fontWeight: 600, color: getContrastColor(palette.dark), fontFamily: font }}>BRAND</div>
-      <div style={{ fontSize: '8px', color: getContrastColor(palette.dark), opacity: 0.7 }}>© 2025</div>
+      <div style={{ fontSize: '11px', fontWeight: 600, color: getContrastColor(palette.dark), fontFamily: font }}>BRAND</div>
+      <div style={{ fontSize: '10px', color: getContrastColor(palette.dark), opacity: 0.7 }}>© 2025</div>
     </div>
   </div>
 );
@@ -828,43 +828,43 @@ export const DesktopFullDesigner = ({ onClose }) => {
   };
 
   return (
-    <div style={{ 
-      position: 'fixed', 
-      inset: 0, 
-      background: 'rgba(0,0,0,0.75)', 
-      backdropFilter: 'blur(16px)', 
-      display: 'flex', 
-      alignItems: 'center', 
-      justifyContent: 'center', 
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', 
+    <div style={{
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(0,0,0,0.75)',
+      backdropFilter: 'blur(16px)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       zIndex: 1000,
-      padding: '24px',
+      padding: '40px',
     }}>
-      <div style={{ 
-        background: '#fff', 
-        borderRadius: '20px', 
+      <div style={{
+        background: '#fff',
+        borderRadius: '20px',
         display: 'flex',
         width: '100%',
-        maxWidth: '1100px',
-        height: 'calc(100vh - 48px)',
-        maxHeight: '720px',
+        maxWidth: '1400px',
+        height: 'calc(100vh - 80px)',
+        maxHeight: '90vh',
         overflow: 'hidden',
         boxShadow: '0 40px 100px rgba(0,0,0,0.35)',
       }}>
         {/* Left Panel - Website Preview */}
-        <div style={{ 
+        <div style={{
           flex: '1 1 55%',
           background: '#f5f6f7',
-          padding: '16px',
+          padding: '24px',
           display: 'flex',
           flexDirection: 'column',
           minWidth: 0,
           overflow: 'hidden',
         }}>
-          <div style={{ 
-            fontSize: '9px', 
-            color: '#888', 
-            marginBottom: '8px',
+          <div style={{
+            fontSize: '9px',
+            color: '#888',
+            marginBottom: '12px',
             textTransform: 'uppercase',
             letterSpacing: '1px',
             fontWeight: 500,
@@ -872,18 +872,18 @@ export const DesktopFullDesigner = ({ onClose }) => {
             Live Preview
           </div>
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 0, overflow: 'hidden' }}>
-            <div style={{ width: '100%', maxWidth: '420px', maxHeight: '100%', display: 'flex', alignItems: 'center' }}>
+            <div style={{ width: '100%', maxWidth: '560px', maxHeight: '100%', display: 'flex', alignItems: 'center' }}>
               <FullWebsitePreview palette={palette} font={font} radius={radius} />
             </div>
           </div>
           {/* Generated Palette Strip */}
-          <div style={{ marginTop: '10px', flexShrink: 0 }}>
-            <div style={{ fontSize: '8px', color: '#888', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+          <div style={{ marginTop: '14px', flexShrink: 0 }}>
+            <div style={{ fontSize: '8px', color: '#888', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '1px' }}>
               Generated Palette
             </div>
-            <div style={{ display: 'flex', borderRadius: '6px', overflow: 'hidden', boxShadow: '0 2px 6px rgba(0,0,0,0.05)' }}>
+            <div style={{ display: 'flex', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 6px rgba(0,0,0,0.05)' }}>
               {Object.entries(palette).map(([name, c]) => (
-                <div key={name} style={{ flex: 1, padding: '6px 3px', background: c, textAlign: 'center', transition: 'background 0.5s ease' }}>
+                <div key={name} style={{ flex: 1, padding: '8px 4px', background: c, textAlign: 'center', transition: 'background 0.5s ease' }}>
                   <div style={{ fontSize: '7px', color: getContrastColor(c), textTransform: 'uppercase', letterSpacing: '0.2px', opacity: 0.85 }}>
                     {name}
                   </div>
