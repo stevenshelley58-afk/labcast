@@ -170,15 +170,19 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
     transition: 'all 0.5s ease',
     boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
     width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
   }}>
     {/* Navigation */}
     <div style={{
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '12px 18px',
+      padding: '14px 20px',
       borderBottom: `1px solid ${palette.bgAlt}`,
       background: palette.bg,
+      flexShrink: 0,
     }}>
       <div style={{
         fontSize: '13px',
@@ -206,21 +210,21 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
     </div>
 
     {/* Hero Section */}
-    <div style={{ padding: '24px 18px 18px', textAlign: 'center' }}>
+    <div style={{ padding: '24px 18px 18px', textAlign: 'center', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <p style={{
-        fontSize: '8px',
+        fontSize: '9px',
         color: palette.mid,
         textTransform: 'uppercase',
         letterSpacing: '1.5px',
-        marginBottom: '8px',
+        marginBottom: '10px',
         fontWeight: 500,
         transition: 'color 0.5s ease',
       }}>Introducing</p>
       <h1 style={{
-        fontSize: '22px',
+        fontSize: '28px',
         fontWeight: 400,
         color: palette.dark,
-        margin: '0 0 8px 0',
+        margin: '0 0 10px 0',
         lineHeight: 1.2,
         fontFamily: font,
         letterSpacing: '-0.5px',
@@ -229,17 +233,17 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
         Beautiful things,<br />thoughtfully made.
       </h1>
       <p style={{
-        fontSize: '11px',
+        fontSize: '13px',
         color: palette.mid,
-        margin: '0 0 14px 0',
+        margin: '0 0 18px 0',
         transition: 'color 0.5s ease',
       }}>
         Crafted with care for people who appreciate quality.
       </p>
-      <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
         <button style={{
-          padding: '9px 16px',
-          fontSize: '11px',
+          padding: '12px 24px',
+          fontSize: '13px',
           fontWeight: 600,
           borderRadius: radius,
           background: palette.dark,
@@ -249,8 +253,8 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
           transition: 'all 0.5s ease',
         }}>Explore</button>
         <button style={{
-          padding: '9px 16px',
-          fontSize: '11px',
+          padding: '12px 24px',
+          fontSize: '13px',
           fontWeight: 600,
           borderRadius: radius,
           background: 'transparent',
@@ -265,11 +269,12 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
     {/* Stats Bar */}
     <div style={{
       background: palette.accent,
-      padding: '14px 18px',
+      padding: '16px 24px',
       display: 'flex',
       justifyContent: 'center',
-      gap: '40px',
+      gap: '48px',
       transition: 'background 0.5s ease',
+      flexShrink: 0,
     }}>
       {[
         { n: '10K+', l: 'Customers' },
@@ -277,14 +282,14 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
         { n: '4.9', l: 'Rating' }
       ].map((stat) => (
         <div key={stat.n} style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '16px', fontWeight: 700, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>{stat.n}</div>
-          <div style={{ fontSize: '10px', color: palette.mid, marginTop: '2px', transition: 'color 0.5s ease' }}>{stat.l}</div>
+          <div style={{ fontSize: '18px', fontWeight: 700, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>{stat.n}</div>
+          <div style={{ fontSize: '11px', color: palette.mid, marginTop: '2px', transition: 'color 0.5s ease' }}>{stat.l}</div>
         </div>
       ))}
     </div>
 
     {/* Product Cards */}
-    <div style={{ padding: '14px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
+    <div style={{ padding: '16px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', flexShrink: 0 }}>
       {[1, 2, 3].map((i) => (
         <div key={i} style={{
           background: palette.bgAlt,
@@ -293,13 +298,13 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
           transition: 'all 0.5s ease',
         }}>
           <div style={{
-            height: '70px',
+            height: '80px',
             background: palette.accent,
             transition: 'background 0.5s ease',
           }} />
-          <div style={{ padding: '8px' }}>
-            <div style={{ fontSize: '11px', fontWeight: 600, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>Product</div>
-            <div style={{ fontSize: '10px', color: palette.mid, marginTop: '2px', transition: 'color 0.5s ease' }}>$299</div>
+          <div style={{ padding: '10px' }}>
+            <div style={{ fontSize: '12px', fontWeight: 600, color: palette.dark, fontFamily: font, transition: 'color 0.5s ease' }}>Product</div>
+            <div style={{ fontSize: '11px', color: palette.mid, marginTop: '2px', transition: 'color 0.5s ease' }}>$299</div>
           </div>
         </div>
       ))}
@@ -307,16 +312,17 @@ const FullWebsitePreview = ({ palette, font = 'Inter, sans-serif', radius = '8px
 
     {/* Footer */}
     <div style={{
-      padding: '12px 18px',
+      padding: '14px 20px',
       borderTop: `1px solid ${palette.bgAlt}`,
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
       background: palette.dark,
       transition: 'background 0.5s ease',
+      flexShrink: 0,
     }}>
-      <div style={{ fontSize: '11px', fontWeight: 600, color: getContrastColor(palette.dark), fontFamily: font }}>BRAND</div>
-      <div style={{ fontSize: '10px', color: getContrastColor(palette.dark), opacity: 0.7 }}>© 2025</div>
+      <div style={{ fontSize: '12px', fontWeight: 600, color: getContrastColor(palette.dark), fontFamily: font }}>BRAND</div>
+      <div style={{ fontSize: '11px', color: getContrastColor(palette.dark), opacity: 0.7 }}>© 2025</div>
     </div>
   </div>
 );
@@ -871,8 +877,8 @@ export const DesktopFullDesigner = ({ onClose }) => {
           }}>
             Live Preview
           </div>
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 0, overflow: 'hidden' }}>
-            <div style={{ width: '100%', maxWidth: '560px', maxHeight: '100%', display: 'flex', alignItems: 'center' }}>
+          <div style={{ flex: 1, display: 'flex', alignItems: 'stretch', justifyContent: 'center', minHeight: 0, overflow: 'hidden' }}>
+            <div style={{ width: '100%', maxWidth: '560px', height: '100%', display: 'flex' }}>
               <FullWebsitePreview palette={palette} font={font} radius={radius} />
             </div>
           </div>
