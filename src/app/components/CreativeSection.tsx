@@ -15,7 +15,7 @@ import TactileReveal from "@/rendervault/components/TactileReveal";
  */
 export function CreativeSection() {
   return (
-    <PageSection tone="surface" border="top">
+    <PageSection tone="surface" border="top" className="min-h-[500px] flex items-center">
       <div className="grid gap-12 md:grid-cols-2 md:items-center">
         <div>
           <p className="text-sm text-muted mb-4">Creative</p>
@@ -43,13 +43,15 @@ export function CreativeSection() {
             Learn about Render Vault →
           </Link>
         </div>
-        <div className="w-full">
-          <TactileReveal
-            beforeImage="/images/apparel-before.png"
-            afterImage="/images/apparel-after.png"
-            className="aspect-square w-full"
-            priority={false}
-          />
+        <div className="w-full overflow-hidden">
+          <div className="max-w-md mx-auto">
+            <TactileReveal
+              beforeImage="/images/apparel-before.png"
+              afterImage="/images/apparel-after.png"
+              className="aspect-square w-full"
+              priority={false}
+            />
+          </div>
         </div>
       </div>
     </PageSection>

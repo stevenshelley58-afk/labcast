@@ -30,7 +30,7 @@ export function DesignSystemSection() {
 
   return (
     <>
-      <PageSection tone="surface" border="top">
+      <PageSection tone="surface" border="top" className="min-h-[500px] flex items-center">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <div>
             <p className="text-sm text-muted mb-4">Build</p>
@@ -57,11 +57,11 @@ export function DesignSystemSection() {
           </div>
           <div className="w-full overflow-hidden">
             {isMobile ? (
-              <div className="max-w-sm mx-auto [&>section]:!p-0 [&>section_h2]:!hidden">
+              <div className="max-w-md mx-auto [&>section]:!p-0 [&>section_h2]:!hidden">
                 <MobileWidget onOpenFullDesigner={() => setShowMobileModal(true)} />
               </div>
             ) : (
-              <div className="max-w-lg mx-auto [&>section]:!p-0 [&>section_h2]:!hidden">
+              <div className="max-w-md mx-auto [&>section]:!p-0 [&>section_h2]:!hidden">
                 <DesktopWidget onOpenFullDesigner={() => setShowDesktopModal(true)} />
               </div>
             )}

@@ -11,7 +11,7 @@ import { PageSection } from "@/ui/PageSection";
  */
 export function MarketingSection() {
   return (
-    <PageSection id="services" tone="surface" border="top" className="scroll-mt-24">
+    <PageSection id="services" tone="surface" border="top" className="scroll-mt-24 min-h-[500px] flex items-center">
       <div className="max-w-3xl">
         <p className="text-sm text-muted mb-4">Marketing</p>
         <h2 className="text-3xl md:text-4xl font-medium tracking-tight leading-[1.15] mb-6">
