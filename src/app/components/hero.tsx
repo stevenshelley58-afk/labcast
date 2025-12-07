@@ -216,10 +216,6 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto flex min-h-[560px] w-full max-w-5xl flex-col items-start gap-10 px-6 pt-20 md:pt-24 lg:pt-28 text-left">
-        <p className="text-xs font-semibold uppercase tracking-[0.34em] text-text-subtle">
-          From the founders of bhm.com.au
-        </p>
-
         <div className="space-y-6">
           <h1 className="text-4xl font-semibold tracking-tight text-text-ink sm:text-5xl lg:text-6xl">
             Real execution.
@@ -237,20 +233,6 @@ export function Hero() {
           </Button>
         </div>
 
-        <div className="mt-4 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-text-ink shadow-soft">
-            <p className="text-xs uppercase tracking-[0.3em] text-text-subtle">Marketing</p>
-            <p className="mt-2 text-base font-semibold">Meta Ads</p>
-          </div>
-          <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-text-ink shadow-soft">
-            <p className="text-xs uppercase tracking-[0.3em] text-text-subtle">Creative</p>
-            <p className="mt-2 text-base font-semibold">Render Vault</p>
-          </div>
-          <div className="rounded-2xl border border-border/40 bg-panel/80 p-4 text-text-ink shadow-soft">
-            <p className="text-xs uppercase tracking-[0.3em] text-text-subtle">Build</p>
-            <p className="mt-2 text-base font-semibold">Web &amp; product</p>
-          </div>
-        </div>
       </div>
     </section>
   );
