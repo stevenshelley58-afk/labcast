@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Navigation } from '../components/navigation';
+import { Footer } from '../components/footer';
+import Link from 'next/link';
 
 export default function NewMobilePage() {
   const [cursorVisible, setCursorVisible] = useState(true);
@@ -13,523 +16,263 @@ export default function NewMobilePage() {
     return () => clearInterval(interval);
   }, []);
 
-  const mono = 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace';
-
   return (
-    <div className="min-h-screen bg-neutral-200 p-8 flex justify-center items-start py-12">
+    <div className="min-h-screen bg-white">
+      <Navigation />
 
-      <div
-        className="relative rounded-[55px] p-[12px]"
-        style={{
-          background: 'linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%)',
-          boxShadow: '0 50px 100px -20px rgba(0,0,0,0.5)'
-        }}
-      >
-        <div
-          className="relative overflow-y-auto overflow-x-hidden"
-          style={{
-            width: '390px',
-            height: '844px',
-            borderRadius: '44px',
-            background: '#fff'
-          }}
-        >
-          {/* Dynamic Island */}
-          <div className="sticky top-[12px] left-1/2 z-50 mx-auto" style={{ width: '126px', height: '37px', background: '#000', borderRadius: '20px', transform: 'translateX(0)' }} />
+      {/* Hero Section */}
+      <section className="pt-28 pb-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-sm text-gray-400 font-mono mb-4">Every landing page you&apos;ve ever seen/</p>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+            [clickbait]
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-500 italic mb-8">
+            [subline with urgency]
+          </p>
 
-          {/* Content */}
-          <div style={{ fontFamily: mono, color: '#000' }}>
-
-            {/* Nav */}
-            <div style={{ padding: '24px 28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '15px', fontWeight: '600' }}>Labcast</span>
-              <span style={{ fontSize: '13px' }}>[menu]</span>
-            </div>
-
-            {/* Hero */}
-            <div style={{ padding: '0 28px 40px' }}>
-
-              <div style={{ marginBottom: '20px' }}>
-                <span style={{ fontSize: '36px', fontWeight: '700', letterSpacing: '-0.04em', lineHeight: 1.1 }}>[clickbait]</span>
-              </div>
-
-              <div style={{ marginBottom: '16px' }}>
-                <span style={{ fontSize: '15px', fontStyle: 'italic' }}>[subline with urgency]</span>
-              </div>
-
-              <div style={{ marginBottom: '28px' }}>
-                <span style={{ fontSize: '15px', fontWeight: '600' }}>[cta]</span>
-              </div>
-
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '32px' }}>
-                <span style={{ fontSize: '12px' }}>[feature]</span>
-                <span style={{ fontSize: '12px' }}>[offering]</span>
-                <span style={{ fontSize: '12px' }}>[upsell]</span>
-              </div>
-
-              {/* Placeholder image */}
-              <div style={{
-                width: '100%',
-                height: '160px',
-                border: '1px solid #000',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                gap: '8px',
-                marginBottom: '32px'
-              }}>
-                <span style={{ fontSize: '32px' }}>✕</span>
-                <span style={{ fontSize: '11px', textAlign: 'center', padding: '0 16px' }}>[stock photo of people laughing at salad]</span>
-              </div>
-
-              {/* Stats above fold */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '32px' }}>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '24px', fontWeight: '700' }}>[big]</div>
-                  <div style={{ fontSize: '10px', opacity: 0.5 }}>[thing]</div>
-                </div>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '24px', fontWeight: '700' }}>[bigger]</div>
-                  <div style={{ fontSize: '10px', opacity: 0.5 }}>[thing]</div>
-                </div>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '24px', fontWeight: '700' }}>[wow]</div>
-                  <div style={{ fontSize: '10px', opacity: 0.5 }}>[thing]</div>
-                </div>
-              </div>
-
-              {/* Testimonial above fold */}
-              <div style={{
-                fontStyle: 'italic',
-                fontSize: '14px',
-                marginBottom: '8px'
-              }}>
-                &quot;[testimonial]&quot;
-              </div>
-              <div style={{ fontSize: '11px', opacity: 0.5 }}>
-                — [name], [title]
-              </div>
-
-            </div>
-
-            {/* Divider */}
-            <div style={{ borderTop: '1px solid #000' }} />
-
-            {/* The twist - Real content intro */}
-            <div style={{ padding: '40px 28px', background: '#000', color: '#fff' }}>
-              <div style={{ fontSize: '11px', marginBottom: '12px', opacity: 0.5 }}>or skip the bullshit/</div>
-              <div style={{ fontSize: '24px', fontWeight: '600', letterSpacing: '-0.02em', lineHeight: 1.2, marginBottom: '24px' }}>
-                We help you grow.
-              </div>
-              <div style={{ fontSize: '13px', opacity: 0.6, marginBottom: '32px' }}>
-                Meta · Creative · Web
-              </div>
-
-              {/* Actually section merged in */}
-              <div style={{ borderTop: '1px solid #333', paddingTop: '24px' }}>
-                <div style={{ fontSize: '16px', lineHeight: 1.5, marginBottom: '16px' }}>
-                  We built BHM. We run our own ads. We test on our own money first.
-                </div>
-                <div style={{ fontSize: '14px', fontWeight: '600' }}>
-                  → bhm.com.au
-                </div>
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div style={{ borderTop: '1px solid #000' }} />
-
-            {/* Before/After - Real work */}
-            <div style={{ padding: '40px 28px' }}>
-              <div style={{ fontSize: '11px', marginBottom: '16px' }}>AI Creative/</div>
-
-              {/* Actual Before/After Slider */}
-              <div style={{
-                position: 'relative',
-                width: '100%',
-                height: '280px',
-                border: '1px solid #000',
-                overflow: 'hidden',
-                cursor: 'ew-resize'
-              }}>
-                {/* Before side */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  background: '#f5f5f5',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  padding: '20px'
-                }}>
-                  <div style={{ fontSize: '10px', marginBottom: '12px', opacity: 0.4 }}>before</div>
-                  <div style={{
-                    flex: 1,
-                    background: '#fff',
-                    border: '1px solid #ddd',
-                    borderRadius: '8px',
-                    padding: '16px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '8px'
-                  }}>
-                    <div style={{ width: '60%', height: '12px', background: '#e0e0e0', borderRadius: '2px' }} />
-                    <div style={{ width: '80%', height: '8px', background: '#e0e0e0', borderRadius: '2px' }} />
-                    <div style={{ width: '40%', height: '8px', background: '#e0e0e0', borderRadius: '2px' }} />
-                    <div style={{ flex: 1, background: '#f0f0f0', borderRadius: '4px', marginTop: '8px' }} />
-                  </div>
-                </div>
-
-                {/* After side */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: `${sliderPosition}%`,
-                  height: '100%',
-                  background: '#1a1a1a',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  padding: '20px'
-                }}>
-                  <div style={{ fontSize: '10px', marginBottom: '12px', color: '#666' }}>after</div>
-                  <div style={{
-                    flex: 1,
-                    background: '#fff',
-                    borderRadius: '12px',
-                    padding: '16px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '10px',
-                    minWidth: '294px'
-                  }}>
-                    <div style={{ fontSize: '14px', fontWeight: '600', color: '#000' }}>BHM Home</div>
-                    <div style={{ fontSize: '11px', color: '#666' }}>Reclaimed teak furniture</div>
-                    <div style={{
-                      flex: 1,
-                      background: 'linear-gradient(135deg, #f8f6f4 0%, #ebe7e2 100%)',
-                      borderRadius: '8px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}>
-                      <span style={{ fontSize: '24px' }}>🪑</span>
-                    </div>
-                    <div style={{
-                      background: '#000',
-                      color: '#fff',
-                      padding: '10px',
-                      borderRadius: '6px',
-                      fontSize: '11px',
-                      textAlign: 'center'
-                    }}>Shop Collection</div>
-                  </div>
-                </div>
-
-                {/* Slider handle */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: `${sliderPosition}%`,
-                    transform: 'translateX(-50%)',
-                    width: '3px',
-                    height: '100%',
-                    background: '#fff',
-                    cursor: 'ew-resize',
-                    zIndex: 10
-                  }}
-                >
-                  <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '32px',
-                    height: '32px',
-                    background: '#fff',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '12px',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
-                  }}>
-                    ↔
-                  </div>
-                </div>
-
-                {/* Drag handler */}
-                <input
-                  type="range"
-                  min="10"
-                  max="90"
-                  value={sliderPosition}
-                  onChange={(e) => setSliderPosition(Number(e.target.value))}
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    opacity: 0,
-                    cursor: 'ew-resize',
-                    zIndex: 20
-                  }}
-                />
-              </div>
-
-              <div style={{ fontSize: '11px', marginTop: '12px', opacity: 0.5 }}>
-                ↔ drag to compare
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div style={{ borderTop: '1px solid #000' }} />
-
-            {/* Design Web App */}
-            <div style={{ padding: '40px 28px' }}>
-              <div style={{ fontSize: '11px', marginBottom: '16px' }}>Website Design/</div>
-              <div style={{ fontSize: '20px', fontWeight: '700', marginBottom: '24px' }}>[interactive demo]</div>
-
-              {/* Mini App UI */}
-              <div style={{
-                border: '1px solid #000',
-                borderRadius: '12px',
-                overflow: 'hidden',
-                background: '#fafafa'
-              }}>
-                {/* App header */}
-                <div style={{
-                  padding: '12px 16px',
-                  borderBottom: '1px solid #000',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  background: '#000',
-                  color: '#fff'
-                }}>
-                  <span style={{ fontSize: '12px', fontWeight: '600' }}>Render Vault</span>
-                  <span style={{ fontSize: '10px', opacity: 0.5 }}>AI Creative</span>
-                </div>
-
-                {/* App content */}
-                <div style={{ padding: '16px' }}>
-                  {/* Upload area */}
-                  <div style={{
-                    border: '1px dashed #ccc',
-                    borderRadius: '8px',
-                    padding: '24px',
-                    textAlign: 'center',
-                    marginBottom: '16px',
-                    background: '#fff'
-                  }}>
-                    <div style={{ fontSize: '24px', marginBottom: '8px' }}>📦</div>
-                    <div style={{ fontSize: '11px', opacity: 0.5 }}>[drop product]</div>
-                  </div>
-
-                  {/* Output grid */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '16px' }}>
-                    <div style={{
-                      aspectRatio: '1',
-                      background: 'linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%)',
-                      borderRadius: '6px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}>
-                      <span style={{ fontSize: '20px' }}>🪑</span>
-                    </div>
-                    <div style={{
-                      aspectRatio: '1',
-                      background: 'linear-gradient(135deg, #e8e4df 0%, #d4cfc8 100%)',
-                      borderRadius: '6px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}>
-                      <span style={{ fontSize: '20px' }}>🪑</span>
-                    </div>
-                    <div style={{
-                      aspectRatio: '1',
-                      background: 'linear-gradient(135deg, #f5f0eb 0%, #e6dfd6 100%)',
-                      borderRadius: '6px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}>
-                      <span style={{ fontSize: '20px' }}>🪑</span>
-                    </div>
-                    <div style={{
-                      aspectRatio: '1',
-                      background: 'linear-gradient(135deg, #1a1a1a 0%, #333 100%)',
-                      borderRadius: '6px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}>
-                      <span style={{ fontSize: '20px' }}>🪑</span>
-                    </div>
-                  </div>
-
-                  {/* Generate button */}
-                  <div style={{
-                    background: '#000',
-                    color: '#fff',
-                    padding: '12px',
-                    borderRadius: '6px',
-                    textAlign: 'center',
-                    fontSize: '12px',
-                    fontWeight: '600'
-                  }}>
-                    [generate]
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ fontSize: '11px', marginTop: '16px', opacity: 0.5 }}>
-                your site → designed, built, shipped
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div style={{ borderTop: '1px solid #000' }} />
-
-            {/* Marketing Section */}
-            <div style={{ padding: '40px 28px', background: '#000', color: '#fff' }}>
-              <div style={{ fontSize: '11px', marginBottom: '16px', opacity: 0.5 }}>Marketing/</div>
-              <div style={{ fontSize: '20px', fontWeight: '700', marginBottom: '24px' }}>[vanity metrics]</div>
-
-              {/* Mini dashboard */}
-              <div style={{
-                background: '#111',
-                borderRadius: '12px',
-                padding: '20px',
-                border: '1px solid #333'
-              }}>
-                {/* Header */}
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  marginBottom: '20px'
-                }}>
-                  <span style={{ fontSize: '12px', fontWeight: '600' }}>Meta Ads</span>
-                  <span style={{ fontSize: '10px', opacity: 0.5 }}>Last 30 days</span>
-                </div>
-
-                {/* Stats row */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                  <div>
-                    <div style={{ fontSize: '22px', fontWeight: '700' }}>4.2x</div>
-                    <div style={{ fontSize: '10px', opacity: 0.5 }}>ROAS</div>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '22px', fontWeight: '700' }}>$12</div>
-                    <div style={{ fontSize: '10px', opacity: 0.5 }}>CPA</div>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '22px', fontWeight: '700' }}>312</div>
-                    <div style={{ fontSize: '10px', opacity: 0.5 }}>Conv</div>
-                  </div>
-                </div>
-
-                {/* Mini chart bars */}
-                <div style={{ display: 'flex', alignItems: 'flex-end', gap: '4px', height: '60px' }}>
-                  {[40, 55, 45, 70, 65, 80, 75, 90, 85, 95, 88, 92].map((h, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        flex: 1,
-                        height: `${h}%`,
-                        background: i === 11 ? '#fff' : '#333',
-                        borderRadius: '2px'
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <div style={{ fontSize: '11px', marginTop: '16px', opacity: 0.5 }}>
-                real numbers from real campaigns
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div style={{ borderTop: '1px solid #fff' }} />
-
-            {/* Why us */}
-            <div style={{ padding: '40px 28px' }}>
-              <div style={{ fontSize: '11px', marginBottom: '16px' }}>why us/</div>
-              <div style={{ fontSize: '20px', fontWeight: '700', marginBottom: '32px' }}>not [differentiators]</div>
-
-              {/* Point 1 */}
-              <div style={{ marginBottom: '28px' }}>
-                <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '8px' }}>We have skin in the game.</div>
-                <div style={{ fontSize: '13px', opacity: 0.6, lineHeight: 1.5 }}>
-                  We run BHM with our own money. Every strategy we recommend is one we&apos;ve tested ourselves.
-                </div>
-              </div>
-
-              {/* Point 2 */}
-              <div style={{ marginBottom: '28px' }}>
-                <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '8px' }}>You talk to the people doing the work.</div>
-                <div style={{ fontSize: '13px', opacity: 0.6, lineHeight: 1.5 }}>
-                  No account managers. No junior staff learning on your dime. Direct access to the people actually building.
-                </div>
-              </div>
-
-              {/* Point 3 */}
-              <div>
-                <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '8px' }}>We only take clients we can help.</div>
-                <div style={{ fontSize: '13px', opacity: 0.6, lineHeight: 1.5 }}>
-                  We&apos;re not trying to scale an agency. If we can&apos;t move the needle, we&apos;ll say so upfront.
-                </div>
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div style={{ borderTop: '1px solid #000' }} />
-
-            {/* Contact - real */}
-            <div style={{ padding: '40px 28px' }}>
-              <div style={{ fontSize: '11px', marginBottom: '16px' }}>contact/</div>
-              <div style={{ fontSize: '20px', fontWeight: '700', marginBottom: '16px' }}>steve@labcast.com.au</div>
-              <div style={{ fontSize: '13px', opacity: 0.5 }}>Perth, AU</div>
-            </div>
-
-            {/* Bottom cursor */}
-            <div style={{
-              padding: '40px 28px 60px',
-              display: 'flex',
-              justifyContent: 'center'
-            }}>
-              <div style={{
-                fontSize: '36px',
-                fontWeight: '700',
-                letterSpacing: '-0.03em',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '140px'
-              }}>
-                <span>[</span>
-                <span style={{ opacity: cursorVisible ? 1 : 0, fontWeight: '300' }}>|</span>
-                <span>]</span>
-              </div>
-            </div>
-
+          <div className="flex flex-wrap gap-4 mb-12">
+            <Link
+              href="#real-content"
+              className="bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition"
+            >
+              Skip to the real stuff
+            </Link>
+            <Link
+              href="#satire"
+              className="border border-black px-6 py-3 rounded-full font-medium hover:bg-gray-50 transition"
+            >
+              See the satire
+            </Link>
           </div>
 
-          {/* Home indicator */}
-          <div className="absolute left-1/2 -translate-x-1/2" style={{ bottom: '8px', width: '140px', height: '5px', background: '#000', borderRadius: '100px' }} />
+          <div className="flex flex-wrap gap-4 text-sm text-gray-500 font-mono">
+            <span>[feature]</span>
+            <span>[offering]</span>
+            <span>[upsell]</span>
+          </div>
         </div>
-      </div>
+      </section>
 
+      {/* Stock Photo Section */}
+      <section id="satire" className="py-20 px-6 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="border border-black aspect-video flex flex-col items-center justify-center gap-4 bg-white">
+            <span className="text-6xl">✕</span>
+            <span className="text-sm text-gray-500 font-mono">[stock photo of people laughing at salad]</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Vanity Stats */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-3 gap-8 text-center">
+            <div>
+              <div className="text-4xl md:text-5xl font-bold">[big]</div>
+              <div className="text-sm text-gray-400 mt-2">[thing]</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-bold">[bigger]</div>
+              <div className="text-sm text-gray-400 mt-2">[thing]</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-bold">[wow]</div>
+              <div className="text-sm text-gray-400 mt-2">[thing]</div>
+            </div>
+          </div>
+
+          <div className="mt-16 max-w-2xl mx-auto text-center">
+            <p className="text-xl italic text-gray-600 mb-4">&quot;[testimonial]&quot;</p>
+            <p className="text-sm text-gray-400">— [name], [title]</p>
+          </div>
+        </div>
+      </section>
+
+      {/* The Real Content Section */}
+      <section id="real-content" className="py-20 px-6 bg-black text-white">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-sm text-gray-500 font-mono mb-4">or skip the bullshit/</p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">We help you grow.</h2>
+          <p className="text-lg text-gray-400 mb-12">Meta · Creative · Web</p>
+
+          <div className="border-t border-gray-800 pt-8">
+            <p className="text-lg md:text-xl mb-6">
+              We built BHM. We run our own ads. We test on our own money first.
+            </p>
+            <a
+              href="https://bhm.com.au"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-white hover:text-gray-300 transition font-medium"
+            >
+              → bhm.com.au
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Before/After Slider */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-sm text-gray-400 font-mono mb-4">AI Creative/</p>
+          <h3 className="text-2xl md:text-3xl font-bold mb-8">Real work, not mockups</h3>
+
+          <div className="relative w-full aspect-[4/3] border border-black overflow-hidden cursor-ew-resize">
+            {/* Before side */}
+            <div className="absolute inset-0 bg-gray-100 p-8 flex flex-col">
+              <span className="text-xs text-gray-400 mb-4">before</span>
+              <div className="flex-1 bg-white border border-gray-200 rounded-lg p-6 flex flex-col gap-3">
+                <div className="w-3/5 h-4 bg-gray-200 rounded" />
+                <div className="w-4/5 h-3 bg-gray-200 rounded" />
+                <div className="w-2/5 h-3 bg-gray-200 rounded" />
+                <div className="flex-1 bg-gray-100 rounded-lg mt-4" />
+              </div>
+            </div>
+
+            {/* After side */}
+            <div
+              className="absolute inset-y-0 left-0 bg-gray-900 p-8 flex flex-col overflow-hidden"
+              style={{ width: `${sliderPosition}%` }}
+            >
+              <span className="text-xs text-gray-500 mb-4">after</span>
+              <div className="flex-1 bg-white rounded-xl p-6 flex flex-col gap-3 min-w-[300px]">
+                <div className="font-semibold">BHM Home</div>
+                <div className="text-sm text-gray-500">Reclaimed teak furniture</div>
+                <div className="flex-1 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
+                  <span className="text-4xl">🪑</span>
+                </div>
+                <button className="bg-black text-white py-3 rounded-lg text-sm font-medium">
+                  Shop Collection
+                </button>
+              </div>
+            </div>
+
+            {/* Slider handle */}
+            <div
+              className="absolute inset-y-0 w-1 bg-white cursor-ew-resize z-10"
+              style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
+            >
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
+                ↔
+              </div>
+            </div>
+
+            {/* Invisible range input for dragging */}
+            <input
+              type="range"
+              min="10"
+              max="90"
+              value={sliderPosition}
+              onChange={(e) => setSliderPosition(Number(e.target.value))}
+              className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20"
+            />
+          </div>
+          <p className="text-sm text-gray-400 mt-4">↔ drag to compare</p>
+        </div>
+      </section>
+
+      {/* Marketing Dashboard */}
+      <section className="py-20 px-6 bg-black text-white">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-sm text-gray-500 font-mono mb-4">Marketing/</p>
+          <h3 className="text-2xl md:text-3xl font-bold mb-8">[vanity metrics]</h3>
+
+          <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+            <div className="flex justify-between items-center mb-8">
+              <span className="font-semibold">Meta Ads</span>
+              <span className="text-sm text-gray-500">Last 30 days</span>
+            </div>
+
+            <div className="grid grid-cols-3 gap-8 mb-8">
+              <div>
+                <div className="text-3xl md:text-4xl font-bold">4.2x</div>
+                <div className="text-sm text-gray-500">ROAS</div>
+              </div>
+              <div>
+                <div className="text-3xl md:text-4xl font-bold">$12</div>
+                <div className="text-sm text-gray-500">CPA</div>
+              </div>
+              <div>
+                <div className="text-3xl md:text-4xl font-bold">312</div>
+                <div className="text-sm text-gray-500">Conv</div>
+              </div>
+            </div>
+
+            <div className="flex items-end gap-1 h-20">
+              {[40, 55, 45, 70, 65, 80, 75, 90, 85, 95, 88, 92].map((h, i) => (
+                <div
+                  key={i}
+                  className="flex-1 rounded"
+                  style={{
+                    height: `${h}%`,
+                    background: i === 11 ? '#fff' : '#333'
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+          <p className="text-sm text-gray-500 mt-6">real numbers from real campaigns</p>
+        </div>
+      </section>
+
+      {/* Why Us */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-sm text-gray-400 font-mono mb-4">why us/</p>
+          <h3 className="text-2xl md:text-3xl font-bold mb-12">not [differentiators]</h3>
+
+          <div className="grid md:grid-cols-3 gap-12">
+            <div>
+              <h4 className="font-bold text-lg mb-3">We have skin in the game.</h4>
+              <p className="text-gray-500">
+                We run BHM with our own money. Every strategy we recommend is one we&apos;ve tested ourselves.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold text-lg mb-3">You talk to the people doing the work.</h4>
+              <p className="text-gray-500">
+                No account managers. No junior staff learning on your dime. Direct access to the people actually building.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold text-lg mb-3">We only take clients we can help.</h4>
+              <p className="text-gray-500">
+                We&apos;re not trying to scale an agency. If we can&apos;t move the needle, we&apos;ll say so upfront.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className="py-20 px-6 border-t border-gray-200">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-sm text-gray-400 font-mono mb-4">contact/</p>
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">steve@labcast.com.au</h3>
+          <p className="text-gray-500 mb-8">Perth, AU</p>
+
+          <Link
+            href="/#contact"
+            className="inline-block bg-black text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition"
+          >
+            Ready for the real thing?
+          </Link>
+        </div>
+      </section>
+
+      {/* Blinking cursor */}
+      <section className="py-16 px-6">
+        <div className="flex justify-center">
+          <div className="text-4xl font-bold tracking-tight flex items-center gap-4">
+            <span>[</span>
+            <span style={{ opacity: cursorVisible ? 1 : 0 }} className="font-light">|</span>
+            <span>]</span>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 }
