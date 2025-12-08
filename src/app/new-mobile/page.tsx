@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Navigation } from '../components/navigation';
 import { Footer } from '../components/footer';
+import { DesignSystemSection } from '../components/DesignSystemSection';
 import TactileReveal from '@/rendervault/components/TactileReveal';
 import Link from 'next/link';
 
@@ -113,56 +114,8 @@ export default function NewMobilePage() {
         </div>
       </section>
 
-      {/* Website Design / Mini App */}
-      <section className="py-24 px-6 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-sm text-gray-400 font-mono mb-6">Website Design/</p>
-          <h3 className="text-3xl md:text-4xl font-bold mb-12">[interactive demo]</h3>
-
-          {/* Mini App UI */}
-          <div className="max-w-md mx-auto border border-black rounded-2xl overflow-hidden bg-white shadow-lg">
-            {/* App header */}
-            <div className="px-5 py-4 border-b border-black flex justify-between items-center bg-black text-white">
-              <span className="text-sm font-semibold">Render Vault</span>
-              <span className="text-xs text-gray-400">AI Creative</span>
-            </div>
-
-            {/* App content */}
-            <div className="p-5">
-              {/* Upload area */}
-              <div className="border border-dashed border-gray-300 rounded-xl p-8 text-center mb-5 bg-gray-50">
-                <div className="text-3xl mb-3">📦</div>
-                <div className="text-sm text-gray-400">[drop product]</div>
-              </div>
-
-              {/* Output grid */}
-              <div className="grid grid-cols-2 gap-3 mb-5">
-                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🪑</span>
-                </div>
-                <div className="aspect-square bg-gradient-to-br from-stone-100 to-stone-200 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🪑</span>
-                </div>
-                <div className="aspect-square bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🪑</span>
-                </div>
-                <div className="aspect-square bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🪑</span>
-                </div>
-              </div>
-
-              {/* Generate button */}
-              <button className="w-full bg-black text-white py-4 rounded-lg text-sm font-semibold">
-                [generate]
-              </button>
-            </div>
-          </div>
-
-          <p className="text-sm text-gray-400 text-center mt-8">
-            your site → designed, built, shipped
-          </p>
-        </div>
-      </section>
+      {/* Website Design Section - Using the real component from main site */}
+      <DesignSystemSection />
 
       {/* Marketing Dashboard */}
       <section className="py-24 px-6 bg-black text-white">
