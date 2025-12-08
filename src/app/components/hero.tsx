@@ -215,7 +215,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-white" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[560px] w-full max-w-5xl flex-col items-start gap-10 px-6 pt-20 md:pt-24 lg:pt-28 text-left">
+      <div className="relative mx-auto flex min-h-[560px] w-full max-w-5xl flex-col items-start justify-center gap-10 px-6 text-left">
         <div className="space-y-6">
           <h1 className="text-4xl font-semibold tracking-tight text-text-ink sm:text-5xl lg:text-6xl">
             Real execution.
