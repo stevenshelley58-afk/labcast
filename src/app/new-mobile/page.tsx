@@ -1,11 +1,167 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Navigation } from '../components/navigation';
 import { Footer } from '../components/footer';
-import { DesignSystemSection } from '../components/DesignSystemSection';
 import TactileReveal from '@/rendervault/components/TactileReveal';
 import Link from 'next/link';
+
+// Inline Design System Widget
+const presetColors = ['#D4D9E3', '#E5DFD5', '#D4DED4', '#E8D8DC', '#D4E3E8', '#1E3A5F'];
+
+function hexToHSL(hex: string) {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h = 0, s = 0;
+  const l = (max + min) / 2;
+  if (max !== min) {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+      case g: h = ((b - r) / d + 2) / 6; break;
+      case b: h = ((r - g) / d + 4) / 6; break;
+    }
+  }
+  return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+}
+
+function hslToHex(h: number, s: number, l: number) {
+  s /= 100; l /= 100;
+  const a = s * Math.min(l, 1 - l);
+  const f = (n: number) => {
+    const k = (n + h / 30) % 12;
+    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    return Math.round(255 * color).toString(16).padStart(2, '0');
+  };
+  return `#${f(0)}${f(8)}${f(4)}`.toUpperCase();
+}
+
+function generatePalette(accentHex: string) {
+  const { h, s } = hexToHSL(accentHex);
+  return {
+    bg: hslToHex(h, Math.min(s * 0.3, 5), 97),
+    bgAlt: hslToHex(h, Math.min(s * 0.4, 8), 93),
+    accent: accentHex,
+    mid: hslToHex(h, Math.min(s * 0.5, 15), 60),
+    dark: hslToHex(h, Math.min(s * 0.6, 20), 25),
+  };
+}
+
+function DesignSystemWidget() {
+  const [accent, setAccent] = useState(presetColors[0]);
+  const [palette, setPalette] = useState(() => generatePalette(presetColors[0]));
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoCycling, setIsAutoCycling] = useState(true);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    setPalette(generatePalette(accent));
+  }, [accent]);
+
+  useEffect(() => {
+    if (isAutoCycling) {
+      intervalRef.current = setInterval(() => {
+        setActiveIndex((prev) => {
+          const next = (prev + 1) % 6;
+          setAccent(presetColors[next]);
+          return next;
+        });
+      }, 2500);
+    }
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isAutoCycling]);
+
+  const handleColorClick = (color: string, index: number) => {
+    setIsAutoCycling(false);
+    setAccent(color);
+    setActiveIndex(index);
+  };
+
+  return (
+    <div>
+      {/* Preview card */}
+      <div
+        className="rounded-xl overflow-hidden transition-all duration-500"
+        style={{ background: palette.bg }}
+      >
+        {/* Nav */}
+        <div
+          className="flex justify-between items-center px-4 py-3 transition-all duration-500"
+          style={{ borderBottom: `1px solid ${palette.bgAlt}` }}
+        >
+          <span className="text-xs font-semibold" style={{ color: palette.dark }}>Labcast</span>
+          <div className="flex items-center gap-3">
+            <span className="text-[10px]" style={{ color: palette.mid }}>Products</span>
+            <span className="text-[10px]" style={{ color: palette.mid }}>About</span>
+            <button
+              className="px-3 py-1 text-[9px] font-medium rounded transition-all duration-500"
+              style={{ background: palette.dark, color: '#fff' }}
+            >
+              Shop Now
+            </button>
+          </div>
+        </div>
+
+        {/* Hero */}
+        <div className="py-8 px-4 text-center">
+          <p
+            className="text-[9px] uppercase tracking-widest mb-2 transition-all duration-500"
+            style={{ color: palette.mid }}
+          >
+            Introducing
+          </p>
+          <h2
+            className="text-lg font-normal leading-tight transition-all duration-500"
+            style={{ color: palette.dark }}
+          >
+            Beautiful things, thoughtfully made.
+          </h2>
+        </div>
+
+        {/* Stats bar */}
+        <div
+          className="flex justify-center gap-10 py-4 transition-all duration-500"
+          style={{ background: palette.accent }}
+        >
+          {[{ n: '10K+', l: 'Customers' }, { n: '150+', l: 'Products' }, { n: '4.9', l: 'Rating' }].map((stat) => (
+            <div key={stat.n} className="text-center">
+              <div className="text-sm font-semibold transition-all duration-500" style={{ color: palette.dark }}>{stat.n}</div>
+              <div className="text-[8px] transition-all duration-500" style={{ color: palette.mid }}>{stat.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Color swatches */}
+      <div className="flex justify-center gap-3 mt-5">
+        {presetColors.map((color, index) => (
+          <button
+            key={color}
+            onClick={() => handleColorClick(color, index)}
+            className="w-9 h-9 rounded-full border-none cursor-pointer transition-all duration-300"
+            style={{
+              background: color,
+              transform: activeIndex === index ? 'scale(1.15)' : 'scale(1)',
+              boxShadow: activeIndex === index
+                ? '0 0 0 2px #fff, 0 0 0 3px #1a1a1a'
+                : '0 0 0 1px rgba(0,0,0,0.06)',
+            }}
+          />
+        ))}
+      </div>
+
+      {/* CTA */}
+      <button className="w-full mt-5 bg-black text-white py-3 rounded-lg text-sm font-medium">
+        Try full designer →
+      </button>
+    </div>
+  );
+}
 
 export default function NewMobilePage() {
   const [cursorVisible, setCursorVisible] = useState(true);
@@ -97,25 +253,41 @@ export default function NewMobilePage() {
         </div>
       </section>
 
-      {/* Before/After Slider with TactileReveal */}
+      {/* AI Creative Section */}
       <section className="py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-sm text-gray-400 font-mono mb-6">AI Creative/</p>
-          <h3 className="text-3xl md:text-4xl font-bold mb-12">Real work, not mockups</h3>
+        <div className="max-w-md mx-auto">
+          <p className="text-sm text-gray-400 font-mono mb-4">AI Creative/</p>
 
-          <div className="aspect-square md:aspect-[4/3] w-full">
-            <TactileReveal
-              beforeImage="/images/mirror-before.png"
-              afterImage="/images/mirror-after.png"
-              className="h-full"
-              priority
-            />
+          {/* Bordered card container */}
+          <div className="border border-black rounded-2xl overflow-hidden bg-white">
+            <div className="aspect-square w-full">
+              <TactileReveal
+                beforeImage="/images/mirror-before.png"
+                afterImage="/images/mirror-after.png"
+                className="h-full !rounded-none"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Website Design Section - Using the real component from main site */}
-      <DesignSystemSection />
+      {/* Website Design Section */}
+      <section className="py-24 px-6">
+        <div className="max-w-md mx-auto">
+          <p className="text-sm text-gray-400 font-mono mb-4">Website Design/</p>
+          <h3 className="text-2xl md:text-3xl font-bold mb-8">[interactive demo]</h3>
+
+          {/* Widget container */}
+          <div className="border border-black rounded-2xl overflow-hidden bg-white p-5">
+            <DesignSystemWidget />
+          </div>
+
+          <p className="text-sm text-gray-400 font-mono mt-6">
+            your site → designed, built, shipped
+          </p>
+        </div>
+      </section>
 
       {/* Marketing Dashboard */}
       <section className="py-24 px-6 bg-black text-white">
