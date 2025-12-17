@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/rendervault/*": ["./src/rendervault/*"]
+      "@/rendervault/*": ["./src/rendervault/*"],
+      "@/agency/*": ["./src/agency/*"]
     }
   },
   "include": [
