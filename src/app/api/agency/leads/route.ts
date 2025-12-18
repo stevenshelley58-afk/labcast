@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
   const stage = searchParams.get('stage');
   const gutFeel = searchParams.get('gut_feel');
 
-  let query = supabase.from('leads').select('*');
+  let query = supabase.from('agency_leads').select('*');
 
   if (stage) {
     query = query.eq('stage', stage);
@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
   };
 
   const { data, error } = await supabase
-    .from('leads')
+    .from('agency_leads')
     .insert(insertData)
     .select()
     .single();

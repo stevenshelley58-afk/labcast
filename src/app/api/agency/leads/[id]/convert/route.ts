@@ -42,7 +42,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
 
   // Get the lead
   const { data: lead, error: leadError } = await supabase
-    .from('leads')
+    .from('agency_leads')
     .select('*')
     .eq('id', id)
     .single();
@@ -66,7 +66,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
 
   // Create the client
   const { data: client, error: clientError } = await supabase
-    .from('clients')
+    .from('agency_clients')
     .insert({
       business_name: lead.business_name || lead.name,
       contact_name: lead.name,
@@ -94,7 +94,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
     `${client.business_name} - ${lead.service_type?.replace('_', ' ').replace('meta ads', 'Meta Ads') || 'Project'}`;
 
   const { data: project, error: projectError } = await supabase
-    .from('projects')
+    .from('agency_projects')
     .insert({
       client_id: client.id,
       name: projectName,
@@ -108,7 +108,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
 
   if (projectError) {
     // Rollback: delete the client if project creation fails
-    await supabase.from('clients').delete().eq('id', client.id);
+    await supabase.from('agency_clients').delete().eq('id', client.id);
     return dbErrorResponse('Failed to create project', projectError);
   }
 
@@ -121,7 +121,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
 
   // Update the lead to mark it as converted
   const { error: updateError } = await supabase
-    .from('leads')
+    .from('agency_leads')
     .update({
       stage: 'won',
       converted_to_client_id: client.id,

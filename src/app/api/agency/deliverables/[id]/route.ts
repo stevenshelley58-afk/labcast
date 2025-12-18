@@ -42,7 +42,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
 
   // First verify the deliverable exists
   const { data: existing, error: fetchError } = await supabase
-    .from('deliverables')
+    .from('agency_deliverables')
     .select('*')
     .eq('id', id)
     .single();
@@ -62,7 +62,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
   if (body.sort_order !== undefined) updateData.sort_order = body.sort_order;
 
   const { data, error } = await supabase
-    .from('deliverables')
+    .from('agency_deliverables')
     .update(updateData)
     .eq('id', id)
     .select()
@@ -88,7 +88,7 @@ export async function DELETE(req: NextRequest, context: RouteContext) {
 
   // First verify the deliverable exists
   const { data: existing, error: fetchError } = await supabase
-    .from('deliverables')
+    .from('agency_deliverables')
     .select('id')
     .eq('id', id)
     .single();
@@ -100,7 +100,7 @@ export async function DELETE(req: NextRequest, context: RouteContext) {
     return dbErrorResponse('Failed to fetch deliverable', fetchError);
   }
 
-  const { error } = await supabase.from('deliverables').delete().eq('id', id);
+  const { error } = await supabase.from('agency_deliverables').delete().eq('id', id);
 
   if (error) {
     return dbErrorResponse('Failed to delete deliverable', error);

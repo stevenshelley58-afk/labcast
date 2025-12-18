@@ -34,13 +34,13 @@ export async function POST(req: NextRequest, context: RouteContext) {
 
   // Get the invoice with project and client info
   const { data: invoice, error: fetchError } = await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .select(`
       *,
-      project:projects(
+      project:agency_projects(
         id,
         name,
-        client:clients(id, business_name, email)
+        client:agency_clients(id, business_name, email)
       )
     `)
     .eq('id', id)

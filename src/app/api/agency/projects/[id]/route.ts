@@ -35,10 +35,10 @@ export async function GET(req: NextRequest, context: RouteContext) {
 
   // Get project with client info
   const { data: project, error: projectError } = await supabase
-    .from('projects')
+    .from('agency_projects')
     .select(`
       *,
-      client:clients(id, business_name, contact_name, email, phone)
+      client:agency_clients(id, business_name, contact_name, email, phone)
     `)
     .eq('id', id)
     .single();
@@ -52,7 +52,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
 
   // Get deliverables
   const { data: deliverables, error: delivError } = await supabase
-    .from('deliverables')
+    .from('agency_deliverables')
     .select('*')
     .eq('project_id', id)
     .order('sort_order', { ascending: true });
@@ -63,7 +63,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
 
   // Get invoices
   const { data: invoices, error: invError } = await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .select('*')
     .eq('project_id', id)
     .order('created_at', { ascending: false });
@@ -112,7 +112,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
 
   // First verify the project exists
   const { data: existingProject, error: fetchError } = await supabase
-    .from('projects')
+    .from('agency_projects')
     .select('*')
     .eq('id', id)
     .single();
@@ -136,7 +136,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
   if (body.notes !== undefined) updateData.notes = body.notes?.trim() || null;
 
   const { data, error } = await supabase
-    .from('projects')
+    .from('agency_projects')
     .update(updateData)
     .eq('id', id)
     .select()

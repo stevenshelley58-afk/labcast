@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
   const entityId = searchParams.get('entity_id');
 
   let query = supabase
-    .from('activity_log')
+    .from('agency_activity_log')
     .select('*')
     .order('created_at', { ascending: false })
     .limit(limit);

@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
   const status = searchParams.get('status');
 
   // Use the clients_with_stats view for computed fields
-  let query = supabase.from('clients_with_stats').select('*');
+  let query = supabase.from('agency_clients_with_stats').select('*');
 
   if (status) {
     query = query.eq('status', status);
@@ -43,9 +43,9 @@ export async function GET(req: NextRequest) {
 
   if (error) {
     // If view doesn't exist, fall back to regular clients table
-    if (error.message?.includes('clients_with_stats')) {
+    if (error.message?.includes('agency_clients_with_stats')) {
       const { data: fallbackData, error: fallbackError } = await supabase
-        .from('clients')
+        .from('agency_clients')
         .select('*')
         .order('created_at', { ascending: false });
 
@@ -104,7 +104,7 @@ export async function POST(req: NextRequest) {
   };
 
   const { data, error } = await supabase
-    .from('clients')
+    .from('agency_clients')
     .insert(insertData)
     .select()
     .single();

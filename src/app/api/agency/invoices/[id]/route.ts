@@ -34,13 +34,13 @@ export async function GET(req: NextRequest, context: RouteContext) {
   const supabase = createAgencyServiceRoleClient();
 
   const { data, error } = await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .select(`
       *,
-      project:projects(
+      project:agency_projects(
         id,
         name,
-        client:clients(id, business_name, contact_name, email, phone)
+        client:agency_clients(id, business_name, contact_name, email, phone)
       )
     `)
     .eq('id', id)
@@ -77,7 +77,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
 
   // First get the existing invoice
   const { data: existing, error: fetchError } = await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .select('*')
     .eq('id', id)
     .single();
@@ -103,7 +103,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
   }
 
   const { data, error } = await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .update(updateData)
     .eq('id', id)
     .select()

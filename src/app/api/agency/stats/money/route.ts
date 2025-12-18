@@ -51,17 +51,17 @@ export async function GET(req: NextRequest) {
 
   // Update overdue invoices
   await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .update({ status: 'overdue' })
     .eq('status', 'sent')
     .lt('due_date', today);
 
   // Get all invoices for calculations
   const { data: invoices, error: invError } = await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .select(`
       *,
-      project:projects(id, name, project_type)
+      project:agency_projects(id, name, project_type)
     `)
     .gte('created_at', startDateStr);
 
@@ -88,7 +88,7 @@ export async function GET(req: NextRequest) {
 
   // Get won deals value
   const { data: wonLeads, error: leadsError } = await supabase
-    .from('leads')
+    .from('agency_leads')
     .select('proposal_amount')
     .eq('stage', 'won')
     .gte('updated_at', startDateStr);
@@ -102,7 +102,7 @@ export async function GET(req: NextRequest) {
 
   // Get pipeline value
   const { data: pipelineLeads, error: pipelineError } = await supabase
-    .from('leads')
+    .from('agency_leads')
     .select('proposal_amount')
     .eq('stage', 'proposal_sent');
 

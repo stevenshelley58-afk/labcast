@@ -35,7 +35,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
   const supabase = createAgencyServiceRoleClient();
 
   const { data, error } = await supabase
-    .from('leads')
+    .from('agency_leads')
     .select('*')
     .eq('id', id)
     .single();
@@ -71,7 +71,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
 
   // First, get the current lead to track changes
   const { data: existingLead, error: fetchError } = await supabase
-    .from('leads')
+    .from('agency_leads')
     .select('*')
     .eq('id', id)
     .single();
@@ -108,7 +108,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
   }
 
   const { data, error } = await supabase
-    .from('leads')
+    .from('agency_leads')
     .update(updateData)
     .eq('id', id)
     .select()
@@ -142,7 +142,7 @@ export async function DELETE(req: NextRequest, context: RouteContext) {
 
   // First verify the lead exists
   const { data: existingLead, error: fetchError } = await supabase
-    .from('leads')
+    .from('agency_leads')
     .select('id, name')
     .eq('id', id)
     .single();
@@ -154,7 +154,7 @@ export async function DELETE(req: NextRequest, context: RouteContext) {
     return dbErrorResponse('Failed to fetch lead', fetchError);
   }
 
-  const { error } = await supabase.from('leads').delete().eq('id', id);
+  const { error } = await supabase.from('agency_leads').delete().eq('id', id);
 
   if (error) {
     return dbErrorResponse('Failed to delete lead', error);

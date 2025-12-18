@@ -34,7 +34,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
 
   // Verify project exists
   const { data: project, error: projectError } = await supabase
-    .from('projects')
+    .from('agency_projects')
     .select('id')
     .eq('id', projectId)
     .single();
@@ -48,7 +48,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
 
   // Get deliverables
   const { data, error } = await supabase
-    .from('deliverables')
+    .from('agency_deliverables')
     .select('*')
     .eq('project_id', projectId)
     .order('sort_order', { ascending: true });
@@ -87,7 +87,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
 
   // Verify project exists
   const { data: project, error: projectError } = await supabase
-    .from('projects')
+    .from('agency_projects')
     .select('id')
     .eq('id', projectId)
     .single();
@@ -101,7 +101,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
 
   // Get max sort_order for this project
   const { data: maxOrderResult } = await supabase
-    .from('deliverables')
+    .from('agency_deliverables')
     .select('sort_order')
     .eq('project_id', projectId)
     .order('sort_order', { ascending: false })
@@ -118,7 +118,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
   };
 
   const { data, error } = await supabase
-    .from('deliverables')
+    .from('agency_deliverables')
     .insert(insertData)
     .select()
     .single();

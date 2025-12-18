@@ -34,19 +34,19 @@ export async function GET(req: NextRequest) {
   // First, update any overdue invoices
   const today = new Date().toISOString().split('T')[0];
   await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .update({ status: 'overdue' })
     .eq('status', 'sent')
     .lt('due_date', today);
 
   let query = supabase
-    .from('invoices')
+    .from('agency_invoices')
     .select(`
       *,
-      project:projects(
+      project:agency_projects(
         id,
         name,
-        client:clients(id, business_name, contact_name, email)
+        client:agency_clients(id, business_name, contact_name, email)
       )
     `);
 
@@ -98,11 +98,11 @@ export async function POST(req: NextRequest) {
 
   // Verify the project exists and get client info
   const { data: project, error: projectError } = await supabase
-    .from('projects')
+    .from('agency_projects')
     .select(`
       id,
       name,
-      client:clients(id, business_name, email)
+      client:agency_clients(id, business_name, email)
     `)
     .eq('id', projectId)
     .single();
@@ -123,7 +123,7 @@ export async function POST(req: NextRequest) {
   };
 
   const { data, error } = await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .insert(insertData)
     .select()
     .single();

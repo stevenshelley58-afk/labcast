@@ -15,7 +15,7 @@ export async function logActivity(
   action: string,
   details: Record<string, unknown> = {}
 ): Promise<void> {
-  await supabase.from('activity_log').insert({
+  await supabase.from('agency_activity_log').insert({
     entity_type: entityType,
     entity_id: entityId,
     action,
@@ -31,7 +31,7 @@ export async function getRecentActivity(
   limit = 20
 ) {
   const { data, error } = await supabase
-    .from('activity_log')
+    .from('agency_activity_log')
     .select('*')
     .order('created_at', { ascending: false })
     .limit(limit);
@@ -50,7 +50,7 @@ export async function getEntityActivity(
   limit = 50
 ) {
   const { data, error } = await supabase
-    .from('activity_log')
+    .from('agency_activity_log')
     .select('*')
     .eq('entity_type', entityType)
     .eq('entity_id', entityId)

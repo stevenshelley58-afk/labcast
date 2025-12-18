@@ -93,7 +93,7 @@ async function handleInvoicePaid(
 
   // Find our invoice by stripe_invoice_id
   const { data: invoice, error: findError } = await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .select('id, amount, status')
     .eq('stripe_invoice_id', stripeId)
     .single();
@@ -110,7 +110,7 @@ async function handleInvoicePaid(
 
   // Update invoice status
   const { error: updateError } = await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .update({
       status: 'paid',
       paid_at: new Date().toISOString(),
@@ -141,7 +141,7 @@ async function handlePaymentFailed(
 
   // Find our invoice by stripe_invoice_id
   const { data: invoice, error: findError } = await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .select('id, amount')
     .eq('stripe_invoice_id', stripeId)
     .single();
@@ -170,7 +170,7 @@ async function handleInvoiceSent(
 
   // Find our invoice by stripe_invoice_id
   const { data: invoice, error: findError } = await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .select('id, status')
     .eq('stripe_invoice_id', stripeId)
     .single();
@@ -183,7 +183,7 @@ async function handleInvoiceSent(
   // Update status to sent if currently draft
   if (invoice.status === 'draft') {
     await supabase
-      .from('invoices')
+      .from('agency_invoices')
       .update({ status: 'sent' })
       .eq('id', invoice.id);
   }
@@ -200,7 +200,7 @@ async function handleInvoiceFinalized(
   const stripeId = stripeInvoice.id;
 
   const { data: invoice } = await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .select('id')
     .eq('stripe_invoice_id', stripeId)
     .single();

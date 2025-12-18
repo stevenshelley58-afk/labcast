@@ -35,7 +35,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
 
   // Try to get from the view first (includes computed stats)
   const { data: clientWithStats, error: viewError } = await supabase
-    .from('clients_with_stats')
+    .from('agency_clients_with_stats')
     .select('*')
     .eq('id', id)
     .single();
@@ -43,9 +43,9 @@ export async function GET(req: NextRequest, context: RouteContext) {
   let client = clientWithStats;
 
   // If view doesn't exist, fall back to regular table
-  if (viewError && viewError.message?.includes('clients_with_stats')) {
+  if (viewError && viewError.message?.includes('agency_clients_with_stats')) {
     const { data: regularClient, error: fetchError } = await supabase
-      .from('clients')
+      .from('agency_clients')
       .select('*')
       .eq('id', id)
       .single();
@@ -72,7 +72,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
 
   // Get client's projects
   const { data: projects, error: projectsError } = await supabase
-    .from('projects')
+    .from('agency_projects')
     .select('*')
     .eq('client_id', id)
     .order('created_at', { ascending: false });
@@ -108,7 +108,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
 
   // First verify the client exists
   const { data: existingClient, error: fetchError } = await supabase
-    .from('clients')
+    .from('agency_clients')
     .select('*')
     .eq('id', id)
     .single();
@@ -132,7 +132,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
   if (body.client_since !== undefined) updateData.client_since = body.client_since;
 
   const { data, error } = await supabase
-    .from('clients')
+    .from('agency_clients')
     .update(updateData)
     .eq('id', id)
     .select()

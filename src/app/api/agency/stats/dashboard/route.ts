@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
 
   // First, update any overdue invoices
   await supabase
-    .from('invoices')
+    .from('agency_invoices')
     .update({ status: 'overdue' })
     .eq('status', 'sent')
     .lt('due_date', today);
@@ -50,57 +50,57 @@ export async function GET(req: NextRequest) {
   ] = await Promise.all([
     // New leads count
     supabase
-      .from('leads')
+      .from('agency_leads')
       .select('id', { count: 'exact', head: true })
       .eq('stage', 'new'),
 
     // Proposals out count
     supabase
-      .from('leads')
+      .from('agency_leads')
       .select('id', { count: 'exact', head: true })
       .eq('stage', 'proposal_sent'),
 
     // Pipeline value (proposals pending decision)
     supabase
-      .from('leads')
+      .from('agency_leads')
       .select('proposal_amount')
       .eq('stage', 'proposal_sent'),
 
     // Collected this month
     supabase
-      .from('invoices')
+      .from('agency_invoices')
       .select('amount')
       .eq('status', 'paid')
       .gte('paid_at', monthStart),
 
     // Outstanding (sent but not paid)
     supabase
-      .from('invoices')
+      .from('agency_invoices')
       .select('amount')
       .eq('status', 'sent'),
 
     // Overdue
     supabase
-      .from('invoices')
+      .from('agency_invoices')
       .select('amount')
       .eq('status', 'overdue'),
 
     // Active projects
     supabase
-      .from('projects')
+      .from('agency_projects')
       .select('id', { count: 'exact', head: true })
       .in('status', ['active', 'in_progress', 'waiting_on_client']),
 
     // Won leads this month
     supabase
-      .from('leads')
+      .from('agency_leads')
       .select('id', { count: 'exact', head: true })
       .eq('stage', 'won')
       .gte('updated_at', monthStart),
 
     // Total leads this month (for conversion calculation)
     supabase
-      .from('leads')
+      .from('agency_leads')
       .select('id', { count: 'exact', head: true })
       .gte('created_at', monthStart),
   ]);

@@ -32,10 +32,10 @@ export async function GET(req: NextRequest) {
   const clientId = searchParams.get('client_id');
 
   let query = supabase
-    .from('projects')
+    .from('agency_projects')
     .select(`
       *,
-      client:clients(id, business_name, contact_name, email)
+      client:agency_clients(id, business_name, contact_name, email)
     `);
 
   if (status) {
@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
 
   // Verify the client exists
   const { data: client, error: clientError } = await supabase
-    .from('clients')
+    .from('agency_clients')
     .select('id, business_name')
     .eq('id', clientId)
     .single();
@@ -112,7 +112,7 @@ export async function POST(req: NextRequest) {
   };
 
   const { data, error } = await supabase
-    .from('projects')
+    .from('agency_projects')
     .insert(insertData)
     .select()
     .single();
