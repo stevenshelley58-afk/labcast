@@ -5,7 +5,7 @@
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createAgencyServiceRoleClient } from '@/agency/lib/supabase';
+import { requireAgencyServiceRoleClient } from '@/agency/lib/supabase';
 import {
   getSessionUser,
   unauthorizedResponse,
@@ -31,7 +31,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
   if (!user) return unauthorizedResponse();
 
   const { id } = await context.params;
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
 
   const { data, error } = await supabase
     .from('agency_invoices')
@@ -73,7 +73,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
     return badRequestResponse('Invalid JSON body');
   }
 
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
 
   // First get the existing invoice
   const { data: existing, error: fetchError } = await supabase

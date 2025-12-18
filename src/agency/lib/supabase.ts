@@ -37,13 +37,14 @@ export async function createAgencyServerClient() {
 /**
  * Create a Supabase service role client for privileged operations.
  * Use this for webhooks, admin operations, or bypassing RLS.
+ * Returns null if not configured (for demo mode).
  */
 export function createAgencyServiceRoleClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !serviceRoleKey) {
-    throw new Error('Supabase service role client is not configured. Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.');
+    return null;
   }
 
   return createServerClient(url, serviceRoleKey, {
@@ -53,4 +54,23 @@ export function createAgencyServiceRoleClient() {
       },
     },
   });
+}
+
+/**
+ * Check if Supabase is configured
+ */
+export function isSupabaseConfigured() {
+  return !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY);
+}
+
+/**
+ * Create a Supabase service role client - throws if not configured.
+ * Use for routes that require database access.
+ */
+export function requireAgencyServiceRoleClient() {
+  const client = createAgencyServiceRoleClient();
+  if (!client) {
+    throw new Error('Database not configured');
+  }
+  return client;
 }

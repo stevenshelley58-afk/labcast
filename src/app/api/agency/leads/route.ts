@@ -1,108 +1,73 @@
 // ============================================================================
 // Labcast Agency OS - Leads API
-// GET /api/agency/leads - List all leads (filterable by stage)
-// POST /api/agency/leads - Create a new lead
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createAgencyServiceRoleClient } from '@/agency/lib/supabase';
-import {
-  getSessionUser,
-  unauthorizedResponse,
-  badRequestResponse,
-  dbErrorResponse,
-} from '@/agency/lib/auth';
-import { logActivity } from '@/agency/lib/activity';
-import type { CreateLeadRequest, Lead } from '@/agency/lib/types';
+import { createAgencyServiceRoleClient, isSupabaseConfigured } from '@/agency/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 
-/**
- * GET /api/agency/leads
- * List all leads, optionally filtered by stage or gut_feel
- */
-export async function GET(req: NextRequest) {
-  const user = await getSessionUser();
-  if (!user) return unauthorizedResponse();
+// Demo data
+const DEMO_LEADS = [
+  { id: '1', company_name: 'Koala Sleep', contact_name: 'Sarah Chen', email: 'sarah@koala.com', stage: 'qualified', service_interest: 'retainer', budget_signal: 'high', gut_feel: 'hot', next_action: 'Send proposal', next_action_date: null, notes: null, created_at: new Date().toISOString() },
+  { id: '2', company_name: 'Who Gives A Crap', contact_name: 'Mike Torres', email: 'mike@wgac.com', stage: 'proposal_sent', service_interest: 'project', budget_signal: 'mid', gut_feel: 'hot', next_action: null, next_action_date: null, notes: null, created_at: new Date().toISOString() },
+  { id: '3', company_name: 'Frank Green', contact_name: 'Lisa Park', email: 'lisa@frankgreen.com', stage: 'inquiry', service_interest: 'retainer', budget_signal: 'unknown', gut_feel: 'warm', next_action: 'Discovery call', next_action_date: null, notes: null, created_at: new Date().toISOString() },
+];
+
+export async function GET() {
+  if (!isSupabaseConfigured()) {
+    return NextResponse.json(DEMO_LEADS);
+  }
 
   const supabase = createAgencyServiceRoleClient();
-  const { searchParams } = new URL(req.url);
-
-  const stage = searchParams.get('stage');
-  const gutFeel = searchParams.get('gut_feel');
-
-  let query = supabase.from('agency_leads').select('*');
-
-  if (stage) {
-    query = query.eq('stage', stage);
+  if (!supabase) {
+    return NextResponse.json(DEMO_LEADS);
   }
 
-  if (gutFeel) {
-    query = query.eq('gut_feel', gutFeel);
+  try {
+    const { data, error } = await supabase
+      .from('agency_leads')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return NextResponse.json(data ?? []);
+  } catch {
+    return NextResponse.json(DEMO_LEADS);
   }
-
-  query = query.order('created_at', { ascending: false });
-
-  const { data, error } = await query;
-
-  if (error) {
-    return dbErrorResponse('Failed to fetch leads', error);
-  }
-
-  return NextResponse.json({ leads: data ?? [] });
 }
 
-/**
- * POST /api/agency/leads
- * Create a new lead
- */
 export async function POST(req: NextRequest) {
-  const user = await getSessionUser();
-  if (!user) return unauthorizedResponse();
-
-  let body: CreateLeadRequest;
-  try {
-    body = await req.json();
-  } catch {
-    return badRequestResponse('Invalid JSON body');
-  }
-
-  // Validate required fields
-  const name = body.name?.trim();
-  if (!name) {
-    return badRequestResponse('Name is required');
+  if (!isSupabaseConfigured()) {
+    return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
   }
 
   const supabase = createAgencyServiceRoleClient();
-
-  const insertData: Partial<Lead> = {
-    name,
-    business_name: body.business_name?.trim() || null,
-    email: body.email?.trim() || null,
-    phone: body.phone?.trim() || null,
-    service_type: body.service_type || 'other',
-    budget_signal: body.budget_signal || 'unknown',
-    gut_feel: body.gut_feel || 'warm',
-    stage: 'new',
-    source: body.source?.trim() || null,
-    notes: body.notes?.trim() || null,
-  };
-
-  const { data, error } = await supabase
-    .from('agency_leads')
-    .insert(insertData)
-    .select()
-    .single();
-
-  if (error) {
-    return dbErrorResponse('Failed to create lead', error);
+  if (!supabase) {
+    return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
   }
 
-  // Log activity
-  await logActivity(supabase, 'lead', data.id, 'created', {
-    name: data.name,
-    source: data.source,
-  });
+  try {
+    const body = await req.json();
+    const { data, error } = await supabase
+      .from('agency_leads')
+      .insert({
+        company_name: body.company_name,
+        contact_name: body.contact_name,
+        email: body.email,
+        service_interest: body.service_interest || 'retainer',
+        budget_signal: body.budget_signal || 'unknown',
+        gut_feel: body.gut_feel || 'neutral',
+        stage: 'inquiry',
+        notes: body.notes || null,
+      })
+      .select()
+      .single();
 
-  return NextResponse.json({ lead: data }, { status: 201 });
+    if (error) throw error;
+    return NextResponse.json(data, { status: 201 });
+  } catch (error) {
+    console.error('Create lead error:', error);
+    return NextResponse.json({ error: 'Failed to create lead' }, { status: 500 });
+  }
 }

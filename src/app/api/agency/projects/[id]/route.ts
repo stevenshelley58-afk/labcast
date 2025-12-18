@@ -5,7 +5,7 @@
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createAgencyServiceRoleClient } from '@/agency/lib/supabase';
+import { requireAgencyServiceRoleClient } from '@/agency/lib/supabase';
 import {
   getSessionUser,
   unauthorizedResponse,
@@ -31,7 +31,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
   if (!user) return unauthorizedResponse();
 
   const { id } = await context.params;
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
 
   // Get project with client info
   const { data: project, error: projectError } = await supabase
@@ -108,7 +108,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
     return badRequestResponse('Invalid JSON body');
   }
 
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
 
   // First verify the project exists
   const { data: existingProject, error: fetchError } = await supabase

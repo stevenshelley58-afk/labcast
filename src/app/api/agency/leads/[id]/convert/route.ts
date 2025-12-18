@@ -4,7 +4,7 @@
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createAgencyServiceRoleClient } from '@/agency/lib/supabase';
+import { requireAgencyServiceRoleClient } from '@/agency/lib/supabase';
 import {
   getSessionUser,
   unauthorizedResponse,
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
     // Empty body is fine
   }
 
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
 
   // Get the lead
   const { data: lead, error: leadError } = await supabase

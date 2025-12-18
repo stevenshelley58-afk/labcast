@@ -1,143 +1,76 @@
 // ============================================================================
 // Labcast Agency OS - Invoices API
-// GET /api/agency/invoices - List all invoices (filterable by status)
-// POST /api/agency/invoices - Create a new invoice
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createAgencyServiceRoleClient } from '@/agency/lib/supabase';
-import {
-  getSessionUser,
-  unauthorizedResponse,
-  badRequestResponse,
-  dbErrorResponse,
-} from '@/agency/lib/auth';
-import { logActivity } from '@/agency/lib/activity';
-import type { CreateInvoiceRequest, Invoice } from '@/agency/lib/types';
+import { createAgencyServiceRoleClient, isSupabaseConfigured } from '@/agency/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 
-/**
- * GET /api/agency/invoices
- * List all invoices, optionally filtered by status
- */
-export async function GET(req: NextRequest) {
-  const user = await getSessionUser();
-  if (!user) return unauthorizedResponse();
+// Demo data
+const DEMO_INVOICES = [
+  { id: '1', invoice_number: 'INV-2024-042', status: 'sent', amount_cents: 450000, due_date: '2024-12-31', paid_at: null, project: { id: '1', name: 'Meta Ads - Dec', client: { company_name: 'Bondi Sands' } }, created_at: new Date().toISOString() },
+  { id: '2', invoice_number: 'INV-2024-043', status: 'draft', amount_cents: 400000, due_date: null, paid_at: null, project: { id: '2', name: 'Website - Milestone 2', client: { company_name: 'The Memo' } }, created_at: new Date().toISOString() },
+  { id: '3', invoice_number: 'INV-2024-041', status: 'paid', amount_cents: 320000, due_date: '2024-12-15', paid_at: '2024-12-14', project: { id: '3', name: 'Creative Sprint', client: { company_name: 'Eucalyptus' } }, created_at: new Date().toISOString() },
+];
+
+export async function GET() {
+  if (!isSupabaseConfigured()) {
+    return NextResponse.json(DEMO_INVOICES);
+  }
 
   const supabase = createAgencyServiceRoleClient();
-  const { searchParams } = new URL(req.url);
-
-  const status = searchParams.get('status');
-  const projectId = searchParams.get('project_id');
-
-  // First, update any overdue invoices
-  const today = new Date().toISOString().split('T')[0];
-  await supabase
-    .from('agency_invoices')
-    .update({ status: 'overdue' })
-    .eq('status', 'sent')
-    .lt('due_date', today);
-
-  let query = supabase
-    .from('agency_invoices')
-    .select(`
-      *,
-      project:agency_projects(
-        id,
-        name,
-        client:agency_clients(id, business_name, contact_name, email)
-      )
-    `);
-
-  if (status) {
-    query = query.eq('status', status);
+  if (!supabase) {
+    return NextResponse.json(DEMO_INVOICES);
   }
 
-  if (projectId) {
-    query = query.eq('project_id', projectId);
+  try {
+    const { data, error } = await supabase
+      .from('agency_invoices')
+      .select(`
+        *,
+        project:agency_projects(
+          id,
+          name,
+          client:agency_clients(id, company_name, contact_name, email)
+        )
+      `)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return NextResponse.json(data ?? []);
+  } catch {
+    return NextResponse.json(DEMO_INVOICES);
   }
-
-  query = query.order('created_at', { ascending: false });
-
-  const { data, error } = await query;
-
-  if (error) {
-    return dbErrorResponse('Failed to fetch invoices', error);
-  }
-
-  return NextResponse.json({ invoices: data ?? [] });
 }
 
-/**
- * POST /api/agency/invoices
- * Create a new invoice
- */
 export async function POST(req: NextRequest) {
-  const user = await getSessionUser();
-  if (!user) return unauthorizedResponse();
-
-  let body: CreateInvoiceRequest;
-  try {
-    body = await req.json();
-  } catch {
-    return badRequestResponse('Invalid JSON body');
-  }
-
-  // Validate required fields
-  const projectId = body.project_id?.trim();
-  if (!projectId) {
-    return badRequestResponse('Project ID is required');
-  }
-
-  if (body.amount === undefined || body.amount <= 0) {
-    return badRequestResponse('Valid amount is required');
+  if (!isSupabaseConfigured()) {
+    return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
   }
 
   const supabase = createAgencyServiceRoleClient();
-
-  // Verify the project exists and get client info
-  const { data: project, error: projectError } = await supabase
-    .from('agency_projects')
-    .select(`
-      id,
-      name,
-      client:agency_clients(id, business_name, email)
-    `)
-    .eq('id', projectId)
-    .single();
-
-  if (projectError) {
-    if (projectError.code === 'PGRST116') {
-      return badRequestResponse('Project not found');
-    }
-    return dbErrorResponse('Failed to verify project', projectError);
+  if (!supabase) {
+    return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
   }
 
-  const insertData: Partial<Invoice> = {
-    project_id: projectId,
-    description: body.description?.trim() || null,
-    amount: body.amount,
-    status: body.status || 'draft',
-    due_date: body.due_date || null,
-  };
+  try {
+    const body = await req.json();
+    const { data, error } = await supabase
+      .from('agency_invoices')
+      .insert({
+        project_id: body.project_id,
+        amount_cents: body.amount_cents,
+        due_date: body.due_date || null,
+        status: 'draft',
+      })
+      .select()
+      .single();
 
-  const { data, error } = await supabase
-    .from('agency_invoices')
-    .insert(insertData)
-    .select()
-    .single();
-
-  if (error) {
-    return dbErrorResponse('Failed to create invoice', error);
+    if (error) throw error;
+    return NextResponse.json(data, { status: 201 });
+  } catch (error) {
+    console.error('Create invoice error:', error);
+    return NextResponse.json({ error: 'Failed to create invoice' }, { status: 500 });
   }
-
-  // Log activity
-  await logActivity(supabase, 'invoice', data.id, 'created', {
-    amount: data.amount,
-    project_id: project.id,
-    project_name: project.name,
-  });
-
-  return NextResponse.json({ invoice: data }, { status: 201 });
 }

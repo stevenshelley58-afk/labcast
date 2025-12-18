@@ -4,7 +4,7 @@
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createAgencyServiceRoleClient } from '@/agency/lib/supabase';
+import { requireAgencyServiceRoleClient } from '@/agency/lib/supabase';
 import {
   getSessionUser,
   unauthorizedResponse,
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
   if (!user) return unauthorizedResponse();
 
   const { id } = await context.params;
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
 
   // Get the invoice with project and client info
   const { data: invoice, error: fetchError } = await supabase

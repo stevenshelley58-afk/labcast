@@ -6,7 +6,7 @@
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createAgencyServiceRoleClient } from '@/agency/lib/supabase';
+import { requireAgencyServiceRoleClient } from '@/agency/lib/supabase';
 import {
   getSessionUser,
   unauthorizedResponse,
@@ -32,7 +32,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
   if (!user) return unauthorizedResponse();
 
   const { id } = await context.params;
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
 
   const { data, error } = await supabase
     .from('agency_leads')
@@ -67,7 +67,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
     return badRequestResponse('Invalid JSON body');
   }
 
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
 
   // First, get the current lead to track changes
   const { data: existingLead, error: fetchError } = await supabase
@@ -138,7 +138,7 @@ export async function DELETE(req: NextRequest, context: RouteContext) {
   if (!user) return unauthorizedResponse();
 
   const { id } = await context.params;
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
 
   // First verify the lead exists
   const { data: existingLead, error: fetchError } = await supabase

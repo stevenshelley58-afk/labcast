@@ -5,7 +5,7 @@
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createAgencyServiceRoleClient } from '@/agency/lib/supabase';
+import { requireAgencyServiceRoleClient } from '@/agency/lib/supabase';
 import {
   getSessionUser,
   unauthorizedResponse,
@@ -30,7 +30,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
   if (!user) return unauthorizedResponse();
 
   const { id: projectId } = await context.params;
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
 
   // Verify project exists
   const { data: project, error: projectError } = await supabase
@@ -83,7 +83,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
     return badRequestResponse('Deliverable name is required');
   }
 
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
 
   // Verify project exists
   const { data: project, error: projectError } = await supabase

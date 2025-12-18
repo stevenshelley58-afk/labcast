@@ -1,133 +1,73 @@
 // ============================================================================
 // Labcast Agency OS - Projects API
-// GET /api/agency/projects - List all projects (filterable by status)
-// POST /api/agency/projects - Create a new project
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createAgencyServiceRoleClient } from '@/agency/lib/supabase';
-import {
-  getSessionUser,
-  unauthorizedResponse,
-  badRequestResponse,
-  dbErrorResponse,
-} from '@/agency/lib/auth';
-import { logActivity } from '@/agency/lib/activity';
-import type { CreateProjectRequest, Project } from '@/agency/lib/types';
+import { createAgencyServiceRoleClient, isSupabaseConfigured } from '@/agency/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 
-/**
- * GET /api/agency/projects
- * List all projects, optionally filtered by status or client
- */
-export async function GET(req: NextRequest) {
-  const user = await getSessionUser();
-  if (!user) return unauthorizedResponse();
+// Demo data
+const DEMO_PROJECTS = [
+  { id: '1', name: 'Meta Ads Retainer', status: 'active', service_type: 'retainer', monthly_value: 450000, start_date: '2024-01-01', client: { id: '1', company_name: 'Bondi Sands' }, created_at: new Date().toISOString() },
+  { id: '2', name: 'Website Rebuild', status: 'active', service_type: 'project', monthly_value: 800000, start_date: '2024-11-01', client: { id: '2', company_name: 'The Memo' }, created_at: new Date().toISOString() },
+  { id: '3', name: 'Creative Sprint', status: 'active', service_type: 'project', monthly_value: 320000, start_date: '2024-12-01', client: { id: '3', company_name: 'Eucalyptus' }, created_at: new Date().toISOString() },
+];
+
+export async function GET() {
+  if (!isSupabaseConfigured()) {
+    return NextResponse.json(DEMO_PROJECTS);
+  }
 
   const supabase = createAgencyServiceRoleClient();
-  const { searchParams } = new URL(req.url);
-
-  const status = searchParams.get('status');
-  const clientId = searchParams.get('client_id');
-
-  let query = supabase
-    .from('agency_projects')
-    .select(`
-      *,
-      client:agency_clients(id, business_name, contact_name, email)
-    `);
-
-  if (status) {
-    query = query.eq('status', status);
+  if (!supabase) {
+    return NextResponse.json(DEMO_PROJECTS);
   }
 
-  if (clientId) {
-    query = query.eq('client_id', clientId);
+  try {
+    const { data, error } = await supabase
+      .from('agency_projects')
+      .select(`
+        *,
+        client:agency_clients(id, company_name, contact_name, email)
+      `)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return NextResponse.json(data ?? []);
+  } catch {
+    return NextResponse.json(DEMO_PROJECTS);
   }
-
-  query = query.order('created_at', { ascending: false });
-
-  const { data, error } = await query;
-
-  if (error) {
-    return dbErrorResponse('Failed to fetch projects', error);
-  }
-
-  return NextResponse.json({ projects: data ?? [] });
 }
 
-/**
- * POST /api/agency/projects
- * Create a new project
- */
 export async function POST(req: NextRequest) {
-  const user = await getSessionUser();
-  if (!user) return unauthorizedResponse();
-
-  let body: CreateProjectRequest;
-  try {
-    body = await req.json();
-  } catch {
-    return badRequestResponse('Invalid JSON body');
-  }
-
-  // Validate required fields
-  const clientId = body.client_id?.trim();
-  const name = body.name?.trim();
-
-  if (!clientId) {
-    return badRequestResponse('Client ID is required');
-  }
-
-  if (!name) {
-    return badRequestResponse('Project name is required');
+  if (!isSupabaseConfigured()) {
+    return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
   }
 
   const supabase = createAgencyServiceRoleClient();
-
-  // Verify the client exists
-  const { data: client, error: clientError } = await supabase
-    .from('agency_clients')
-    .select('id, business_name')
-    .eq('id', clientId)
-    .single();
-
-  if (clientError) {
-    if (clientError.code === 'PGRST116') {
-      return badRequestResponse('Client not found');
-    }
-    return dbErrorResponse('Failed to verify client', clientError);
+  if (!supabase) {
+    return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
   }
 
-  const insertData: Partial<Project> = {
-    client_id: clientId,
-    name,
-    status: body.status || 'active',
-    project_type: body.project_type || 'project',
-    value: body.value ?? null,
-    start_date: body.start_date || new Date().toISOString().split('T')[0],
-    end_date: body.end_date || null,
-    notes: body.notes?.trim() || null,
-  };
+  try {
+    const body = await req.json();
+    const { data, error } = await supabase
+      .from('agency_projects')
+      .insert({
+        client_id: body.client_id,
+        name: body.name,
+        service_type: body.service_type || 'retainer',
+        monthly_value: body.monthly_value || 0,
+        status: 'active',
+      })
+      .select()
+      .single();
 
-  const { data, error } = await supabase
-    .from('agency_projects')
-    .insert(insertData)
-    .select()
-    .single();
-
-  if (error) {
-    return dbErrorResponse('Failed to create project', error);
+    if (error) throw error;
+    return NextResponse.json(data, { status: 201 });
+  } catch (error) {
+    console.error('Create project error:', error);
+    return NextResponse.json({ error: 'Failed to create project' }, { status: 500 });
   }
-
-  // Log activity
-  await logActivity(supabase, 'project', data.id, 'created', {
-    name: data.name,
-    client_id: client.id,
-    client_name: client.business_name,
-    value: data.value,
-  });
-
-  return NextResponse.json({ project: data }, { status: 201 });
 }

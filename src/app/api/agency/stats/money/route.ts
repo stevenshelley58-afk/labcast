@@ -4,7 +4,7 @@
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createAgencyServiceRoleClient } from '@/agency/lib/supabase';
+import { requireAgencyServiceRoleClient } from '@/agency/lib/supabase';
 import {
   getSessionUser,
   unauthorizedResponse,
@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
   const user = await getSessionUser();
   if (!user) return unauthorizedResponse();
 
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
   const { searchParams } = new URL(req.url);
   const period = searchParams.get('period') || 'month';
 

@@ -4,7 +4,7 @@
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createAgencyServiceRoleClient } from '@/agency/lib/supabase';
+import { requireAgencyServiceRoleClient } from '@/agency/lib/supabase';
 import { verifyWebhookSignature } from '@/agency/lib/stripe';
 import { logActivity } from '@/agency/lib/activity';
 import type Stripe from 'stripe';
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const supabase = createAgencyServiceRoleClient();
+  const supabase = requireAgencyServiceRoleClient();
 
   try {
     switch (event.type) {
@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
  * Handle invoice.paid event
  */
 async function handleInvoicePaid(
-  supabase: ReturnType<typeof createAgencyServiceRoleClient>,
+  supabase: ReturnType<typeof requireAgencyServiceRoleClient>,
   stripeInvoice: Stripe.Invoice
 ) {
   const stripeId = stripeInvoice.id;
@@ -134,7 +134,7 @@ async function handleInvoicePaid(
  * Handle invoice.payment_failed event
  */
 async function handlePaymentFailed(
-  supabase: ReturnType<typeof createAgencyServiceRoleClient>,
+  supabase: ReturnType<typeof requireAgencyServiceRoleClient>,
   stripeInvoice: Stripe.Invoice
 ) {
   const stripeId = stripeInvoice.id;
@@ -163,7 +163,7 @@ async function handlePaymentFailed(
  * Handle invoice.sent event
  */
 async function handleInvoiceSent(
-  supabase: ReturnType<typeof createAgencyServiceRoleClient>,
+  supabase: ReturnType<typeof requireAgencyServiceRoleClient>,
   stripeInvoice: Stripe.Invoice
 ) {
   const stripeId = stripeInvoice.id;
@@ -193,7 +193,7 @@ async function handleInvoiceSent(
  * Handle invoice.finalized event
  */
 async function handleInvoiceFinalized(
-  supabase: ReturnType<typeof createAgencyServiceRoleClient>,
+  supabase: ReturnType<typeof requireAgencyServiceRoleClient>,
   stripeInvoice: Stripe.Invoice
 ) {
   // This is mainly for logging/tracking purposes
