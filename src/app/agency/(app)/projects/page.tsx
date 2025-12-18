@@ -84,42 +84,43 @@ export default function ProjectsPage() {
     return <div className="animate-pulse h-64 bg-black/5 rounded-2xl" />;
   }
 
+  const activeProjects = projects.filter(p => p.status === 'active');
+  const mrr = activeProjects.reduce((sum, p) => sum + (p.monthly_value || 0), 0);
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Projects</h1>
-          <p className="text-sm text-muted mt-1">{projects.length} total</p>
+          <h1 className="text-xl md:text-2xl font-semibold tracking-tight">Projects</h1>
+          <p className="text-xs md:text-sm text-muted mt-0.5">{formatCurrency(mrr)}/mo active</p>
         </div>
         <Button size="sm" onClick={() => setShowForm(!showForm)}>
-          {showForm ? 'Cancel' : '+ New Project'}
+          {showForm ? '×' : '+'}
         </Button>
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-black/5 p-6 space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-black/5 p-4 space-y-3">
+          <select
+            className="w-full rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm"
+            value={formData.client_id}
+            onChange={(e) => setFormData({ ...formData, client_id: e.target.value })}
+            required
+          >
+            <option value="">Select client...</option>
+            {clients.map((c) => (
+              <option key={c.id} value={c.id}>{c.company_name}</option>
+            ))}
+          </select>
+          <Input
+            placeholder="Project name"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            required
+          />
+          <div className="grid grid-cols-2 gap-2">
             <select
-              className="rounded-lg border border-border bg-transparent px-4 py-3 text-sm"
-              value={formData.client_id}
-              onChange={(e) => setFormData({ ...formData, client_id: e.target.value })}
-              required
-            >
-              <option value="">Select client...</option>
-              {clients.map((c) => (
-                <option key={c.id} value={c.id}>{c.company_name}</option>
-              ))}
-            </select>
-            <Input
-              placeholder="Project name"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              required
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <select
-              className="rounded-lg border border-border bg-transparent px-4 py-3 text-sm"
+              className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm"
               value={formData.service_type}
               onChange={(e) => setFormData({ ...formData, service_type: e.target.value })}
             >
@@ -129,41 +130,41 @@ export default function ProjectsPage() {
             </select>
             <Input
               type="number"
-              placeholder="Monthly value (AUD)"
+              placeholder="$/month"
               value={formData.monthly_value}
               onChange={(e) => setFormData({ ...formData, monthly_value: e.target.value })}
             />
           </div>
-          <Button type="submit" size="sm">Create Project</Button>
+          <Button type="submit" size="sm" fullWidth>Create</Button>
         </form>
       )}
 
-      {/* Projects grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* Project cards - stack on mobile, grid on desktop */}
+      <div className="space-y-2 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-4">
         {projects.map((project) => (
           <Link
             key={project.id}
             href={`/agency/projects/${project.id}`}
-            className="bg-white rounded-2xl border border-black/5 p-5 shadow-soft hover:shadow-card transition-shadow space-y-3"
+            className="block bg-white rounded-xl md:rounded-2xl border border-black/5 p-3 md:p-5 shadow-soft active:scale-[0.99] md:hover:shadow-card transition-all"
           >
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="font-medium">{project.name}</p>
-                <p className="text-xs text-muted">{project.client?.company_name}</p>
+            <div className="flex items-start justify-between gap-2">
+              <div className="min-w-0 flex-1">
+                <p className="font-medium text-sm md:text-base truncate">{project.name}</p>
+                <p className="text-xs text-muted truncate">{project.client?.company_name}</p>
               </div>
-              <span className={`text-xs px-2 py-0.5 rounded-full capitalize ${statusColors[project.status] || 'bg-gray-100'}`}>
+              <span className={`text-[10px] md:text-xs px-1.5 md:px-2 py-0.5 rounded-full capitalize flex-shrink-0 ${statusColors[project.status] || 'bg-gray-100'}`}>
                 {project.status}
               </span>
             </div>
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-muted capitalize">{project.service_type}</span>
+            <div className="flex items-center justify-between mt-2 text-sm">
+              <span className="text-xs text-muted capitalize">{project.service_type}</span>
               <span className="font-medium">{formatCurrency(project.monthly_value || 0)}/mo</span>
             </div>
           </Link>
         ))}
         {projects.length === 0 && (
-          <div className="col-span-full bg-white rounded-2xl border border-black/5 p-12 text-center text-muted">
-            No projects yet. Create your first project above.
+          <div className="col-span-full py-12 text-center text-muted text-sm">
+            No projects yet
           </div>
         )}
       </div>

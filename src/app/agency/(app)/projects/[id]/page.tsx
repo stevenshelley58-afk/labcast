@@ -41,10 +41,10 @@ function formatCurrency(cents: number): string {
 }
 
 const statusColors: Record<string, string> = {
-  pending: 'bg-gray-100 text-gray-700',
-  in_progress: 'bg-blue-50 text-blue-700',
-  done: 'bg-green-50 text-green-700',
-  blocked: 'bg-red-50 text-red-700',
+  pending: 'bg-gray-100',
+  in_progress: 'bg-blue-100',
+  done: 'bg-green-100',
+  blocked: 'bg-red-100',
 };
 
 export default function ProjectDetailPage() {
@@ -112,21 +112,34 @@ export default function ProjectDetailPage() {
     return <div className="text-center py-12 text-muted">Project not found</div>;
   }
 
+  const pendingCount = deliverables.filter(d => d.status !== 'done').length;
+  const doneCount = deliverables.filter(d => d.status === 'done').length;
+
   return (
-    <div className="space-y-8">
-      <div className="flex items-start justify-between">
-        <div>
-          <button onClick={() => router.back()} className="text-sm text-muted hover:text-foreground mb-2">
-            ← Back
-          </button>
-          <h1 className="text-2xl font-semibold tracking-tight">{project.name}</h1>
-          <Link href={`/agency/clients/${project.client?.id}`} className="text-sm text-muted hover:underline">
-            {project.client?.company_name}
-          </Link>
+    <div className="space-y-6">
+      {/* Header */}
+      <div>
+        <button onClick={() => router.back()} className="text-xs text-muted mb-2">← Back</button>
+        <h1 className="text-xl md:text-2xl font-semibold tracking-tight">{project.name}</h1>
+        <Link href={`/agency/clients/${project.client?.id}`} className="text-xs md:text-sm text-muted hover:underline">
+          {project.client?.company_name}
+        </Link>
+      </div>
+
+      {/* Stats row */}
+      <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0">
+        <div className="flex-shrink-0 bg-white rounded-xl border border-black/5 p-3 min-w-[100px]">
+          <p className="text-[10px] text-muted uppercase">Value</p>
+          <p className="text-lg font-semibold">{formatCurrency(project.monthly_value || 0)}/mo</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex-shrink-0 bg-white rounded-xl border border-black/5 p-3 min-w-[80px]">
+          <p className="text-[10px] text-muted uppercase">Tasks</p>
+          <p className="text-lg font-semibold">{doneCount}/{deliverables.length}</p>
+        </div>
+        <div className="flex-shrink-0 bg-white rounded-xl border border-black/5 p-3 min-w-[100px]">
+          <p className="text-[10px] text-muted uppercase">Status</p>
           <select
-            className="text-sm border border-black/10 rounded-lg px-3 py-1.5 bg-transparent"
+            className="text-sm font-semibold bg-transparent capitalize -ml-1"
             value={project.status}
             onChange={(e) => updateProjectStatus(e.target.value)}
           >
@@ -138,117 +151,86 @@ export default function ProjectDetailPage() {
         </div>
       </div>
 
-      {/* Project info */}
-      <div className="grid grid-cols-3 gap-4">
-        <div className="bg-white rounded-2xl border border-black/5 p-5">
-          <p className="text-xs text-muted uppercase tracking-wide mb-1">Monthly Value</p>
-          <p className="text-2xl font-semibold">{formatCurrency(project.monthly_value || 0)}</p>
-        </div>
-        <div className="bg-white rounded-2xl border border-black/5 p-5">
-          <p className="text-xs text-muted uppercase tracking-wide mb-1">Service Type</p>
-          <p className="text-2xl font-semibold capitalize">{project.service_type}</p>
-        </div>
-        <div className="bg-white rounded-2xl border border-black/5 p-5">
-          <p className="text-xs text-muted uppercase tracking-wide mb-1">Invoiced</p>
-          <p className="text-2xl font-semibold">
-            {formatCurrency(invoices.reduce((sum, i) => sum + i.amount_cents, 0))}
-          </p>
-        </div>
-      </div>
-
       {/* Deliverables */}
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-medium">Deliverables</h2>
+        <div className="flex items-center justify-between mb-3">
+          <p className="text-sm font-medium">Deliverables {pendingCount > 0 && `(${pendingCount})`}</p>
           <Button size="xs" variant="ghost" onClick={() => setShowDeliverableForm(!showDeliverableForm)}>
-            {showDeliverableForm ? 'Cancel' : '+ Add'}
+            {showDeliverableForm ? '×' : '+'}
           </Button>
         </div>
 
         {showDeliverableForm && (
-          <form onSubmit={addDeliverable} className="bg-white rounded-xl border border-black/5 p-4 mb-4 flex gap-3">
+          <form onSubmit={addDeliverable} className="flex gap-2 mb-3">
             <Input
-              placeholder="Deliverable title"
+              placeholder="Task title"
               value={newDeliverable.title}
               onChange={(e) => setNewDeliverable({ ...newDeliverable, title: e.target.value })}
               className="flex-1"
               required
             />
-            <Input
-              type="date"
-              value={newDeliverable.due_date}
-              onChange={(e) => setNewDeliverable({ ...newDeliverable, due_date: e.target.value })}
-              className="w-40"
-            />
             <Button type="submit" size="sm">Add</Button>
           </form>
         )}
 
-        <div className="space-y-2">
+        <div className="space-y-1">
           {deliverables.map((d) => (
             <div
               key={d.id}
-              className="flex items-center justify-between bg-white rounded-xl border border-black/5 p-4"
+              className={`flex items-center gap-3 p-3 rounded-xl border border-black/5 ${statusColors[d.status] || 'bg-white'}`}
             >
-              <div className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  checked={d.status === 'done'}
-                  onChange={() => updateDeliverableStatus(d.id, d.status === 'done' ? 'pending' : 'done')}
-                  className="w-4 h-4 rounded border-gray-300"
-                />
-                <span className={d.status === 'done' ? 'line-through text-muted' : ''}>{d.title}</span>
-              </div>
-              <div className="flex items-center gap-3">
-                {d.due_date && (
-                  <span className="text-xs text-muted">
-                    {new Date(d.due_date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}
-                  </span>
-                )}
-                <select
-                  className="text-xs border border-black/10 rounded px-2 py-1 bg-transparent"
-                  value={d.status}
-                  onChange={(e) => updateDeliverableStatus(d.id, e.target.value)}
-                >
-                  <option value="pending">Pending</option>
-                  <option value="in_progress">In Progress</option>
-                  <option value="done">Done</option>
-                  <option value="blocked">Blocked</option>
-                </select>
-              </div>
+              <button
+                onClick={() => updateDeliverableStatus(d.id, d.status === 'done' ? 'pending' : 'done')}
+                className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                  d.status === 'done' ? 'border-green-500 bg-green-500 text-white' : 'border-gray-300'
+                }`}
+              >
+                {d.status === 'done' && '✓'}
+              </button>
+              <span className={`flex-1 text-sm ${d.status === 'done' ? 'line-through text-muted' : ''}`}>
+                {d.title}
+              </span>
+              {d.due_date && (
+                <span className="text-[10px] text-muted">
+                  {new Date(d.due_date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}
+                </span>
+              )}
             </div>
           ))}
           {deliverables.length === 0 && (
-            <p className="text-sm text-muted py-8 text-center">No deliverables yet</p>
+            <p className="text-sm text-muted py-6 text-center">No deliverables</p>
           )}
         </div>
       </div>
 
       {/* Invoices */}
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-medium">Invoices</h2>
-          <Link href={`/agency/invoices?project=${project.id}`}>
-            <Button size="xs" variant="ghost">+ Create Invoice</Button>
+        <div className="flex items-center justify-between mb-3">
+          <p className="text-sm font-medium">Invoices</p>
+          <Link href={`/agency/invoices?project=${project.id}&new=1`}>
+            <Button size="xs" variant="ghost">+ New</Button>
           </Link>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1">
           {invoices.map((invoice) => (
             <div
               key={invoice.id}
-              className="flex items-center justify-between bg-white rounded-xl border border-black/5 p-4"
+              className="flex items-center justify-between bg-white rounded-xl border border-black/5 p-3"
             >
               <div>
-                <span className="font-mono text-sm">{invoice.invoice_number}</span>
-                <span className={`ml-3 text-xs px-2 py-0.5 rounded-full capitalize ${statusColors[invoice.status] || 'bg-gray-100'}`}>
+                <span className="font-mono text-xs text-muted">{invoice.invoice_number}</span>
+                <span className={`ml-2 text-[10px] px-1.5 py-0.5 rounded-full capitalize ${
+                  invoice.status === 'paid' ? 'bg-green-50 text-green-700' :
+                  invoice.status === 'sent' ? 'bg-blue-50 text-blue-700' : 'bg-gray-100'
+                }`}>
                   {invoice.status}
                 </span>
               </div>
-              <span className="font-medium">{formatCurrency(invoice.amount_cents)}</span>
+              <span className="font-medium text-sm">{formatCurrency(invoice.amount_cents)}</span>
             </div>
           ))}
           {invoices.length === 0 && (
-            <p className="text-sm text-muted py-8 text-center">No invoices yet</p>
+            <p className="text-sm text-muted py-6 text-center">No invoices</p>
           )}
         </div>
       </div>

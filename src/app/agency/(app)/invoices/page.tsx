@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
 
@@ -103,39 +102,49 @@ export default function InvoicesPage() {
     .filter((i) => i.status === 'sent' || i.status === 'overdue')
     .reduce((sum, i) => sum + i.amount_cents, 0);
 
+  const unpaidInvoices = invoices.filter(i => i.status === 'sent' || i.status === 'overdue' || i.status === 'draft');
+  const paidInvoices = invoices.filter(i => i.status === 'paid');
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
+      {/* Mobile: Big outstanding number */}
+      <div className="md:hidden">
+        <p className="text-xs text-muted mb-1">Outstanding</p>
+        <p className="text-4xl font-semibold tracking-tight">{formatCurrency(outstanding)}</p>
+      </div>
+
       <div className="flex items-center justify-between">
-        <div>
+        <div className="hidden md:block">
           <h1 className="text-2xl font-semibold tracking-tight">Invoices</h1>
-          <p className="text-sm text-muted mt-1">
-            {formatCurrency(outstanding)} outstanding
-          </p>
+          <p className="text-sm text-muted mt-1">{formatCurrency(outstanding)} outstanding</p>
+        </div>
+        <div className="md:hidden">
+          <h1 className="text-xl font-semibold tracking-tight">Invoices</h1>
         </div>
         <Button size="sm" onClick={() => setShowForm(!showForm)}>
-          {showForm ? 'Cancel' : '+ New Invoice'}
+          {showForm ? '×' : '+'}
         </Button>
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-black/5 p-6 space-y-4">
-          <div className="grid grid-cols-3 gap-4">
-            <select
-              className="rounded-lg border border-border bg-transparent px-4 py-3 text-sm"
-              value={formData.project_id}
-              onChange={(e) => setFormData({ ...formData, project_id: e.target.value })}
-              required
-            >
-              <option value="">Select project...</option>
-              {projects.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name} ({p.client?.company_name})
-                </option>
-              ))}
-            </select>
+        <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-black/5 p-4 space-y-3">
+          <select
+            className="w-full rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm"
+            value={formData.project_id}
+            onChange={(e) => setFormData({ ...formData, project_id: e.target.value })}
+            required
+          >
+            <option value="">Select project...</option>
+            {projects.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.name} ({p.client?.company_name})
+              </option>
+            ))}
+          </select>
+          <div className="grid grid-cols-2 gap-2">
             <Input
               type="number"
-              placeholder="Amount (AUD)"
+              placeholder="Amount"
               value={formData.amount}
               onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
               required
@@ -146,12 +155,81 @@ export default function InvoicesPage() {
               onChange={(e) => setFormData({ ...formData, due_date: e.target.value })}
             />
           </div>
-          <Button type="submit" size="sm">Create Invoice</Button>
+          <Button type="submit" size="sm" fullWidth>Create</Button>
         </form>
       )}
 
-      {/* Invoices table */}
-      <div className="bg-white rounded-2xl border border-black/5 overflow-hidden">
+      {/* Mobile: Card list grouped by status */}
+      <div className="md:hidden space-y-4">
+        {unpaidInvoices.length > 0 && (
+          <div className="space-y-2">
+            {unpaidInvoices.map((invoice) => (
+              <div
+                key={invoice.id}
+                className="bg-white rounded-xl border border-black/5 p-3"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium text-sm">{invoice.project?.client?.company_name || 'No client'}</p>
+                    <p className="text-xs text-muted truncate">{invoice.project?.name}</p>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <p className="font-semibold">{formatCurrency(invoice.amount_cents)}</p>
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full capitalize ${statusColors[invoice.status]}`}>
+                      {invoice.status}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/5">
+                  <span className="text-[10px] text-muted font-mono">{invoice.invoice_number}</span>
+                  <div className="flex gap-2">
+                    {invoice.status === 'draft' && (
+                      <button
+                        onClick={() => updateStatus(invoice.id, 'sent')}
+                        className="text-xs text-blue-600 font-medium"
+                      >
+                        Send
+                      </button>
+                    )}
+                    {(invoice.status === 'sent' || invoice.status === 'overdue') && (
+                      <button
+                        onClick={() => updateStatus(invoice.id, 'paid')}
+                        className="text-xs text-green-600 font-medium"
+                      >
+                        Mark Paid
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {paidInvoices.length > 0 && (
+          <div>
+            <p className="text-xs text-muted mb-2">Paid ({paidInvoices.length})</p>
+            <div className="space-y-1">
+              {paidInvoices.slice(0, 5).map((invoice) => (
+                <div
+                  key={invoice.id}
+                  className="flex items-center justify-between py-2 px-1 text-sm text-muted"
+                >
+                  <span className="truncate">{invoice.project?.client?.company_name}</span>
+                  <span>{formatCurrency(invoice.amount_cents)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {invoices.length === 0 && (
+          <p className="text-sm text-muted py-12 text-center">No invoices yet</p>
+        )}
+      </div>
+
+      {/* Desktop: Table */}
+      <div className="hidden md:block bg-white rounded-2xl border border-black/5 overflow-hidden">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-black/5 bg-black/[0.02]">
@@ -200,7 +278,7 @@ export default function InvoicesPage() {
             {invoices.length === 0 && (
               <tr>
                 <td colSpan={7} className="px-4 py-12 text-center text-muted">
-                  No invoices yet. Create your first invoice above.
+                  No invoices yet
                 </td>
               </tr>
             )}

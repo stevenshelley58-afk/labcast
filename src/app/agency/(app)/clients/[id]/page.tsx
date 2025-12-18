@@ -71,47 +71,48 @@ export default function ClientDetailPage() {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-start justify-between">
-        <div>
-          <button onClick={() => router.back()} className="text-sm text-muted hover:text-foreground mb-2">
-            ← Back
-          </button>
-          <h1 className="text-2xl font-semibold tracking-tight">{client.company_name}</h1>
-          <p className="text-sm text-muted mt-1">{client.contact_name} · {client.email}</p>
-        </div>
-        <div className="flex gap-2">
-          {client.status === 'active' && (
-            <Button size="sm" variant="ghost" onClick={() => updateStatus('paused')}>Pause</Button>
-          )}
-          {client.status === 'paused' && (
-            <Button size="sm" variant="ghost" onClick={() => updateStatus('active')}>Activate</Button>
-          )}
-        </div>
+    <div className="space-y-6">
+      {/* Header */}
+      <div>
+        <button onClick={() => router.back()} className="text-xs text-muted mb-2 flex items-center gap-1">
+          ← Back
+        </button>
+        <h1 className="text-xl md:text-2xl font-semibold tracking-tight">{client.company_name}</h1>
+        <p className="text-xs md:text-sm text-muted mt-0.5">{client.contact_name}</p>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-4">
-        <div className="bg-white rounded-2xl border border-black/5 p-5">
-          <p className="text-xs text-muted uppercase tracking-wide mb-1">Lifetime Value</p>
-          <p className="text-2xl font-semibold">{formatCurrency(client.lifetime_value || 0)}</p>
+      {/* Stats - 2x2 on mobile, 3 on desktop */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div className="bg-white rounded-xl border border-black/5 p-4">
+          <p className="text-[10px] md:text-xs text-muted uppercase mb-1">LTV</p>
+          <p className="text-xl md:text-2xl font-semibold">{formatCurrency(client.lifetime_value || 0)}</p>
         </div>
-        <div className="bg-white rounded-2xl border border-black/5 p-5">
-          <p className="text-xs text-muted uppercase tracking-wide mb-1">Outstanding</p>
-          <p className="text-2xl font-semibold">{formatCurrency(client.outstanding_amount || 0)}</p>
+        <div className="bg-white rounded-xl border border-black/5 p-4">
+          <p className="text-[10px] md:text-xs text-muted uppercase mb-1">Outstanding</p>
+          <p className="text-xl md:text-2xl font-semibold">{formatCurrency(client.outstanding_amount || 0)}</p>
         </div>
-        <div className="bg-white rounded-2xl border border-black/5 p-5">
-          <p className="text-xs text-muted uppercase tracking-wide mb-1">Active Projects</p>
-          <p className="text-2xl font-semibold">{client.active_project_count || 0}</p>
+        <div className="bg-white rounded-xl border border-black/5 p-4 col-span-2 md:col-span-1">
+          <p className="text-[10px] md:text-xs text-muted uppercase mb-1">Status</p>
+          <div className="flex items-center gap-2">
+            <select
+              className="text-sm border border-black/10 rounded-lg px-2 py-1 bg-transparent capitalize"
+              value={client.status}
+              onChange={(e) => updateStatus(e.target.value)}
+            >
+              <option value="active">Active</option>
+              <option value="paused">Paused</option>
+              <option value="churned">Churned</option>
+            </select>
+          </div>
         </div>
       </div>
 
       {/* Projects */}
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-medium">Projects</h2>
-          <Link href={`/agency/projects?client=${client.id}`}>
-            <Button size="xs" variant="ghost">+ New Project</Button>
+        <div className="flex items-center justify-between mb-3">
+          <p className="text-sm font-medium">Projects</p>
+          <Link href={`/agency/projects?client=${client.id}&new=1`}>
+            <Button size="xs" variant="ghost">+ New</Button>
           </Link>
         </div>
         <div className="space-y-2">
@@ -119,33 +120,37 @@ export default function ClientDetailPage() {
             <Link
               key={project.id}
               href={`/agency/projects/${project.id}`}
-              className="flex items-center justify-between bg-white rounded-xl border border-black/5 p-4 hover:bg-black/[0.01]"
+              className="flex items-center justify-between bg-white rounded-xl border border-black/5 p-3 active:scale-[0.99] transition-transform"
             >
               <div>
-                <p className="font-medium">{project.name}</p>
+                <p className="font-medium text-sm">{project.name}</p>
                 <p className="text-xs text-muted capitalize">{project.service_type}</p>
               </div>
               <div className="text-right">
-                <p className="font-medium">{formatCurrency(project.monthly_value || 0)}/mo</p>
+                <p className="font-medium text-sm">{formatCurrency(project.monthly_value || 0)}/mo</p>
                 <p className="text-xs text-muted capitalize">{project.status}</p>
               </div>
             </Link>
           ))}
           {projects.length === 0 && (
-            <p className="text-sm text-muted py-8 text-center">No projects yet</p>
+            <p className="text-sm text-muted py-8 text-center">No projects</p>
           )}
         </div>
       </div>
 
-      {/* Notes */}
-      {client.notes && (
-        <div>
-          <h2 className="text-lg font-medium mb-2">Notes</h2>
-          <div className="bg-white rounded-xl border border-black/5 p-4 text-sm whitespace-pre-wrap">
-            {client.notes}
-          </div>
+      {/* Contact info */}
+      <div className="bg-white rounded-xl border border-black/5 p-4 space-y-2 text-sm">
+        <div className="flex justify-between">
+          <span className="text-muted">Email</span>
+          <a href={`mailto:${client.email}`} className="text-blue-600">{client.email}</a>
         </div>
-      )}
+        {client.phone && (
+          <div className="flex justify-between">
+            <span className="text-muted">Phone</span>
+            <a href={`tel:${client.phone}`} className="text-blue-600">{client.phone}</a>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

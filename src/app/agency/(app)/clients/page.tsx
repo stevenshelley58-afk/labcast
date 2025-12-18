@@ -71,34 +71,34 @@ export default function ClientsPage() {
     return <div className="animate-pulse h-64 bg-black/5 rounded-2xl" />;
   }
 
+  const totalLTV = clients.reduce((sum, c) => sum + (c.lifetime_value || 0), 0);
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Clients</h1>
-          <p className="text-sm text-muted mt-1">{clients.length} total</p>
+          <h1 className="text-xl md:text-2xl font-semibold tracking-tight">Clients</h1>
+          <p className="text-xs md:text-sm text-muted mt-0.5">{formatCurrency(totalLTV)} LTV</p>
         </div>
         <Button size="sm" onClick={() => setShowForm(!showForm)}>
-          {showForm ? 'Cancel' : '+ Add Client'}
+          {showForm ? '×' : '+'}
         </Button>
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-black/5 p-6 space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <Input
-              placeholder="Company name"
-              value={formData.company_name}
-              onChange={(e) => setFormData({ ...formData, company_name: e.target.value })}
-              required
-            />
-            <Input
-              placeholder="Contact name"
-              value={formData.contact_name}
-              onChange={(e) => setFormData({ ...formData, contact_name: e.target.value })}
-              required
-            />
-          </div>
+        <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-black/5 p-4 space-y-3">
+          <Input
+            placeholder="Company name"
+            value={formData.company_name}
+            onChange={(e) => setFormData({ ...formData, company_name: e.target.value })}
+            required
+          />
+          <Input
+            placeholder="Contact name"
+            value={formData.contact_name}
+            onChange={(e) => setFormData({ ...formData, contact_name: e.target.value })}
+            required
+          />
           <Input
             type="email"
             placeholder="Email"
@@ -106,12 +106,39 @@ export default function ClientsPage() {
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             required
           />
-          <Button type="submit" size="sm">Save Client</Button>
+          <Button type="submit" size="sm" fullWidth>Save</Button>
         </form>
       )}
 
-      {/* Clients list */}
-      <div className="bg-white rounded-2xl border border-black/5 overflow-hidden">
+      {/* Mobile: Card list */}
+      <div className="md:hidden space-y-2">
+        {clients.map((client) => (
+          <Link
+            key={client.id}
+            href={`/agency/clients/${client.id}`}
+            className="block bg-white rounded-xl border border-black/5 p-3 active:scale-[0.99] transition-transform"
+          >
+            <div className="flex items-start justify-between gap-2">
+              <div className="min-w-0 flex-1">
+                <p className="font-medium text-sm truncate">{client.company_name}</p>
+                <p className="text-xs text-muted">{client.active_project_count || 0} projects</p>
+              </div>
+              <div className="text-right flex-shrink-0">
+                <p className="text-sm font-medium">{formatCurrency(client.lifetime_value || 0)}</p>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-full capitalize ${statusColors[client.status] || 'bg-gray-100'}`}>
+                  {client.status}
+                </span>
+              </div>
+            </div>
+          </Link>
+        ))}
+        {clients.length === 0 && (
+          <p className="text-sm text-muted py-12 text-center">No clients yet</p>
+        )}
+      </div>
+
+      {/* Desktop: Table */}
+      <div className="hidden md:block bg-white rounded-2xl border border-black/5 overflow-hidden">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-black/5 bg-black/[0.02]">
@@ -145,7 +172,7 @@ export default function ClientsPage() {
             {clients.length === 0 && (
               <tr>
                 <td colSpan={6} className="px-4 py-12 text-center text-muted">
-                  No clients yet. Add your first client above.
+                  No clients yet
                 </td>
               </tr>
             )}
