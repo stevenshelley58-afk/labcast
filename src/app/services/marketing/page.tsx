@@ -216,10 +216,10 @@ export default function MarketingServicesPage() {
           </div>
         </section>
 
-        {/* The Growth Framework */}
+        {/* Growth Framework */}
         <section className={styles.frameworkSection}>
           <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-10`} data-fade-in>
-            The Growth Framework
+            Growth Framework
           </h2>
 
           <div className={styles.timeline}>
