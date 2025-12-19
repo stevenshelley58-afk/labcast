@@ -183,10 +183,10 @@ export default function MarketingServicesPage() {
 
         {/* Partner Section */}
         <section className={styles.partnerSection}>
-          <div className={styles.partnerContainer}>
+          <div className={styles.container}>
             <div className={styles.partnerCopy}>
               {/* Beat 1: H2 */}
-              <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-10`} data-fade-in>
+              <h2 className={`${styles.fadeIn} ${styles.sectionHeading}`} data-fade-in>
                 Stop fighting Meta.<br />Partner with it.
               </h2>
 
@@ -218,15 +218,16 @@ export default function MarketingServicesPage() {
 
         {/* Growth Framework */}
         <section className={styles.frameworkSection}>
-          <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-10`} data-fade-in>
-            Growth Framework
-          </h2>
+          <div className={styles.container}>
+            <h2 className={`${styles.fadeIn} ${styles.sectionHeading}`} data-fade-in>
+              Growth Framework
+            </h2>
 
-          <div className={styles.timeline}>
+            <div className={styles.timeline}>
             <div className={`${styles.fadeIn} ${styles.timelineItem}`} data-fade-in>
               <div className={styles.timelineDot}></div>
               <h4 className="font-serif text-xl text-text-ink mb-2">Fix the tracking</h4>
-              <p className="text-text-subtle text-sm leading-relaxed" style={{ maxWidth: "500px" }}>
+              <p className="text-text-subtle text-sm leading-relaxed">
                 We validate or install your Pixel and Conversions API. Events get mapped properly. Deduplication gets configured. No more guessing if your data is right.
               </p>
             </div>
@@ -234,7 +235,7 @@ export default function MarketingServicesPage() {
             <div className={`${styles.fadeIn} ${styles.timelineItem}`} data-fade-in>
               <div className={styles.timelineDot}></div>
               <h4 className="font-serif text-xl text-text-ink mb-2">Test what converts</h4>
-              <p className="text-text-subtle text-sm leading-relaxed" style={{ maxWidth: "500px" }}>
+              <p className="text-text-subtle text-sm leading-relaxed">
                 We deploy 6-8 performance ads with a small test budget. Different angles, different hooks. We&apos;re looking for the one that actually moves people to buy.
               </p>
             </div>
@@ -242,7 +243,7 @@ export default function MarketingServicesPage() {
             <div className={`${styles.fadeIn} ${styles.timelineItem}`} data-fade-in>
               <div className={styles.timelineDot}></div>
               <h4 className="font-serif text-xl text-text-ink mb-2">Check the math</h4>
-              <p className="text-text-subtle text-sm leading-relaxed" style={{ maxWidth: "500px" }}>
+              <p className="text-text-subtle text-sm leading-relaxed">
                 Platform ROAS lies. We reconcile what Meta says against what your bank account says. MER, LTV, true margins. We find the real numbers.
               </p>
             </div>
@@ -250,45 +251,48 @@ export default function MarketingServicesPage() {
             <div className={`${styles.fadeIn} ${styles.timelineItem}`} data-fade-in>
               <div className={styles.timelineDot}></div>
               <h4 className="font-serif text-xl text-text-ink mb-2">Build the roadmap</h4>
-              <p className="text-text-subtle text-sm leading-relaxed" style={{ maxWidth: "500px" }}>
+              <p className="text-text-subtle text-sm leading-relaxed">
                 We deliver a 90-day plan: account structure, winning audiences, and the next 12 creative tests. Everything you need to scale or hand off.
               </p>
             </div>
           </div>
 
-          <div className={`${styles.fadeIn} ${styles.priceBlock}`} data-fade-in>
-            <span className={styles.amount}>$4,500</span>
-            <div className={styles.priceDetail}>
-              <span>4 weeks, delivered remotely</span>
-              <span className={styles.priceDetailSub}>This is where every project starts.</span>
+            <div className={`${styles.fadeIn} ${styles.priceBlock}`} data-fade-in>
+              <span className={styles.amount}>$4,500</span>
+              <div className={styles.priceDetail}>
+                <span>4 weeks, delivered remotely</span>
+                <span className={styles.priceDetailSub}>This is where every project starts.</span>
+              </div>
             </div>
-          </div>
 
-          <div className={`${styles.fadeIn} ${styles.afterNote}`} data-fade-in>
-            <p>
-              <strong className="text-text-ink">What you get:</strong> Your data infrastructure fully installed and verified, plus a detailed framework on how to keep scaling. Custom-built over four weeks specifically for your business, never a copy/paste solution. Use it internally, or partner with us ongoing.
-            </p>
-          </div>
+            <div className={`${styles.fadeIn} ${styles.afterNote}`} data-fade-in>
+              <p>
+                <strong className="text-text-ink">What you get:</strong> Your data infrastructure fully installed and verified, plus a detailed framework on how to keep scaling. Custom-built over four weeks specifically for your business, never a copy/paste solution. Use it internally, or partner with us ongoing.
+              </p>
+            </div>
 
-          <div className={`${styles.fadeIn} ${styles.customCallout}`} data-fade-in>
-            <p className={styles.calloutMain}>We work with businesses at every stage.</p>
-            <p className={styles.calloutSub}>Need rapid creative, a quick install, or something custom? Get in touch below and we&apos;ll put together a plan.</p>
+            <div className={`${styles.fadeIn} ${styles.customCallout}`} data-fade-in>
+              <p className={styles.calloutMain}>We work with businesses at every stage.</p>
+              <p className={styles.calloutSub}>Need rapid creative, a quick install, or something custom? Get in touch below and we&apos;ll put together a plan.</p>
+            </div>
           </div>
         </section>
 
         {/* Footer CTA */}
         <section className={styles.footerCta}>
-          <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-6`} data-fade-in>
-            Ready to talk?
-          </h2>
-          <p className={`${styles.fadeIn} text-text-subtle mb-8`} style={{ maxWidth: "400px", textAlign: "center" }} data-fade-in>
+          <div className={styles.container}>
+            <h2 className={`${styles.fadeIn} ${styles.sectionHeading}`} data-fade-in>
+              Ready to talk?
+            </h2>
+            <p className={`${styles.fadeIn} text-text-subtle mb-8`} style={{ maxWidth: "600px", textAlign: "center", margin: "0 auto" }} data-fade-in>
             Tell us about your brand and what&apos;s not working.
             <br />
             No sales pitch, just a conversation to see if we can help.
           </p>
-          <Button as="a" href="/#contact" size="lg" className={styles.fadeIn} data-fade-in>
-            Get in touch
-          </Button>
+            <Button as="a" href="/#contact" size="lg" className={styles.fadeIn} data-fade-in>
+              Get in touch
+            </Button>
+          </div>
         </section>
       </main>
 
