@@ -181,80 +181,81 @@ export default function MarketingServicesPage() {
           </div>
         </section>
 
-        {/* The Approach */}
-        <section className={styles.section}>
-          <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-10`} data-fade-in>
-            Stop fighting Meta. Partner with it.
-          </h2>
-          <div className={`${styles.fadeIn} ${styles.heroSub}`} style={{ maxWidth: "650px" }} data-fade-in>
-            <p className="mb-6">
-              You can&apos;t beat a trillion-dollar algorithm with $50 hacks and audience exclusions.
-            </p>
-            <p className="mb-6">The algorithm isn&apos;t your enemy. It&apos;s your employee.</p>
-            <p className="mb-6">
-              But lately, the rules of the house have changed. Old account structures are breaking under the weight of Meta&apos;s new AI models. If you&apos;re still running ads the way you did last year, you&apos;re fighting an uphill battle.
-            </p>
-            <p>
-              We don&apos;t fight the platform changes; we lean into them. We modernize your setup to match what the algorithm now wants, turning a volatile account into a predictable one.
-            </p>
-          </div>
+        {/* Partner Section */}
+        <section className={styles.partnerSection}>
+          <div className={styles.partnerContainer}>
+            <div className={styles.partnerCopy}>
+              {/* Beat 1: H2 */}
+              <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-10`} data-fade-in>
+                Stop fighting Meta.<br />Partner with it.
+              </h2>
 
-          {/* Founder Proof */}
-          <div className={`${styles.fadeIn} ${styles.founderBlock}`} data-fade-in>
-            <h3 className="font-serif text-2xl font-normal text-text-ink mb-4">
-              Run by founders, not account managers.
-            </h3>
-            <div className="text-text-subtle leading-relaxed" style={{ maxWidth: "600px" }}>
-              <p className="mb-4">We aren&apos;t just an agency; we are the owners of BHM.com.au.</p>
-              <p className="mb-4">
-                Every strategy, creative format, or bidding tactic we suggest for you has already been battle-tested on our own store, with our own credit card.
+              {/* Beat 2: Subhead */}
+              <p className={`${styles.fadeIn} ${styles.partnerSubhead}`} data-fade-in>
+                You can&apos;t beat a trillion-dollar algorithm with $50 hacks and audience exclusions.
               </p>
-              <p>We treat your ad account with the same paranoia and discipline we treat our own.</p>
+
+              {/* Pull quote */}
+              <div className={`${styles.fadeIn} ${styles.pullQuote}`} data-fade-in>
+                The algorithm isn&apos;t your enemy. It&apos;s your employee.
+              </div>
+
+              {/* Body */}
+              <div className={`${styles.fadeIn} ${styles.partnerBody}`} data-fade-in>
+                <p>The rules changed. Meta&apos;s new AI models broke the old playbook — legacy account structures, manual audiences, last year&apos;s tactics. If you&apos;re still running ads that way, you&apos;re fighting uphill.</p>
+                <p>We lean into platform changes, not against them. Modernize your setup. Turn volatile into predictable.</p>
+              </div>
+
+              {/* Founder callout */}
+              <div className={`${styles.fadeIn} ${styles.founderCallout}`} data-fade-in>
+                <h3>Run by founders, not account managers.</h3>
+                <p>We aren&apos;t just an agency; we are the owners of BHM.com.au. Every strategy, creative format, or bidding tactic we suggest for you has already been battle-tested on our own store, with our own credit card.</p>
+              </div>
             </div>
-          </div>
 
-          {/* Comparison Table */}
-          <div className={`${styles.fadeIn} ${styles.comparisonSection}`} data-fade-in>
-            <div className={styles.comparisonTable}>
-              <div className={styles.comparisonHeader}>
-                <div></div>
-                <div className={styles.colAgency}>Agencies</div>
-                <div className={styles.colLabcast}>Labcast</div>
-              </div>
+            {/* Comparison Table */}
+            <div className={`${styles.fadeIn} ${styles.comparisonSection}`} data-fade-in>
+              <div className={styles.comparisonTable}>
+                <div className={styles.comparisonHeader}>
+                  <div></div>
+                  <div className={styles.colAgency}>Agencies</div>
+                  <div className={styles.colLabcast}>Labcast</div>
+                </div>
 
-              <div className={styles.comparisonRow}>
-                <div className={styles.comparisonCat}>Strategy</div>
-                <div className={`${styles.comparisonCell} ${styles.agency}`}>
-                  <h4>Guess &amp; Pray</h4>
-                  <p>Random boosts, testing based on &quot;feel,&quot; hoping for a hit.</p>
+                <div className={styles.comparisonRow}>
+                  <div className={styles.comparisonCat}>Strategy</div>
+                  <div className={`${styles.comparisonCell} ${styles.agency}`}>
+                    <h4>Guess &amp; Pray</h4>
+                    <p>Random boosts, testing based on &quot;feel,&quot; hoping for a hit.</p>
+                  </div>
+                  <div className={`${styles.comparisonCell} ${styles.labcast}`}>
+                    <h4>Scientific Method</h4>
+                    <p>Isolated tests for Offer, Angle, and Creative. Don&apos;t scale until it prints money.</p>
+                  </div>
                 </div>
-                <div className={`${styles.comparisonCell} ${styles.labcast}`}>
-                  <h4>Scientific Method</h4>
-                  <p>Isolated tests for Offer, Angle, and Creative. Don&apos;t scale until it prints money.</p>
-                </div>
-              </div>
 
-              <div className={styles.comparisonRow}>
-                <div className={styles.comparisonCat}>Creative</div>
-                <div className={`${styles.comparisonCell} ${styles.agency}`}>
-                  <h4>Pretty Pictures</h4>
-                  <p>Looks great in portfolio, ignored in feed.</p>
+                <div className={styles.comparisonRow}>
+                  <div className={styles.comparisonCat}>Creative</div>
+                  <div className={`${styles.comparisonCell} ${styles.agency}`}>
+                    <h4>Pretty Pictures</h4>
+                    <p>Looks great in portfolio, ignored in feed.</p>
+                  </div>
+                  <div className={`${styles.comparisonCell} ${styles.labcast}`}>
+                    <h4>Performance Assets</h4>
+                    <p>Stop the scroll. If it doesn&apos;t convert, kill it.</p>
+                  </div>
                 </div>
-                <div className={`${styles.comparisonCell} ${styles.labcast}`}>
-                  <h4>Performance Assets</h4>
-                  <p>Stop the scroll. If it doesn&apos;t convert, kill it.</p>
-                </div>
-              </div>
 
-              <div className={styles.comparisonRow}>
-                <div className={styles.comparisonCat}>Metric</div>
-                <div className={`${styles.comparisonCell} ${styles.agency}`}>
-                  <h4>Platform ROAS</h4>
-                  <p>Credit for customers buying anyway.</p>
-                </div>
-                <div className={`${styles.comparisonCell} ${styles.labcast}`}>
-                  <h4>Bank Balance</h4>
-                  <p>MER only. No profit = no ad.</p>
+                <div className={styles.comparisonRow}>
+                  <div className={styles.comparisonCat}>Metric</div>
+                  <div className={`${styles.comparisonCell} ${styles.agency}`}>
+                    <h4>Platform ROAS</h4>
+                    <p>Credit for customers buying anyway.</p>
+                  </div>
+                  <div className={`${styles.comparisonCell} ${styles.labcast}`}>
+                    <h4>Bank Balance</h4>
+                    <p>MER only. No profit = no ad.</p>
+                  </div>
                 </div>
               </div>
             </div>

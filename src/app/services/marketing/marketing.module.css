@@ -152,7 +152,76 @@
   margin: 0 auto;
 }
 
-/* Founder Block */
+/* Partner Section */
+.partnerSection {
+  padding: 80px 48px;
+  background: var(--rv-color-canvas);
+}
+
+.partnerContainer {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.partnerCopy {
+  max-width: 650px;
+}
+
+.partnerSubhead {
+  font-size: 17px;
+  color: var(--rv-color-muted);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.pullQuote {
+  font-family: var(--rv-font-serif);
+  font-size: 24px;
+  font-style: italic;
+  color: var(--rv-color-ink);
+  margin: 40px 0;
+  padding-left: 24px;
+  border-left: 3px solid var(--rv-color-ink);
+}
+
+.partnerBody {
+  font-size: 17px;
+  color: var(--rv-color-muted);
+  line-height: 1.7;
+}
+
+.partnerBody p {
+  margin-bottom: 16px;
+}
+
+.partnerBody p:last-child {
+  margin-bottom: 0;
+}
+
+/* Founder Callout */
+.founderCallout {
+  margin-top: 48px;
+  padding: 32px;
+  background: var(--rv-color-surface);
+  border-radius: 8px;
+}
+
+.founderCallout h3 {
+  font-family: var(--rv-font-serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--rv-color-ink);
+  margin-bottom: 12px;
+}
+
+.founderCallout p {
+  font-size: 15px;
+  color: var(--rv-color-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Founder Block (legacy) */
 .founderBlock {
   margin-top: 60px;
   padding-top: 40px;
@@ -396,10 +465,15 @@
 
 @media (max-width: 768px) {
   .section,
+  .partnerSection,
   .frameworkSection,
   .footerCta {
     padding-left: 24px;
     padding-right: 24px;
+  }
+
+  .pullQuote {
+    font-size: 20px;
   }
 
   .priceBlock {
