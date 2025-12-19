@@ -208,73 +208,23 @@ export default function MarketingServicesPage() {
 
               {/* Founder callout */}
               <div className={`${styles.fadeIn} ${styles.founderCallout}`} data-fade-in>
-                <h3>Run by founders, not account managers.</h3>
-                <p>We aren&apos;t just an agency; we are the owners of BHM.com.au. Every strategy, creative format, or bidding tactic we suggest for you has already been battle-tested on our own store, with our own credit card.</p>
+                <h3>Run by founders,<br />not account managers.</h3>
+                <p>We own BHM.com.au. Every tactic we suggest has been tested on our own store, with our own money.</p>
               </div>
             </div>
 
-            {/* Comparison Table */}
-            <div className={`${styles.fadeIn} ${styles.comparisonSection}`} data-fade-in>
-              <div className={styles.comparisonTable}>
-                <div className={styles.comparisonHeader}>
-                  <div></div>
-                  <div className={styles.colAgency}>Agencies</div>
-                  <div className={styles.colLabcast}>Labcast</div>
-                </div>
-
-                <div className={styles.comparisonRow}>
-                  <div className={styles.comparisonCat}>Strategy</div>
-                  <div className={`${styles.comparisonCell} ${styles.agency}`}>
-                    <h4>Guess &amp; Pray</h4>
-                    <p>Random boosts, testing based on &quot;feel,&quot; hoping for a hit.</p>
-                  </div>
-                  <div className={`${styles.comparisonCell} ${styles.labcast}`}>
-                    <h4>Scientific Method</h4>
-                    <p>Isolated tests for Offer, Angle, and Creative. Don&apos;t scale until it prints money.</p>
-                  </div>
-                </div>
-
-                <div className={styles.comparisonRow}>
-                  <div className={styles.comparisonCat}>Creative</div>
-                  <div className={`${styles.comparisonCell} ${styles.agency}`}>
-                    <h4>Pretty Pictures</h4>
-                    <p>Looks great in portfolio, ignored in feed.</p>
-                  </div>
-                  <div className={`${styles.comparisonCell} ${styles.labcast}`}>
-                    <h4>Performance Assets</h4>
-                    <p>Stop the scroll. If it doesn&apos;t convert, kill it.</p>
-                  </div>
-                </div>
-
-                <div className={styles.comparisonRow}>
-                  <div className={styles.comparisonCat}>Metric</div>
-                  <div className={`${styles.comparisonCell} ${styles.agency}`}>
-                    <h4>Platform ROAS</h4>
-                    <p>Credit for customers buying anyway.</p>
-                  </div>
-                  <div className={`${styles.comparisonCell} ${styles.labcast}`}>
-                    <h4>Bank Balance</h4>
-                    <p>MER only. No profit = no ad.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
         {/* The Growth Framework */}
         <section className={styles.frameworkSection}>
-          <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-4`} data-fade-in>
+          <h2 className={`${styles.fadeIn} font-serif text-3xl md:text-4xl font-normal text-text-ink mb-10`} data-fade-in>
             The Growth Framework
           </h2>
-          <p className={`${styles.fadeIn} ${styles.heroSub}`} style={{ maxWidth: "600px", margin: "0 0 32px 0" }} data-fade-in>
-            We start every project the same way. Four weeks to fix what&apos;s broken, test what might work, and build a plan you can actually execute.
-          </p>
 
           <div className={styles.timeline}>
             <div className={`${styles.fadeIn} ${styles.timelineItem}`} data-fade-in>
               <div className={styles.timelineDot}></div>
-              <span className={styles.timelineWeek}>Week 1</span>
               <h4 className="font-serif text-xl text-text-ink mb-2">Fix the tracking</h4>
               <p className="text-text-subtle text-sm leading-relaxed" style={{ maxWidth: "500px" }}>
                 We validate or install your Pixel and Conversions API. Events get mapped properly. Deduplication gets configured. No more guessing if your data is right.
@@ -283,7 +233,6 @@ export default function MarketingServicesPage() {
 
             <div className={`${styles.fadeIn} ${styles.timelineItem}`} data-fade-in>
               <div className={styles.timelineDot}></div>
-              <span className={styles.timelineWeek}>Week 2</span>
               <h4 className="font-serif text-xl text-text-ink mb-2">Test what converts</h4>
               <p className="text-text-subtle text-sm leading-relaxed" style={{ maxWidth: "500px" }}>
                 We deploy 6-8 performance ads with a small test budget. Different angles, different hooks. We&apos;re looking for the one that actually moves people to buy.
@@ -292,7 +241,6 @@ export default function MarketingServicesPage() {
 
             <div className={`${styles.fadeIn} ${styles.timelineItem}`} data-fade-in>
               <div className={styles.timelineDot}></div>
-              <span className={styles.timelineWeek}>Week 3</span>
               <h4 className="font-serif text-xl text-text-ink mb-2">Check the math</h4>
               <p className="text-text-subtle text-sm leading-relaxed" style={{ maxWidth: "500px" }}>
                 Platform ROAS lies. We reconcile what Meta says against what your bank account says. MER, LTV, true margins. We find the real numbers.
@@ -301,7 +249,6 @@ export default function MarketingServicesPage() {
 
             <div className={`${styles.fadeIn} ${styles.timelineItem}`} data-fade-in>
               <div className={styles.timelineDot}></div>
-              <span className={styles.timelineWeek}>Week 4</span>
               <h4 className="font-serif text-xl text-text-ink mb-2">Build the roadmap</h4>
               <p className="text-text-subtle text-sm leading-relaxed" style={{ maxWidth: "500px" }}>
                 We deliver a 90-day plan: account structure, winning audiences, and the next 12 creative tests. Everything you need to scale or hand off.

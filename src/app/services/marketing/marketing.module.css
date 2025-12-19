@@ -201,23 +201,26 @@
 /* Founder Callout */
 .founderCallout {
   margin-top: 48px;
-  padding: 32px;
-  background: var(--rv-color-surface);
-  border-radius: 8px;
+  padding: 2.5rem;
+  background: var(--rv-color-panel);
+  border: 1px solid var(--rv-color-border-soft);
+  border-radius: 12px;
 }
 
 .founderCallout h3 {
-  font-family: var(--rv-font-serif);
-  font-size: 20px;
-  font-weight: 400;
+  font-family: var(--rv-font-sans);
+  font-size: 1.75rem;
+  font-weight: 700;
   color: var(--rv-color-ink);
-  margin-bottom: 12px;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
 }
 
 .founderCallout p {
-  font-size: 15px;
+  font-size: 1.0625rem;
   color: var(--rv-color-muted);
-  line-height: 1.7;
+  line-height: 1.6;
   margin: 0;
 }
 
