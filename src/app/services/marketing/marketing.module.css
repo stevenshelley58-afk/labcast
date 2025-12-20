@@ -175,13 +175,13 @@
 
 /* Shared Section Styling */
 .section {
-  padding: 80px 0;
+  padding: 120px 0;
   background: var(--rv-color-canvas);
 }
 
 /* Partner Section */
 .partnerSection {
-  padding: 80px 0;
+  padding: 120px 0;
   background: var(--rv-color-canvas);
 }
 
@@ -353,7 +353,7 @@
 
 /* Framework Section */
 .frameworkSection {
-  padding: 80px 0;
+  padding: 120px 0;
   background: var(--rv-color-canvas);
 }
 
@@ -480,7 +480,7 @@
 /* Footer CTA */
 .footerCta {
   text-align: center;
-  padding: 80px 0;
+  padding: 120px 0;
   background: var(--rv-color-canvas);
   display: flex;
   flex-direction: column;
@@ -503,8 +503,8 @@
   .partnerSection,
   .frameworkSection,
   .footerCta {
-    padding-top: 64px;
-    padding-bottom: 64px;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
   .pullQuote {
